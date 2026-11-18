@@ -1,10 +1,11 @@
 import * as THREE from 'three';
-import { SIZE, height } from '../maps/current.js';
+import { mapOf } from '../maps/index.js';
 // Agua pintada: color por profundidad, espuma en la orilla, y recibe las sombras del sol.
 const uniforms = { uDepth: { value: null }, uTime: { value: 0 } };
 export default {
   id: 'water', label: 'Agua',
-  init(ctx) {
+  build(ctx) {
+    const { SIZE, height } = mapOf(ctx.state);
     const W = 512, H = 400, data = new Uint8Array(W * H * 4);
     for (let j = 0; j < H; j++) for (let i = 0; i < W; i++) {
       const x = -SIZE.w / 2 + (i + .5) / W * SIZE.w, z = -SIZE.d / 2 + (j + .5) / H * SIZE.d;
@@ -37,7 +38,7 @@ export default {
         diffuseColor.a=max(mix(.42,.95,smoothstep(0.,3.2,dep)),foam);`);
     };
     const mesh = new THREE.Mesh(new THREE.PlaneGeometry(SIZE.w, SIZE.d).rotateX(-Math.PI / 2), mat);
-    mesh.receiveShadow = true; ctx.scene.add(mesh);
+    mesh.receiveShadow = true; ctx.world.add(mesh);
   },
   update(ctx) { uniforms.uTime.value = ctx.time; }
 };

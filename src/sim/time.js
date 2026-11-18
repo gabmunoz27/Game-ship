@@ -1,13 +1,15 @@
 // Paso del tiempo (GDD 2.D): Mañana → Tarde → Noche. Estar en el muelle no consume tiempo.
 import { emit } from '../core/events.js';
+import { roll } from './weather.js';
 export const SLOTS = ['Mañana', 'Tarde', 'Noche'];
 export const slotName = state => SLOTS[state.slot];
 
 export function advance(state, slots = 1) {
   for (let i = 0; i < slots; i++) { state.slot++; if (state.slot >= SLOTS.length) { state.slot = 0; state.day++; } }
+  roll(state);
   emit('time:changed', { day: state.day, slot: state.slot });
 }
-export function sleepUntilMorning(state) { state.slot = 0; state.day++; emit('time:changed', { day: state.day, slot: 0 }); }
+export function sleepUntilMorning(state) { state.slot = 0; state.day++; roll(state); emit('time:changed', { day: state.day, slot: 0 }); }
 
 /** Posición continua en el calendario: crece 1 por franja. La parte visual la persigue para animar el cambio. */
 export const phaseOf = state => state.day * SLOTS.length + state.slot;

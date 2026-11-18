@@ -5,8 +5,9 @@ import * as time from './time.js';
 import * as cargo from './cargo.js';
 import * as trust from './trust.js';
 
-const BAD_WEATHER = ['lluvia', 'niebla', 'viento-en-contra'];
-export const supplyCost = state => BAD_WEATHER.includes(state.weather) ? 2 : 1;
+import * as weather from './weather.js';
+
+export const supplyCost = state => weather.isBad(state) ? 2 : 1;
 
 export function dock(state, villageId) {
   if (state.docked) return { ok: false, reason: 'ya-atracado' };
@@ -16,6 +17,7 @@ export function dock(state, villageId) {
     const cost = supplyCost(state), have = cargo.count(state, 'supplies');
     supplied = have >= cost;
     if (have) cargo.remove(state, 'supplies', Math.min(have, cost));
+    weather.expose(state);                // la travesía se hace con el clima de la salida
     time.advance(state, supplied ? 1 : 2);
     if (!supplied) trust.add(state, villageId, -trust.LATE_PENALTY);
   }

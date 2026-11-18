@@ -1,10 +1,12 @@
 import * as THREE from 'three';
-import { SIZE, height, shoreDist, noise, hash } from '../maps/current.js';
+import { mapOf } from '../maps/index.js';
+import { noise, hash } from '../maps/shared.js';
 import { flat } from './helpers.js';
 // Terreno facetado: cada triángulo recibe un color plano según su altura y su pendiente.
 export default {
   id: 'terrain', label: 'Terreno',
-  init(ctx) {
+  build(ctx) {
+    const { SIZE, height, shoreDist } = mapOf(ctx.state);
     const cell = 2.5, nx = SIZE.w / cell, nz = SIZE.d / cell;
     const pt = (i, j) => {
       const edge = i === 0 || j === 0 || i === nx || j === nz;
@@ -36,6 +38,6 @@ export default {
     g.setAttribute('color', new THREE.Float32BufferAttribute(col, 3));
     g.computeVertexNormals();
     const m = new THREE.Mesh(g, flat({ vertexColors: true })); m.receiveShadow = m.castShadow = true;
-    ctx.scene.add(m);
+    ctx.world.add(m);
   }
 };

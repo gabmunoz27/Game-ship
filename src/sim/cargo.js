@@ -9,10 +9,11 @@ export const fits = (state, good, qty = 1) => !!GOODS[good] && free(state) >= GO
 
 export function add(state, good, qty = 1) {
   if (qty < 1 || !fits(state, good, qty)) return false;
-  state.hold.items[good] = count(state, good) + qty; emit('cargo:changed'); return true;
+  state.hold.items[good] = count(state, good) + qty; emit('cargo:changed'); emit('cargo:added', { good, qty }); return true;
 }
 export function remove(state, good, qty = 1) {
   if (qty < 1 || count(state, good) < qty) return false;
   state.hold.items[good] -= qty; if (!state.hold.items[good]) delete state.hold.items[good];
+  const w = state.hold.wet; if (w && w[good] > count(state, good)) { w[good] = count(state, good); if (!w[good]) delete w[good]; }
   emit('cargo:changed'); return true;
 }

@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { SIZE, height, shoreDist, portFactor, beachWidth, noise } from '../maps/current.js';
+import { mapOf } from '../maps/index.js';
+import { noise } from '../maps/shared.js';
 import { flat, instanced, seeded } from './helpers.js';
 // Bosque de pinos low-poly. Un solo modelo repetido con tamaño y tono distintos.
 export default {
   id: 'pines', label: 'Pinos',
-  init(ctx) {
+  build(ctx) {
+    const { SIZE, height, shoreDist, portFactor, beachWidth } = mapOf(ctx.state);
     const C = new THREE.Color();
     const paint = (g, hex) => { C.set(hex); const n = g.attributes.position.count, arr = new Float32Array(n * 3);
       for (let i = 0; i < n; i++) arr.set([C.r, C.g, C.b], i * 3); g.setAttribute('color', new THREE.BufferAttribute(arr, 3)); return g; };
@@ -18,6 +20,6 @@ export default {
       const s = .95 + rnd() * .8;
       items.push({ x, z, y: height(x, z) - .2, sx: s, sy: s * (.9 + rnd() * .35), sz: s, rot: rnd() * 6, color: tones[Math.floor(rnd() * tones.length)] });
     }
-    ctx.scene.add(instanced(geo, flat({ vertexColors: true }), items));
+    ctx.world.add(instanced(geo, flat({ vertexColors: true }), items));
   }
 };

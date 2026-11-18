@@ -5,6 +5,7 @@ import { VILLAGES } from '../data/villages.js';
 import { emit } from '../core/events.js';
 import * as cargo from './cargo.js';
 import * as trust from './trust.js';
+import { wet, WET_VALUE } from './weather.js';
 
 const round = x => Math.round(x - 1e-9); // 10,5 baja a 10, como en la tabla del parche
 
@@ -20,7 +21,8 @@ export function sellPrice(state, villageId, good) {
   const g = GOODS[good], v = VILLAGES[villageId];
   if (g.tradeable === false) return null;
   const k = v.needs.includes(good) ? SELL_WHERE_NEEDED : v.produces.includes(good) ? SELL_BACK_AT_SOURCE : SELL_ELSEWHERE;
-  return round(g.price * k);
+  const price = round(g.price * k);
+  return wet(state, good) ? round(price * WET_VALUE) : price;   // se vende primero lo mojado
 }
 export function buy(state, villageId, good) {
   if (!onSale(villageId).includes(good)) return { ok: false, reason: 'no-se-vende' };
@@ -33,7 +35,9 @@ export function buy(state, villageId, good) {
 export function sell(state, villageId, good) {
   const price = sellPrice(state, villageId, good);
   if (price === null) return { ok: false, reason: 'no-comercializable' };
+  const soaked = wet(state, good);
   if (!cargo.remove(state, good)) return { ok: false, reason: 'no-tienes' };
+  if (soaked) { state.hold.wet[good] = soaked - 1; if (!state.hold.wet[good]) delete state.hold.wet[good]; }
   state.coins += price;
   if (VILLAGES[villageId].needs.includes(good)) trust.add(state, villageId, trust.PER_NEEDED_UNIT);
   emit('trade:done', { villageId, good, price });

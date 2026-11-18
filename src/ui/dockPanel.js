@@ -3,12 +3,14 @@ import { VILLAGES } from '../data/villages.js';
 import { GOODS } from '../data/goods.js';
 import { ITEMS } from '../data/items.js';
 import { UPGRADES } from '../data/upgrades.js';
+import { icon } from './icons.js';
 import * as trade from '../sim/trade.js';
 import * as cargo from '../sim/cargo.js';
 import * as voyage from '../sim/voyage.js';
 import * as trust from '../sim/trust.js';
 import * as quests from '../sim/quests.js';
 import * as upgrades from '../sim/upgrades.js';
+import { wet } from '../sim/weather.js';
 // Panel del muelle (GDD 6): pestañas Muelle, Comercio y Astillero.
 // Solo muestra y pide acciones a la simulación; las reglas viven en src/sim.
 const REASONS = { 'sin-monedas': 'No te alcanzan las monedas', 'bodega-llena': 'No cabe en la bodega' };
@@ -25,14 +27,14 @@ function muelle(id, v) {
 }
 function comercio(id, v) {
   const sale = trade.onSale(id).map(g => { const p = trade.buyPrice(state, id, g);
-    return `<div class="row"><span class="name">${GOODS[g].name} <span class="tag">${GOODS[g].weight} esp.</span></span>
+    return `<div class="row">${icon(g)}<span class="name">${GOODS[g].name} <span class="tag">${GOODS[g].weight} esp.</span>${GOODS[g].delicate ? ' <span class="tag">se moja con lluvia</span>' : ''}</span>
       <button data-act="buy" data-good="${g}" ${state.coins < p || !cargo.fits(state, g) ? 'disabled' : ''}>Comprar · ${p}</button></div>`; }).join('');
   const hold = Object.entries(state.hold.items).map(([g, n]) => { const p = trade.sellPrice(state, id, g);
-    return `<div class="row"><span class="name">${GOODS[g].name} × ${n}${v.needs.includes(g) ? ' <span class="tag">la necesitan</span>' : ''}</span>
+    return `<div class="row">${icon(g)}<span class="name">${GOODS[g].name} × ${n}${wet(state, g) ? ` <span class="tag">${wet(state, g)} mojada${wet(state, g) > 1 ? 's' : ''}</span>` : ''}${v.needs.includes(g) ? ' <span class="tag">la necesitan</span>' : ''}</span>
       ${p === null ? '<span class="tag">no se vende</span>' : `<button data-act="sell" data-good="${g}">Vender · ${p}</button>`}</div>`; }).join('') || '<p><small>La bodega está vacía.</small></p>';
-  const items = state.keyItems.length ? `<h3>Objetos de historia</h3><div class="rows">${state.keyItems.map(i => `<div class="row"><span class="name">${ITEMS[i].name}</span><span class="tag">no ocupa bodega</span></div>`).join('')}</div>` : '';
+  const items = state.keyItems.length ? `<h3>Objetos de historia</h3><div class="rows">${state.keyItems.map(i => `<div class="row">${icon(i)}<span class="name">${ITEMS[i].name}</span><span class="tag">no ocupa bodega</span></div>`).join('')}</div>` : '';
   return `<h3>${v.name} vende</h3><div class="rows">${sale}</div>
-    <h3>Tu bodega · ${cargo.used(state)}/${state.hold.capacity} espacios · ${state.coins} monedas</h3><div class="rows">${hold}</div>${items}`;
+    <h3>Tu bodega · ${cargo.used(state)}/${state.hold.capacity} espacios</h3><div class="rows">${hold}</div>${items}`;
 }
 function astillero(id) {
   const rows = Object.entries(UPGRADES).map(([uid, u]) => {
@@ -41,7 +43,7 @@ function astillero(id) {
     const reqs = upgrades.requirements(state, uid).map(r => `<div class="row req ${r.ok ? 'ok' : ''}"><span class="name">${r.ok ? '✓' : '○'} ${r.label}</span><span class="tag">${r.have}</span></div>`).join('');
     const here = id === u.at;
     return `<div class="row"><span class="name">${u.name}<br><span class="tag">${u.unlocks}</span></span>
-      ${here ? `<button data-act="install" data-upgrade="${uid}" ${upgrades.canInstall(state, uid) ? '' : 'disabled'}>Instalar</button>` : `<span class="tag">se instala en ${VILLAGES[u.at].name}</span>`}</div>${reqs}
+      ${here ? `<button data-act="install" data-upgrade="${uid}" ${upgrades.canInstall(state, uid) ? '' : 'disabled'}>Instalar</button>` : `<span class="tag">${u.at ? `se instala en ${VILLAGES[u.at].name}` : 'astillero aún desconocido'}</span>`}</div>${reqs}
       ${here && upgrades.deliverable(state, uid) ? `<div class="row"><span class="name"></span><button data-act="materials" data-upgrade="${uid}">Dejar materiales en el astillero</button></div>` : ''}`;
   }).join('');
   return `<h3>Casco · ${state.boat.hull}%</h3><div class="bar"><i style="width:${state.boat.hull}%"></i></div><h3>Mejoras</h3><div class="rows">${rows}</div>`;

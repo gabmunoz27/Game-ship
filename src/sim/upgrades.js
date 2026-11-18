@@ -17,7 +17,7 @@ export function requirements(state, id) {
   for (const [g, n] of Object.entries(u.goods || {})) list.push({ label: `${n} × ${GOODS[g].name}`, have: `${delivered(state, id, g)}/${n} entregados`, ok: delivered(state, id, g) >= n });
   for (const i of u.items || []) list.push({ label: ITEMS[i].name, have: state.keyItems.includes(i) ? 'a bordo' : 'falta', ok: state.keyItems.includes(i) });
   if (u.coins) list.push({ label: `${u.coins} monedas de mano de obra`, have: `tienes ${state.coins}`, ok: state.coins >= u.coins });
-  if (u.trust) list.push({ label: `Confianza ${u.trust} en ${VILLAGES[u.at].name}`, have: `tienes ${trust.of(state, u.at)}`, ok: trust.of(state, u.at) >= u.trust });
+  if (u.trust && u.at) list.push({ label: `Confianza ${u.trust} en ${VILLAGES[u.at].name}`, have: `tienes ${trust.of(state, u.at)}`, ok: trust.of(state, u.at) >= u.trust });
   return list;
 }
 const open = (state, id) => { const u = UPGRADES[id]; return !!u && u.act <= state.act && !has(state, id) && state.docked === u.at; };
@@ -44,5 +44,6 @@ export function install(state, id) {
   delete state.shipyard[id];
   state.keyItems = state.keyItems.filter(i => !(u.items || []).includes(i));
   state.coins -= u.coins || 0; state.boat.upgrades.push(id);
+  if (u.capacity) state.hold.capacity = Math.max(state.hold.capacity, u.capacity);
   emit('upgrade:installed', { id }); return { ok: true };
 }

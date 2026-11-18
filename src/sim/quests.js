@@ -26,6 +26,7 @@ export function accept(state, id) {
   const q = QUESTS[id];
   if (!q || stateOf(state, id) !== 'none' || state.docked !== q.giver || trust.of(state, q.giver) < q.trustNeeded) return { ok: false };
   state.quests[id] = 'active'; state.keyItems.push(...q.gives);
+  q.gives.forEach(item => emit('item:gained', { item }));
   emit('quest:accepted', { id }); return { ok: true };
 }
 export function deliver(state, id) {
@@ -33,5 +34,6 @@ export function deliver(state, id) {
   if (!q || stateOf(state, id) !== 'active' || state.docked !== q.target) return { ok: false };
   state.keyItems = state.keyItems.filter(i => !q.gives.includes(i)).concat(q.rewards);
   state.quests[id] = 'done'; trust.add(state, q.target, QUEST_TRUST_REWARD);
+  q.rewards.forEach(item => emit('item:gained', { item }));
   emit('quest:completed', { id }); return { ok: true, text: q.done };
 }

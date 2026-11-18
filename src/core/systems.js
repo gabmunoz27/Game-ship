@@ -15,5 +15,17 @@ function guard(entry, phase, fn) {
   }
 }
 export function initAll(ctx) { for (const e of systems) guard(e, 'init', () => e.sys.init && e.sys.init(ctx)); }
+/** Lo que depende del mapa (terreno, agua, árboles, pueblos) se arma en build(ctx) dentro de ctx.world.
+ *  Al cambiar de mapa se vacía ctx.world y se vuelve a llamar build() de cada módulo. */
+export function buildAll(ctx) { for (const e of systems) guard(e, 'build', () => e.sys.build && e.sys.build(ctx)); }
+export function clearWorld(ctx) {
+  const textures = new Set();
+  ctx.world.traverse(o => {
+    if (o.geometry) o.geometry.dispose();
+    for (const m of [].concat(o.material || [])) { for (const v of Object.values(m)) if (v && v.isTexture) textures.add(v); m.dispose(); }
+  });
+  textures.forEach(t => t.dispose());
+  ctx.world.clear();
+}
 export function updateAll(ctx, dt) { for (const e of systems) guard(e, 'update', () => e.sys.update && e.sys.update(ctx, dt)); }
 export function status() { return systems.map(e => ({ id: e.sys.id, label: e.sys.label, ok: e.ok, error: e.error })); }

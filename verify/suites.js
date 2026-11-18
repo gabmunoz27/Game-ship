@@ -6,7 +6,11 @@ import { ITEMS } from '../src/data/items.js';
 import { VILLAGES } from '../src/data/villages.js';
 import { UPGRADES } from '../src/data/upgrades.js';
 import { QUESTS } from '../src/data/quests.js';
-import * as map from '../src/maps/current.js';
+import { MAPS, getMap } from '../src/maps/index.js';
+import * as pathfind from '../src/sim/pathfind.js';
+import * as travel from '../src/sim/travel.js';
+const lake = getMap('lochMorag'), kyle = getMap('kyle');
+const map = { ...lake, PORTS: lake.ports, EXIT: lake.exitOf('pasoPiedras') };
 import * as time from '../src/sim/time.js';
 import * as cargo from '../src/sim/cargo.js';
 import * as trade from '../src/sim/trade.js';
@@ -16,6 +20,10 @@ import * as voyage from '../src/sim/voyage.js';
 import * as quests from '../src/sim/quests.js';
 import * as upgrades from '../src/sim/upgrades.js';
 import * as acts from '../src/sim/acts.js';
+import * as weather from '../src/sim/weather.js';
+import * as dev from '../src/sim/dev.js';
+import * as music from '../src/sim/music.js';
+import { TRACKS } from '../src/data/music.js';
 
 const fresh = () => { clear(); return createState(); };
 const at = (s, id) => { s.docked = s.lastPort = id; return s; };
@@ -35,13 +43,27 @@ export const suites = {
   ],
   'data': [
     ['toda mercancía que produce o necesita una villa existe', () => { for (const v of Object.values(VILLAGES)) for (const g of [...v.produces, ...v.needs]) assert.ok(GOODS[g], g); }],
-    ['en el Acto I todo lo que una villa necesita lo produce otra', () => { const made = Object.values(VILLAGES).flatMap(v => v.produces);
-      for (const v of Object.values(VILLAGES)) for (const g of v.needs) assert.ok(made.includes(g) && GOODS[g].act === 1, g); }],
+    ['todo lo que una villa necesita lo produce otra (y en el Acto I, con bienes del Acto I)', () => { const made = Object.values(VILLAGES).flatMap(v => v.produces);
+      for (const v of Object.values(VILLAGES)) for (const g of v.needs) { assert.ok(made.includes(g), g); if (v.map === 'lochMorag') assert.equal(GOODS[g].act, 1, g); } }],
+    ['cada villa está en el muelle de su mapa', () => { for (const [id, v] of Object.entries(VILLAGES)) assert.ok(getMap(v.map) && getMap(v.map).portOf(id), id); }],
+    ['cada mejora del Acto II que tiene astillero apunta a una villa que existe', () => { for (const u of Object.values(UPGRADES)) if (u.at) assert.ok(VILLAGES[u.at], u.name); }],
     ['materiales y objetos de las mejoras existen', () => { for (const u of Object.values(UPGRADES)) { for (const g of Object.keys(u.goods || {})) assert.ok(GOODS[g], g); for (const i of u.items || []) assert.ok(ITEMS[i], i); } }],
     ['el Casco Reforzado se puede reunir sin salir del mapa', () => { const u = UPGRADES.reinforced_hull, made = Object.values(VILLAGES).flatMap(v => v.produces), given = Object.values(QUESTS).flatMap(q => q.rewards);
       for (const g of Object.keys(u.goods)) assert.ok(made.includes(g), g); for (const i of u.items) assert.ok(given.includes(i), i); }],
     ['los objetos de los encargos existen', () => { for (const q of Object.values(QUESTS)) for (const i of [...q.gives, ...q.rewards]) assert.ok(ITEMS[i], i); }],
     ['cada villa del mapa tiene sus datos', () => { for (const p of map.PORTS) assert.ok(VILLAGES[p.village], p.village); }]
+  ],
+  'maps (todos)': [
+    ['cada mapa tiene nombre, tamaño, forma y al menos una llegada', () => { for (const m of Object.values(MAPS)) { assert.ok(m.name && m.size && m.shoreDist, m.id); assert.ok(Object.keys(m.spawns).length, m.id); } }],
+    ['cada llegada está en agua navegable y fuera de toda salida', () => { for (const m of Object.values(MAPS)) for (const [k, sp] of Object.entries(m.spawns)) {
+      assert.ok(m.navigable(sp.x, sp.z), `${m.id}/${k}`); for (const e of m.exits) assert.ok(Math.hypot(e.x - sp.x, e.z - sp.z) > e.radius + 4, `${m.id}/${k} cae dentro de ${e.id}`); } }],
+    ['cada salida está en el agua y lleva a una llegada que existe', () => { for (const m of Object.values(MAPS)) for (const e of m.exits) {
+      assert.ok(m.navigable(e.x, e.z), `${m.id}/${e.id}`); assert.ok(getMap(e.to) && getMap(e.to).spawns[e.spawn], `${m.id}/${e.id} → ${e.to}/${e.spawn}`); } }],
+    ['cada muelle está en agua navegable y su villa tiene datos', () => { for (const m of Object.values(MAPS)) for (const p of m.ports) { assert.ok(VILLAGES[p.village], p.village); assert.ok(m.navigable(...p.dock), `${m.id}/${p.village}`); } }],
+    ['los bordes de cada mapa son tierra', () => { for (const m of Object.values(MAPS)) { const W = m.size.w / 2 - 2, D = m.size.d / 2 - 2;
+      for (const [x, z] of [[W, 0], [-W, 0], [0, D], [0, -D]]) assert.ok(!m.navigable(x, z), `${m.id} (${x}, ${z})`); } }],
+    ['desde cada llegada se puede ir por agua a cada muelle y a cada salida', () => { for (const m of Object.values(MAPS)) for (const sp of Object.values(m.spawns))
+      for (const [x, z] of [...m.ports.map(p => p.dock), ...m.exits.map(e => [e.x, e.z])]) assert.ok(pathfind.findPath(m, [sp.x, sp.z], [x, z]), `${m.id} → (${x.toFixed(0)}, ${z.toFixed(0)})`); }]
   ],
   'maps/lochMorag': [
     ['el centro del lago es navegable', () => map.navigable(0, 0)],
@@ -58,6 +80,7 @@ export const suites = {
   'sim/cargo': [
     ['la turba ocupa 2 espacios', () => { const s = fresh(); cargo.add(s, 'peat', 2); assert.equal(cargo.used(s), 6); }],
     ['no deja pasar de la capacidad', () => { const s = fresh(); assert.equal(cargo.add(s, 'peat', 5), false); assert.ok(cargo.add(s, 'peat', 4)); assert.equal(cargo.free(s), 0); }],
+    ['avisa qué se cargó y cuánto', () => { const s = fresh(); let got; on('cargo:added', p => { got = p; }); cargo.add(s, 'fish', 2); assert.deepEqual(got, { good: 'fish', qty: 2 }); }],
     ['no deja sacar lo que no hay', () => { const s = fresh(); assert.equal(cargo.remove(s, 'fish'), false); }]
   ],
   'sim/trade': [
@@ -84,7 +107,69 @@ export const suites = {
     ['el barco llega a su destino', () => { const s = fresh(); moveTo(s, 0, 0); assert.ok(nav.plotCourse(s, 20, 0).ok);
       for (let i = 0; i < 2000 && s.boat.course; i++) nav.step(s, 1 / 60); assert.equal(s.boat.course, null); assert.ok(Math.hypot(s.boat.x - 20, s.boat.z) < 2); }],
     ['el barco nunca sale del agua', () => { const s = fresh(); s.boat.heading = 0; for (let i = 0; i < 3000; i++) { s.boat.speed = 9; nav.step(s, 1 / 60); } assert.ok(map.navigable(s.boat.x, s.boat.z)); }],
+    ['si hay tierra en medio, el rumbo la rodea en vez de rechazarse', () => { const s = fresh(); s.map = 'kyle'; const i = kyle.islands[1];
+      moveTo(s, i.x - 30, i.z); const r = nav.plotCourse(s, i.x + 30, i.z); assert.ok(r.ok, r.reason); assert.ok(r.path.length > 1, 'no rodeó la isla'); }],
+    ['el barco sigue la ruta alrededor de la isla y llega sin tocar tierra', () => { const s = fresh(); s.map = 'kyle'; const i = kyle.islands[1];
+      moveTo(s, i.x - 30, i.z); s.boat.heading = 0; nav.plotCourse(s, i.x + 30, i.z);
+      for (let n = 0; n < 6000 && s.boat.course; n++) { nav.step(s, 1 / 60); assert.ok(kyle.navigable(s.boat.x, s.boat.z)); }
+      assert.equal(s.boat.course, null, 'no llegó'); assert.ok(Math.hypot(s.boat.x - i.x - 30, s.boat.z - i.z) < 2); }],
+    ['cada tramo de una ruta va por agua', () => { for (const m of Object.values(MAPS)) { const sp = Object.values(m.spawns)[0];
+      for (let k = 0; k < 25; k++) { const x = (Math.sin(k * 7.1) * .45) * m.size.w, z = (Math.cos(k * 3.3) * .4) * m.size.d; if (!m.navigable(x, z)) continue;
+        const path = pathfind.findPath(m, [sp.x, sp.z], [x, z]); if (!path) continue; let a = [sp.x, sp.z];
+        for (const p of path) { assert.ok(pathfind.clearLine(m, ...a, ...p), `${m.id}: tramo por tierra`); a = p; } } } }],
     ['detecta el muelle cercano', () => { const s = fresh(); const d = map.portOf('glenmore').dock; moveTo(s, d[0], d[1]); nav.step(s, 1 / 60); assert.equal(s.nearPort, 'glenmore'); }]
+  ],
+  'sim/travel': [
+    ['sin casco reforzado no se cruza el Paso', () => { const s = fresh(); assert.equal(travel.cross(s, 'pasoPiedras').reason, 'bloqueada'); assert.equal(s.map, 'lochMorag'); }],
+    ['con el casco se cruza al Estrecho: cambia el mapa, gasta un suministro y una franja', () => { const s = fresh(); s.boat.upgrades.push('reinforced_hull'); let ev;
+      on('map:changed', p => { ev = p; }); const r = travel.cross(s, 'pasoPiedras'); assert.ok(r.ok);
+      assert.equal(s.map, 'kyle'); assert.equal(ev.to, 'kyle'); assert.equal(cargo.count(s, 'supplies'), 1); assert.equal(s.slot, 1); assert.ok(kyle.navigable(s.boat.x, s.boat.z)); }],
+    ['al volver aparece junto al Paso, dentro del lago', () => { const s = fresh(); s.boat.upgrades.push('reinforced_hull'); travel.cross(s, 'pasoPiedras'); assert.ok(travel.cross(s, 'vueltaMorag').ok);
+      assert.equal(s.map, 'lochMorag'); const e = lake.exitOf('pasoPiedras'); assert.ok(Math.hypot(e.x - s.boat.x, e.z - s.boat.z) < 30); }],
+    ['sin suministros se cruza igual pero tarda dos franjas', () => { const s = fresh(); s.boat.upgrades.push('reinforced_hull'); cargo.remove(s, 'supplies', 2);
+      assert.ok(travel.cross(s, 'pasoPiedras').supplied === false); assert.equal(s.slot, 2); }],
+    ['no se cruza atracado', () => { const s = fresh(); s.boat.upgrades.push('reinforced_hull'); s.docked = 'portDun'; assert.equal(travel.cross(s, 'pasoPiedras').reason, 'atracado'); }],
+    ['la partida sigue siendo JSON puro después de cruzar', () => { const s = fresh(); s.boat.upgrades.push('reinforced_hull'); travel.cross(s, 'pasoPiedras'); assert.deepEqual(JSON.parse(JSON.stringify(s)), s); }]
+  ],
+  'sim/weather': [
+    ['el clima cambia al pasar las franjas y sale de la tabla del mapa', () => { const s = fresh(); const seen = new Set();
+      for (let i = 0; i < 300; i++) { time.advance(s); seen.add(s.weather); } for (const w of seen) assert.ok(lake.weather ? lake.weather[w] : weather.WEATHER[w], w); assert.ok(seen.size >= 3); }],
+    ['con la misma semilla el clima se repite', () => { const a = fresh(), b = fresh(); for (let i = 0; i < 20; i++) { time.advance(a); time.advance(b); } assert.equal(a.weather, b.weather); }],
+    ['en el Estrecho llueve más que en el lago', () => { const count = id => { const s = fresh(); s.map = id; let n = 0; for (let i = 0; i < 2000; i++) { time.advance(s); if (s.weather === 'lluvia') n++; } return n; };
+      assert.ok(count('kyle') > count('lochMorag')); }],
+    ['con lluvia la cebada se moja en la travesía y vale la mitad', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 0; cargo.add(s, 'barley', 4);
+      const full = trade.sellPrice(s, 'glenmore', 'barley'); s.weather = 'lluvia'; voyage.undock(s); voyage.dock(s, 'glenmore');
+      assert.equal(weather.wet(s, 'barley'), 4); assert.equal(trade.sellPrice(s, 'glenmore', 'barley'), Math.round(full * weather.WET_VALUE - 1e-9)); }],
+    ['lo mojado se vende primero; lo seco conserva su precio', () => { const s = at(fresh(), 'glenmore'); cargo.add(s, 'barley', 3); s.hold.wet.barley = 1;
+      const wetP = trade.sellPrice(s, 'glenmore', 'barley'); trade.sell(s, 'glenmore', 'barley'); assert.equal(weather.wet(s, 'barley'), 0); assert.ok(trade.sellPrice(s, 'glenmore', 'barley') > wetP); }],
+    ['lo que no es delicado no se moja', () => { const s = at(fresh(), 'portDun'); cargo.add(s, 'salt', 3); s.weather = 'lluvia'; voyage.undock(s); voyage.dock(s, 'glenmore'); assert.equal(weather.wet(s, 'salt'), 0); }],
+    ['con la bodega cubierta la lluvia no moja nada', () => { const s = at(fresh(), 'portDun'); s.boat.upgrades.push('covered_hold'); cargo.add(s, 'barley', 3); s.weather = 'lluvia';
+      voyage.undock(s); voyage.dock(s, 'glenmore'); assert.equal(weather.wet(s, 'barley'), 0); }],
+    ['instalar la bodega cubierta la agranda a 18', () => { const s = at(fresh(), 'achnacarn'); s.act = 2; s.villages.achnacarn.trust = 60; s.coins = 500; s.shipyard.covered_hold = { oak_wood: 4, copper_nails: 2 };
+      assert.ok(upgrades.install(s, 'covered_hold').ok); assert.equal(s.hold.capacity, 18); }],
+    ['cerrar el Acto I abre las mejoras del Acto II', () => { const s = fresh(); s.boat.upgrades.push('reinforced_hull'); const e = lake.exitOf('pasoPiedras'); moveTo(s, e.x, e.z); acts.update(s); assert.equal(s.act, 2); }],
+    ['la partida con carga mojada sigue siendo JSON puro', () => { const s = at(fresh(), 'portDun'); cargo.add(s, 'barley', 2); s.weather = 'lluvia'; voyage.undock(s); voyage.dock(s, 'glenmore'); assert.deepEqual(JSON.parse(JSON.stringify(s)), s); }]
+  ],
+  'sim/music': [
+    ['cada mapa tiene sus tres piezas y cada pieza su boceto', () => { for (const id of Object.keys(MAPS)) assert.equal(TRACKS.filter(t => t.map === id).length, 3, id);
+      for (const t of TRACKS) { assert.ok(t.sketch && t.sketch.mode && t.sketch.root && t.sketch.tempo, t.id); assert.ok(t.file.endsWith('.mp3'), t.id); } }],
+    ['solo suenan piezas del mapa en el que estás', () => { const s = fresh(); s.map = 'kyle'; for (let i = 0; i < 20; i++) assert.equal(music.pickNext(s, [], i / 20).map, 'kyle'); }],
+    ['nunca repite la pieza que acaba de sonar', () => { const s = fresh(); let h = []; for (let i = 0; i < 30; i++) { const t = music.pickNext(s, h, (i * .37) % 1); assert.notEqual(t.id, h[h.length - 1]); h.push(t.id); } }],
+    ['en tres piezas seguidas suenan las tres', () => { const s = fresh(), h = []; for (let i = 0; i < 3; i++) h.push(music.pickNext(s, h, .5).id); assert.equal(new Set(h).size, 3); }],
+    ['una pieza marcada para la noche solo suena de noche', () => { TRACKS.push({ id: 'prueba', map: 'lochMorag', slots: [2], title: '', file: 'x.mp3', sketch: {} });
+      try { const s = fresh(); s.slot = 0; assert.ok(!music.candidates(s).some(t => t.id === 'prueba')); s.slot = 2; assert.ok(music.candidates(s).some(t => t.id === 'prueba')); } finally { TRACKS.pop(); } }],
+    ['los silencios entre piezas duran entre 40 y 90 segundos', () => { assert.equal(music.gapSeconds(0), 40); assert.equal(music.gapSeconds(1), 90); }]
+  ],
+  'sim/dev': [
+    ['se puede saltar a cada lugar de cada mapa y el barco queda en el agua', () => { for (const m of dev.places()) for (const p of m.spots) { const s = fresh();
+      assert.ok(dev.goTo(s, m.map, p.id).ok, p.id); assert.equal(s.map, m.map); assert.ok(getMap(m.map).navigable(s.boat.x, s.boat.z), `${m.map}/${p.id}`); } }],
+    ['saltar junto a una salida no la dispara', () => { for (const m of dev.places()) for (const p of m.spots.filter(x => x.exit)) { const s = fresh(); dev.goTo(s, m.map, p.id);
+      const e = getMap(m.map).exitOf(p.exit); assert.ok(Math.hypot(e.x - s.boat.x, e.z - s.boat.z) > e.radius, p.id); } }],
+    ['saltar a otro mapa avisa para rearmar el mundo; al mismo mapa, no', () => { const s = fresh(); let n = 0; on('map:changed', () => n++);
+      dev.goTo(s, 'kyle', 'villa:achnacarn'); dev.goTo(s, 'kyle', 'villa:strathlinn'); assert.equal(n, 1); }],
+    ['las mejoras se ponen y se quitan, y la bodega vuelve a su tamaño', () => { const s = fresh(); dev.toggleUpgrade(s, 'covered_hold'); assert.equal(s.hold.capacity, 18);
+      dev.toggleUpgrade(s, 'covered_hold'); assert.equal(s.hold.capacity, 10); }],
+    ['mojar, dar carga y fijar Confianza', () => { const s = fresh(); dev.give(s, 'barley', 3); assert.equal(dev.soak(s)[0].qty, 3); dev.setTrust(s, 'glenmore', 50); assert.equal(s.villages.glenmore.trust, 50); }]
   ],
   'sim/voyage': [
     ['una travesía gasta 1 franja y 1 suministro', () => { const s = fresh(); const r = voyage.dock(s, 'glenmore'); assert.ok(r.traveled && r.supplied); assert.equal(s.slot, 1); assert.equal(cargo.count(s, 'supplies'), 1); }],
@@ -98,6 +183,7 @@ export const suites = {
     ['con Confianza 10 Mairead no ofrece la carta', () => { const s = at(fresh(), 'portDun'); assert.equal(quests.optionsAt(s, 'portDun')[0].action, undefined); assert.equal(quests.accept(s, 'carta').ok, false); }],
     ['con Confianza 20 entrega la caja y la carta, sin ocupar bodega', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 20; const free = cargo.free(s);
       assert.ok(quests.accept(s, 'carta').ok); assert.deepEqual(s.keyItems, ['toolbox', 'letter']); assert.equal(cargo.free(s), free); }],
+    ['avisa cada objeto de historia recibido', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 20; const got = []; on('item:gained', p => got.push(p.item)); quests.accept(s, 'carta'); assert.deepEqual(got, ['toolbox', 'letter']); }],
     ['solo se entrega en Glenmore', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 20; quests.accept(s, 'carta'); assert.equal(quests.deliver(s, 'carta').ok, false); }],
     ['entregarla da el Mapa del Atajo, los Clavos y +15 de Confianza', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 20; quests.accept(s, 'carta'); at(s, 'glenmore');
       assert.ok(quests.deliver(s, 'carta').ok); assert.deepEqual(s.keyItems, ['shortcut_map', 'old_nails']); assert.equal(s.villages.glenmore.trust, 15); assert.equal(quests.optionsAt(s, 'glenmore').length, 0); }]
