@@ -1,0 +1,48 @@
+:root{--ink:#2a2118;--parchment:#efe2bf;--parchment-dark:#e0cf9f;--parchment-edge:#bfa873;--gold:#e7b84a;--night:#1d2a24;--ok:#4f7a3a;--warn:#b9822a;--bad:#a8442f;color-scheme:dark}
+html,body{height:100%;margin:0}
+body{background:var(--night);color:var(--ink);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;overflow:hidden}
+#app{position:relative;height:100%}
+#c{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}
+#ui{position:absolute;inset:0;pointer-events:none;display:grid;grid-template-rows:auto 1fr auto;justify-items:center;gap:12px;
+  padding-block:14px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+#ui button{font:inherit;color:var(--ink);cursor:pointer;pointer-events:auto}
+#ui button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.scroll{background:var(--parchment);border:1px solid var(--parchment-edge);box-shadow:0 2px 0 var(--parchment-edge),0 6px 18px rgba(0,0,0,.35);border-radius:3px}
+.hud{justify-self:start;padding:8px 16px;font-size:15px;max-width:100%}
+.hud b{font-size:18px;font-weight:600;display:block}
+.hud span{font-variant-numeric:tabular-nums}
+.mid{align-self:start;display:flex;flex-direction:column;align-items:center;gap:10px;max-width:100%}
+.tip{padding:8px 18px;font-size:16px;text-align:center}
+.tip small{display:block;font-size:13px;opacity:.7}
+.notice{background:var(--night);color:var(--parchment);border:1px solid var(--parchment-edge);padding:8px 18px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;transition:opacity .4s;opacity:0}
+.notice.on{opacity:1}
+.bottom{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%;min-width:0}
+.dock-btn{padding:10px 22px;font-size:16px}
+.panel{pointer-events:auto;width:min(620px,100%);max-height:62vh;overflow:auto;padding:14px 18px 16px;box-sizing:border-box}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--parchment-edge);padding-bottom:8px;margin-bottom:10px}
+.tabs button{background:none;border:1px solid transparent;border-radius:3px;padding:5px 12px;font-size:15px}
+.tabs button[aria-selected="true"]{background:var(--parchment-dark);border-color:var(--parchment-edge)}
+.tabs .leave{margin-left:auto;border-color:var(--parchment-edge)}
+.panel h2{font-size:20px;font-weight:600;margin:0}
+.panel p{margin:6px 0;font-size:15px;line-height:1.5}
+.badge{display:inline-block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#fff;padding:2px 8px;border-radius:99px;vertical-align:middle}
+.badge.forastero{background:#7b7466}.badge.conocido{background:var(--warn)}.badge.aliado{background:var(--ok)}.badge.patron{background:#2f6f8a}
+.rows{display:grid;gap:6px}
+.row{display:flex;align-items:center;gap:10px;font-size:15px}
+.row .name{flex:1;min-width:0}
+.row .tag{font-size:12px;opacity:.7}
+.row button{background:var(--parchment-dark);border:1px solid var(--parchment-edge);border-radius:3px;padding:4px 10px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row button:disabled{opacity:.4;cursor:not-allowed}
+.panel h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;margin:12px 0 6px;opacity:.75;font-weight:600}
+.bar{height:10px;background:var(--parchment-dark);border:1px solid var(--parchment-edge);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ok)}
+.modules{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:14px;pointer-events:auto;background:var(--night);color:var(--parchment);border:1px solid var(--parchment-edge);
+  font:12px/1.6 ui-monospace,Menlo,monospace;padding:10px 14px;max-height:80vh;overflow:auto}
+.modules .bad{color:#ff9a85}
+.panel .note{background:var(--parchment-dark);border-left:3px solid var(--parchment-edge);padding:8px 12px}
+.row.req{font-size:14px;padding-left:14px;opacity:.75}
+.row.req.ok{opacity:1;color:var(--ok)}
+.act-end{pointer-events:auto;width:min(520px,100%);padding:18px 22px;box-sizing:border-box;text-align:center}
+.act-end h2{font-size:26px;font-weight:600;margin:0}
+.act-end p{font-size:15px;line-height:1.55;margin:8px 0}
+.act-end button{background:var(--parchment-dark);border:1px solid var(--parchment-edge);border-radius:3px;padding:6px 14px}
