@@ -34,6 +34,13 @@ Si una regla de juego aparece en `world/` o `ui/`, está en el lugar equivocado:
 | Precio, peso o nombre de un bien | `src/data/goods.js` |
 | Qué produce o necesita una villa, su personaje o su saludo | `src/data/villages.js` |
 | Materiales, costo o Confianza de una mejora | `src/data/upgrades.js` |
+| Guion, pasos y controles de la cinemática | `src/data/intro.js`, `src/sim/intro.js`, `src/ui/intro.js` |
+| Cámara de inicio y figuras de Ewan y Mairead | `src/world/intro.js`, `src/world/ewan.js`, `src/world/boat.js` |
+| Port Dun, botes y embarcaderos secundarios | `src/world/portDun.js`, huellas en `src/maps/lochMorag.js` y colisión en `src/maps/shared.js` |
+| Objetivos y lista de encargos del HUD | Textos en `src/data/quests.js`, progreso en `src/sim/quests.js`, panel en `src/ui/questTracker.js` y `src/ui/ui.css` |
+| Casas, empedrado, ancla y estibadores de Port Dun | `src/world/portStreets.js`, `src/world/portDun.js` y animación en `src/world/townKit.js` |
+| Gaviotas y modelos de los botes | `src/world/gulls.js` y `src/world/harborBoats.js` |
+| Rutas y prioridad de paso del tráfico | `src/sim/traffic.js`, estado en `src/core/state.js` y dibujo en `src/world/traffic.js` |
 | Encargos (misiones) | `src/data/quests.js` y `src/sim/quests.js` |
 | Precios de compra y venta (70 %, 140 %…) | `src/data/goods.js` (constantes) y `src/sim/trade.js` |
 | Niveles de Confianza | `src/sim/trust.js` |
@@ -49,7 +56,7 @@ Si una regla de juego aparece en `world/` o `ui/`, está en el lugar equivocado:
 | Bodega siempre visible | `src/ui/cargoBar.js`, `src/ui/icons.js`, `src/ui/ui.css` |
 | Sonido de inicio de rumbo y arrastre | `src/world/input.js`, `src/sim/navigation.js`, `src/audio/sfx.js` |
 | Un mapa nuevo | archivo nuevo en `src/maps/` + sumarlo en `src/maps/index.js` (ver `PLAN.md`) |
-| Cómo se ve una villa | `src/world/glenmore.js`, `achnacarn.js`, `strathlinn.js`; Port Dun usa `world/villages.js` |
+| Cómo se ve una villa | `src/world/glenmore.js`, `achnacarn.js`, `strathlinn.js`; Port Dun usa `world/portDun.js`; los muelles principales usan `world/villages.js` |
 | Casas, faroles, vecinos (piezas comunes) | `src/world/townKit.js` |
 | El barco y su movimiento visual | `src/world/boat.js`; la física del rumbo en `src/sim/navigation.js` |
 | Agua, terreno, árboles, acantilados | `src/world/water.js`, `terrain.js`, `pines.js`, `cliffs.js` |
@@ -83,7 +90,9 @@ Si un módulo falla, se apaga solo y el resto del juego sigue. La tecla M muestr
 
 Los módulos no se llaman entre sí. `sim/` cambia la partida y avisa con `emit('evento', datos)`; quien quiera, escucha con `on('evento', fn)` (en `src/core/events.js`).
 
-Eventos que existen: `cargo:added` `cargo:changed` `cargo:soaked` `coins:changed` `trade:done` `trust:changed` `dock:entered` `dock:left` `dock:near` `port:near` `exit:near` `exit:blocked` `course:set` `course:updated` `course:cleared` `time:changed` `weather:changed` `map:changed` `travel:request` `upgrade:materials` `upgrade:installed` `item:gained` `quest:accepted` `quest:completed` `act:completed` `notice` `audio:ready` `audio:volume` `audio:preview` `audio:duck` `music:started` `music:next` `music:mute` `music:muted` `dev:moved` `system:failed`.
+Eventos que existen: `intro:step` `intro:aboard` `cargo:added` `cargo:changed` `cargo:soaked` `coins:changed` `trade:done` `trust:changed` `dock:entered` `dock:left` `dock:near` `port:near` `exit:near` `exit:blocked` `course:set` `course:updated` `course:cleared` `time:changed` `weather:changed` `map:changed` `travel:request` `upgrade:materials` `upgrade:installed` `item:gained` `quest:accepted` `quest:completed` `act:completed` `notice` `audio:ready` `audio:volume` `audio:preview` `audio:duck` `music:started` `music:next` `music:mute` `music:muted` `dev:moved` `system:failed`.
+
+El HUD de encargos escucha `quest:accepted`, `quest:completed`, `cargo:changed`, `cargo:added`, `trade:done` y `map:changed`. El tráfico se actualiza con el paso de simulación.
 
 `port:near` anuncia entrar o salir del radio de la villa. `dock:near` controla el botón de atraque. `course:set` inicia el rumbo del gesto y `course:updated` actualiza su destino durante el arrastre.
 

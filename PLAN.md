@@ -38,13 +38,13 @@ Estado: ✓ hecho y comprobado · ◐ provisional · ○ pendiente.
 | Módulo | Archivo | Diseño | Estado |
 |---|---|---|---|
 | Eventos | `core/events.js` | — | ✓ |
-| Estado de la partida | `core/state.js` | Parche 2.A | ✓ (guardar y cargar existen, falta el botón) |
+| Estado de la partida | `core/state.js` | Parche 2.A | ✓ (guardado local al ocultar o salir, carga al abrir la partida normal) |
 | Registro de módulos | `core/systems.js` | — | ✓ |
 | Mercancías y fórmula de precios | `data/goods.js` | Parche 2.B | ✓ Acto I; las del Acto II son provisionales |
 | Objetos de historia | `data/items.js` | Parche 1.B | ✓ |
 | Villas | `data/villages.js` | Parche 1.B | ✓ Mapa 1; Mapa 2 provisional (precios y Confianza a equilibrar) |
 | Mejoras | `data/upgrades.js` | Parche 1.A | ✓ Casco Reforzado; las otras tres, solo datos |
-| Encargos | `data/quests.js` | Parche 3 | ✓ La Carta sin Entregar |
+| Encargos | `data/quests.js` | Parche 3 | ✓ Arenque para Glenmore y La Carta sin Entregar |
 | Registro de mapas | `maps/index.js`, `maps/shared.js` | GDD 4 | ✓ `mapOf(state)` da el mapa activo |
 | Mapa Loch Morag | `maps/lochMorag.js` | GDD 4 | ✓ con el Paso de las Piedras |
 | Mapa Estrecho de Kyle | `maps/kyle.js` | GDD 4 | ✓ canal con 4 islas, Achnacarn y Strathlinn, vuelta al lago; clima más duro |
@@ -70,7 +70,9 @@ Estado: ✓ hecho y comprobado · ◐ provisional · ○ pendiente.
 | Escena, luz y cámara | `world/scene.js` | — | ✓ |
 | Terreno, acantilados, rocas, pinos | `world/terrain.js` … | — | ✓ |
 | Agua | `world/water.js` | — | ✓ |
-| Villas y muelles | `world/villages.js` | — | ◐ casas de cajas |
+| Cinemática de inicio | `data/intro.js`, `sim/intro.js`, `world/intro.js`, `world/ewan.js`, `ui/intro.js` | Prólogo | ✓ |
+| Port Dun | `world/portDun.js`, `maps/lochMorag.js` | GDD 4 | ✓ casas de ladrillo y dos plantas, paseo, plaza del ancla, estibadores, cuatro embarcaderos auxiliares y siete botes |
+| Villas y muelles | `world/villages.js` | — | ✓ muelles principales |
 | Villa Glenmore | `world/glenmore.js` | GDD 4 | ◐ torre, casas, mercado y vecinos animados con geometría provisional |
 | Paso de las Piedras | `world/landmarks.js` | GDD 4 | ◐ piedras provisionales |
 | Barco | `world/boat.js` | GDD 3 | ✓ "La Arenquera": escora, vela, farol y carga reaccionan al movimiento; muestra el refuerzo del casco |
@@ -81,6 +83,9 @@ Estado: ✓ hecho y comprobado · ◐ provisional · ○ pendiente.
 | Contador de monedas | `ui/coins.js` | — | ✓ arriba a la derecha, con el icono de la moneda |
 | Iconos | `ui/icons.js`, `assets/coin.png` | — | ✓ mercancías y objetos de historia en el estilo de la moneda |
 | Avisos de objetos obtenidos | `ui/pickups.js` | — | ✓ nombre, cantidad e icono al comprar, recibir o vender |
+| Encargos en el HUD | `ui/questTracker.js`, `sim/quests.js` | — | ✓ progreso de carga en vivo y plegado persistente |
+| Tráfico de Loch Morag | `sim/traffic.js`, `world/traffic.js`, `world/harborBoats.js` | — | ✓ dos circuitos en agua profunda con prioridad para la jugadora |
+| Gaviotas | `world/gulls.js` | — | ✓ dos bandadas, posaderos y actividad diurna |
 | Rótulo de llegada | `ui/villageLabel.js` | — | ✓ línea que se dibuja y nombre y zoom suave dentro del radio de cada villa, con histéresis |
 | Panel del muelle | `ui/dockPanel.js` | GDD 6 | ✓ tres pestañas |
 | Cierre de acto | `ui/actEnd.js` | Parche 3 | ✓ |
@@ -118,11 +123,10 @@ El parche v1.1 resolvió precios, herramientas, hierro, consumo y Confianza. Que
 - **Los materiales del casco no caben en la bodega.** 4 de roble (8 espacios) más 3 de resina son 11, y la bodega tiene 10. Hoy se resuelve dejando materiales en el astillero por partes. Alternativa: bajar el roble a 3.
 - **Quién da los Clavos de Hierro Viejo.** El punto 1.A dice Mairead; el punto 3 dice Callum al recibir la carta. Está programado el punto 3.
 - **El Mapa del Atajo.** El punto 2.D lo lista como misión de Glenmore con Confianza 20; el punto 3 lo da como premio de la carta. Está programado el punto 3, y el mapa todavía no hace nada.
-- **Sobra dinero.** En la ruta de prueba el acto se cierra en 12 travesías con unas 400 monedas de sobra. Lo que frena es la Confianza de Port Dun, no las monedas.
+- **Sobra dinero.** En la ruta de prueba el acto se cierra en 12 travesías con 329 monedas de sobra. Lo que frena es la Confianza de Port Dun, no las monedas.
 - **Precios que el parche no fija.** Vender donde nadie lo necesita (80 % del base) y revender en el puerto productor (50 %).
 - **Qué cuesta pasar la noche.** Hoy es gratis y solo avanza el día; su sentido real depende de clima, estados de villa y estaciones. Opción preferida: que el mundo avance mientras duermes.
 - **Día, franja y casco mientras navegas.** La bodega tiene barra propia. El casco se consulta en el panel del muelle.
-- **Port Dun sigue con casas de cajas.** Glenmore ya tiene pueblo propio; falta decidir el carácter de Port Dun.
 - **Estados de villa.** Abastecida, Escasez y Crisis siguen en el GDD pero sin números.
 
 ## Cómo se agrega un mapa
@@ -165,3 +169,9 @@ Todo pasa por `sim/dev.js` (con sus pruebas); el cajón es `ui/devPanel.js`. Par
 - **Mientras falte un MP3,** `audio/sketch.js` toca un boceto de esa pieza hecho en código, con la escala, el tempo y la voz anotados en los datos.
 - **Botón de sonido:** junto al clima, silencia música y efectos y recuerda la elección. La vista de desarrollador muestra qué suena y permite saltar a otra pieza.
 - **Más adelante:** a cada pieza se le puede poner `weather: ['lluvia']` o `slots: [2]` (noche) para que solo suene con ese clima o a esa hora. Ya está probado.
+
+## Inicio del Acto I
+
+La partida nueva abre en Port Dun por la mañana. Ver o saltar la cinemática activa «Arenque para Glenmore» y carga dos arenques. Callum paga 25 monedas. Glenmore concede los 15 puntos habituales de un encargo y Port Dun suma 10 por el favor a Mairead. Esto habilita la carta al regresar con suministros.
+
+La partida normal se guarda al ocultar o cerrar la página una vez terminado el prólogo. Las partidas anteriores continúan su historia. Las direcciones de prueba abren partidas independientes. `?intro` fuerza la escena, `?sinIntro` permite jugar directamente. El botón del panel D abre la escena en otra pestaña.

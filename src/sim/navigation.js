@@ -9,6 +9,7 @@ const norm = a => { while (a > Math.PI) a -= Math.PI * 2; while (a < -Math.PI) a
 
 /** Traza el rumbo. course = { x, z, path: [[x,z], ...] }; path termina en el destino. */
 export function plotCourse(state, x, z, updating = false) {
+  if (state.intro) return { ok: false, reason: 'intro' };
   const b = state.boat, map = mapOf(state);
   if (state.docked) return { ok: false, reason: 'atracado' };
   if (!map.navigable(x, z)) return { ok: false, reason: 'sin-agua' };

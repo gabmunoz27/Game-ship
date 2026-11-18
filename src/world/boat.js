@@ -1,3 +1,5 @@
+import { returnTime } from '../sim/intro.js';
+import { makeEwan } from './ewan.js';
 import * as THREE from 'three';
 import { on } from '../core/events.js';
 import { used } from '../sim/cargo.js';
@@ -70,15 +72,10 @@ function build() {
   for (let i = 0; i < pp.count; i++) pp.setY(i, pp.getY(i) * (1 + pp.getX(i) / 1.6));               // se afina hacia la punta
   pennant.userData.base = Float32Array.from(pp.array); body.add(pennant);
 
-  // El patrón, al timón: abrigo azul, gorro rojo con borla.
-  skipper = new THREE.Group(); skipper.position.set(-1.65, .96, 0);
-  const coat = new THREE.Mesh(new THREE.CylinderGeometry(.2, .36, .85, 6), mat('#2d4a5e')); coat.position.y = .42;
-  head = new THREE.Group(); head.position.y = .98;
-  const face = new THREE.Mesh(new THREE.IcosahedronGeometry(.25, 1), mat('#e0b48c'));
-  const cap = new THREE.Mesh(new THREE.ConeGeometry(.27, .36, 6), mat(RED)); cap.position.y = .26;
-  const pom = new THREE.Mesh(new THREE.IcosahedronGeometry(.09, 0), mat(CREAM)); pom.position.y = .47;
-  const scarf = new THREE.Mesh(new THREE.CylinderGeometry(.24, .24, .14, 6), mat(GOLD)); scarf.position.y = .82;
-  head.add(face, cap, pom); skipper.add(coat, scarf, head); body.add(skipper);
+  ({ figure: skipper, head } = makeEwan());
+  skipper.position.set(-1.65, .96, 0);
+  skipper.rotation.y = Math.PI / 2;
+  body.add(skipper);
 
   // Carga en cubierta: aparece según lo llena que vaya la bodega.
   [[1.25, .5, WOOD], [1.3, -.45, '#a8743c'], [-.55, .55, '#a8743c'], [-.6, -.5, WOOD]].forEach(([x, z, c], i) => {
@@ -94,7 +91,7 @@ function build() {
 export default {
   id: 'boat', label: 'Barco',
   init(ctx) {
-    boat = build(); ctx.scene.add(boat);
+    boat = build(); ctx.helm = skipper; ctx.scene.add(boat);
     // Al recibir rumbo da un saltito y el patrón asiente; al llegar, se mece.
     on('course:set', () => { if (hopCool <= 0) { squash.v += 1.5; nod.v += 5; hopCool = .7; } });
     on('course:cleared', () => { roll.v += .5; pitch.v -= .35; });
@@ -103,12 +100,18 @@ export default {
     const b = ctx.state.boat, t = ctx.time, dt = Math.min(rawDt || 0, .05), sp = Math.min(1, b.speed / 9), turn = b.turn || 0;
     if (dt > 0) accel += ((b.speed - prevSpeed) / dt - accel) * Math.min(1, dt * 6);
     prevSpeed = b.speed; hopCool -= dt;
+    const intro = ctx.state.intro;
+    skipper.visible = !intro || intro.stage === 'return';
     band.visible = b.upgrades.includes('reinforced_hull');
     const fill = Math.ceil(Math.min(1, used(ctx.state) / ctx.state.hold.capacity) * crates.length);
     crates.forEach((c, i) => { c.visible = i < fill; });
 
     // Cuerpo: escora hacia el giro, levanta la proa al acelerar, cabecea con las olas y se aplasta al saltar.
     boat.position.set(b.x, .14 + Math.sin(t * 1.6) * .06 + sp * .07, b.z); boat.rotation.y = -b.heading;
+    if (intro) {
+      const departure = intro.stage === 'return' ? THREE.MathUtils.smoothstep(intro.elapsed / returnTime, 0, 1) : 0;
+      boat.translateX(-.6 * (1 - departure)); // hasta embarcar, la popa queda cerca de las tablas sin que el timón las atraviese
+    }
     const r = roll.step(turn * .3 * (.35 + .65 * sp) + Math.sin(t * 1.1) * .03, dt);
     const pi = pitch.step(Math.max(-.1, Math.min(.13, accel * .03)) + Math.sin(t * (1.5 + sp * 2.2)) * (.018 + .03 * sp), dt);
     body.rotation.set(r, 0, pi);

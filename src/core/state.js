@@ -16,7 +16,8 @@ export function createState() {
     hold: { capacity: 10, items: { supplies: 2 }, wet: {} },   // wet: unidades mojadas por la lluvia
     keyItems: [],
     shipyard: {}, // materiales ya entregados para cada mejora: { reinforced_hull: { oak_wood: 4 } }
-    quests: {},
+    introSeen: false, intro: null,
+    quests: {}, traffic: [],
     villages,
     lastPort: 'portDun', nearVillage: null, nearPort: null, nearExit: null, docked: null,
     rng: 20260317,   // semilla del clima

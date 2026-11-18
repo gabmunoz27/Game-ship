@@ -159,6 +159,8 @@ export default {
         play(id, 1, previewBus, n);
       }
     });
+    on('intro:step', () => play('crujido', .16));
+    on('intro:aboard', () => play('zarpar', .55));
     const events = { 'dock:entered':'atraque', 'dock:left':'zarpar', 'cargo:added':'carga',
       'upgrade:installed':'mejora', 'quest:completed':'encargo',
       'cargo:soaked':'mojada', 'exit:blocked':'bloqueo', notice:'aviso' };

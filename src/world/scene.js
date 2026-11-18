@@ -32,7 +32,7 @@ export default {
     const world = new THREE.Group(); world.name = 'mapa'; scene.add(world);   // aquí va todo lo que cambia con el mapa
     // ctx.cam: zoom (h = alto visible), límites, y cámara libre (free) que mira a cam.target en vez de al barco. La usa la vista de desarrollador.
     cam = { h: 72, min: 30, max: 95, free: false, target: new THREE.Vector3(), apply: () => resize(canvas) };
-    Object.assign(ctx, { cam, scene, world, camera, renderer, lights: { sun, hemi }, sunDir: SUN_DIR.clone(), night: 0 });
+    Object.assign(ctx, { cam, cameraFocus: focus, scene, world, camera, renderer, lights: { sun, hemi }, sunDir: SUN_DIR.clone(), night: 0 });
     focus.set(ctx.state.boat.x, 0, ctx.state.boat.z);
     resize(canvas);
     addEventListener('resize', () => resize(canvas));
@@ -55,5 +55,5 @@ export default {
     camera.position.copy(focus).add(CAM_OFF); camera.lookAt(focus);
     sun.target.position.copy(focus); sun.position.copy(focus).addScaledVector(ctx.sunDir, 180);
   },
-  render(ctx) { renderer.render(ctx.scene, camera); }
+  render(ctx) { renderer.render(ctx.scene, ctx.introCamera || camera); }
 };

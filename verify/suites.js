@@ -1,3 +1,4 @@
+import * as intro from '../src/sim/intro.js';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { on, emit, clear } from '../src/core/events.js';
@@ -10,6 +11,7 @@ import { QUESTS } from '../src/data/quests.js';
 import { MAPS, getMap } from '../src/maps/index.js';
 import * as pathfind from '../src/sim/pathfind.js';
 import * as travel from '../src/sim/travel.js';
+import { routes, trafficPoint, stepTraffic } from '../src/sim/traffic.js';
 const lake = getMap('lochMorag'), kyle = getMap('kyle');
 const map = { ...lake, PORTS: lake.ports, EXIT: lake.exitOf('pasoPiedras') };
 import * as time from '../src/sim/time.js';
@@ -269,7 +271,101 @@ export const suites = {
     ['un Patrón de Confianza recibe un suministro al pasar la noche', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 80; assert.ok(voyage.sleep(s).gift); assert.equal(cargo.count(s, 'supplies'), 3); }],
     ['atracado no se puede trazar rumbo', () => { const s = fresh(); voyage.dock(s, 'portDun'); assert.equal(nav.plotCourse(s, 0, 0).reason, 'atracado'); }]
   ],
+  'prólogo y puerto pesquero': [
+    ['saltar y ver todo dan la misma partida, incluso al volver a cargar', () => {
+      const skipped = fresh(); intro.begin(skipped);
+      assert.equal(nav.plotCourse(skipped, 0, 0).ok, false);
+      assert.equal(voyage.dock(skipped, 'portDun').ok, false);
+      intro.finish(skipped);
+      const s = fresh(); intro.begin(s);
+      intro.tick(s, 5); assert.equal(s.intro.line, 1);
+      intro.tick(s, 5); intro.tick(s, intro.walkTime);
+      for (let line = 0; line < 7; line++) {
+        assert.equal(s.intro.stage, 'talk'); assert.equal(s.intro.line, line);
+        intro.advance(s); assert.equal(intro.progress(s.intro), 1);
+        intro.advance(s);
+      }
+      intro.tick(s, intro.boardTime); intro.tick(s, intro.returnTime);
+      assert.deepEqual(s, skipped); assert.equal(s.introSeen, true);
+      const restored = JSON.parse(JSON.stringify(s)); intro.begin(restored); intro.finish(restored);
+      assert.deepEqual(restored, s); assert.equal(cargo.used(s), 4);
+      assert.equal(cargo.count(s, 'fish'), 2); assert.equal(s.quests.arenque, 'active');
+    }],
+    ['se puede vender y reponer el arenque sin duplicar premios', () => {
+      const s = fresh(); intro.finish(s); voyage.dock(s, 'portDun');
+      assert.equal(quests.deliver(s, 'arenque').ok, false);
+      trade.sell(s, 'portDun', 'fish'); at(s, 'glenmore');
+      assert.equal(quests.deliver(s, 'arenque').ok, false);
+      assert.ok(!quests.optionsAt(s, 'glenmore')[0].action);
+      at(s, 'portDun'); trade.buy(s, 'portDun', 'fish'); at(s, 'glenmore');
+      const balance = s.coins;
+      assert.equal(quests.optionsAt(s, 'glenmore')[0].action, 'deliver');
+      assert.ok(quests.deliver(s, 'arenque').ok); assert.equal(s.coins, balance + 25);
+      assert.equal(cargo.count(s, 'fish'), 0); assert.equal(s.villages.portDun.trust, 20);
+      assert.equal(quests.deliver(s, 'arenque').ok, false);
+      at(s, 'portDun'); assert.equal(quests.optionsAt(s, 'portDun').find(q => q.id === 'carta').action, 'accept');
+    }],
+    ['los botes, el paseo y los embarcaderos bloquean incluso un paso largo', () => {
+      const p = lake.portOf('portDun');
+      const point = (u,v) => p.shore.map((x,i) => x + p.t[i]*u + p.n[i]*v);
+      for (const {u,v} of p.waterfront) {
+        assert.ok(!lake.navigable(...point(u,v)));
+        assert.ok(!lake.pierClear(...point(u,v-16), ...point(u,v+16)));
+      }
+      const from = point(-45,-8), to = p.dock;
+      const route = pathfind.findPath(lake, from, to); assert.ok(route && route.length > 1);
+      route.forEach((end,i) => assert.ok(pathfind.clearLine(lake,...(i ? route[i-1] : from),...end)));
+    }]
+  ],
+  'sim/traffic': [
+    ['cada vuelta queda en agua profunda lejos de villas, embarcaderos y Paso', () => {
+      for (const route of routes) for (let i=0;i<720;i++) {
+        const {x,z} = trafficPoint(route, i*Math.PI/360);
+        assert.ok(lake.navigable(x,z) && lake.shoreDist(x,z)<-10);
+        assert.ok(lake.ports.every(p=>Math.hypot(x-p.dock[0],z-p.dock[1])>14));
+        assert.ok(lake.exits.every(p=>Math.hypot(x-p.x,z-p.z)>p.radius+6));
+        for (const p of lake.ports) for (const f of p.waterfront || []) {
+          const center = p.shore.map((v,k)=>v+f.u*p.t[k]+f.v*p.n[k]);
+          assert.ok(Math.hypot(x-center[0],z-center[1])>Math.hypot(f.width,f.depth)/2+12);
+        }
+      }
+    }],
+    ['ceden espacio, reanudan la marcha y conservan su posición al guardar', () => {
+      const s=fresh();
+      delete s.traffic;
+      stepTraffic(s,.1);
+      for (const [i,b] of s.traffic.entries()) {
+        for (let j=0;j<90;j++) {
+          moveTo(s,b.x,b.z);
+          stepTraffic(s,.05);
+          assert.ok(Math.hypot(b.x-s.boat.x,b.z-s.boat.z)>=6.5);
+          assert.ok(lake.navigable(b.x,b.z));
+        }
+        const phase=b.phase;
+        moveTo(s,...lake.ports[0].dock); stepTraffic(s,.1);
+        assert.ok(b.phase!==phase && b.speed>0);
+        const restored=JSON.parse(JSON.stringify(s));
+        stepTraffic(s,.1); stepTraffic(restored,.1);
+        assert.deepEqual(s.traffic[i],restored.traffic[i]);
+      }
+    }],
+    ['el prólogo y el Estrecho dejan en pausa el tráfico del lago', () => {
+      const s=fresh();
+      intro.begin(s); stepTraffic(s,1); assert.deepEqual(s.traffic,[]);
+      s.intro=null; s.map='kyle'; stepTraffic(s,1); assert.deepEqual(s.traffic,[]);
+    }]
+  ],
   'sim/quests': [
+    ['el objetivo sigue la carga y desaparece tras la entrega', () => {
+      const s=fresh();
+      assert.equal(quests.objectiveOf(s,'arenque'),null);
+      quests.grantHerring(s); assert.match(quests.objectiveOf(s,'arenque'),/2\/2 a bordo$/);
+      cargo.remove(s,'fish'); assert.match(quests.objectiveOf(s,'arenque'),/1\/2 a bordo$/);
+      cargo.add(s,'fish',2); assert.match(quests.objectiveOf(s,'arenque'),/2\/2 a bordo$/);
+      at(s,'glenmore'); quests.deliver(s,'arenque'); assert.equal(quests.objectiveOf(s,'arenque'),null);
+      at(s,'portDun'); quests.accept(s,'carta');
+      assert.equal(quests.objectiveOf(s,'carta'),QUESTS.carta.objective);
+    }],
     ['con Confianza 10 Mairead no ofrece la carta', () => { const s = at(fresh(), 'portDun'); assert.equal(quests.optionsAt(s, 'portDun')[0].action, undefined); assert.equal(quests.accept(s, 'carta').ok, false); }],
     ['con Confianza 20 entrega la caja y la carta, sin ocupar bodega', () => { const s = at(fresh(), 'portDun'); s.villages.portDun.trust = 20; const free = cargo.free(s);
       assert.ok(quests.accept(s, 'carta').ok); assert.deepEqual(s.keyItems, ['toolbox', 'letter']); assert.equal(cargo.free(s), free); }],
@@ -300,7 +396,9 @@ export const suites = {
       const fill = (v, g) => { while (trade.buy(s, v, g).ok); };
       const sellAll = (v, g) => { while (cargo.count(s, g)) trade.sell(s, v, g); };
       const restock = v => { while (cargo.count(s, 'supplies') < 2) assert.ok(trade.buy(s, v, 'supplies').ok); };
-      voyage.dock(s, 'portDun');
+      intro.begin(s); intro.finish(s);
+      go('glenmore'); assert.ok(quests.deliver(s, 'arenque').ok);
+      restock('glenmore'); go('portDun'); assert.ok(quests.accept(s, 'carta').ok);
       const yard = g => upgrades.delivered(s, 'reinforced_hull', g);
       for (let i = 0; i < 40 && !upgrades.has(s, 'reinforced_hull'); i++) {
         if (quests.stateOf(s, 'carta') === 'none') quests.accept(s, 'carta');

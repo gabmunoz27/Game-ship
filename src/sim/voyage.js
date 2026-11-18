@@ -10,6 +10,7 @@ import * as weather from './weather.js';
 export const supplyCost = state => weather.isBad(state) ? 2 : 1;
 
 export function dock(state, villageId) {
+  if (state.intro) return { ok: false, reason: 'intro' };
   if (state.docked) return { ok: false, reason: 'ya-atracado' };
   let traveled = false, supplied = true;
   if (state.lastPort !== villageId) {

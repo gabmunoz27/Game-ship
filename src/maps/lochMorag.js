@@ -19,10 +19,22 @@ const shoreSpeed = a => Math.hypot(RX * Math.sin(a), RZ * Math.cos(a)) * bnd(a);
 const PASO = 1.35, inward = a => { const n = inland(shoreDist, ...shorePoint(a)); return Math.atan2(-n[1], -n[0]); };
 
 const start = shorePoint(-.55, -17), back = shorePoint(PASO, -24);
+// Coordenadas locales: u recorre la orilla y v crece hacia tierra.
+// Los tamaños incluyen las bordas y los pilotes.
+const waterfront = [{ kind: 'walkway', u: -19, v: .2, width: 38, depth: 1.5 }];
+for (const [index, u] of [-19, -29, -37].entries()) {
+  const v = -3.5 + index * .5;
+  waterfront.push({ kind: 'pier', u, v, width: 1.45, depth: 9 });
+  for (const side of [-1, 1]) waterfront.push({
+    kind: 'boat', u: u + side * 1.9, v: v - 1, width: 1.65, depth: 4.4 + .45 * index, side
+  });
+}
+waterfront.push({ kind: 'pier', u: -24, v: -8.8, width: 1.5, depth: 18.5 },
+  { kind: 'boat', rig: 'queche', u: -20.7, v: -15.4, width: 4.6, depth: 12.5, side: 1 });
 export default defineMap({
   id: 'lochMorag', name: 'Loch Morag', size: { w: 360, d: 280 },
   shoreDist, shorePoint, shoreSpeed,
-  ports: [{ village: 'portDun', a: -.55, shore: shorePoint(-.55) }, { village: 'glenmore', a: 2.9, shore: shorePoint(2.9), custom: true }],
+  ports: [{ village: 'portDun', waterfront, a: -.55, shore: shorePoint(-.55) }, { village: 'glenmore', a: 2.9, shore: shorePoint(2.9), custom: true }],
   // El Paso de las Piedras: salida al Estrecho de Kyle. Exige el Casco Reforzado (Parche v1.1, 3).
   exits: [{ id: 'pasoPiedras', name: 'El Paso de las Piedras', a: PASO, shore: shorePoint(PASO), requires: 'reinforced_hull', to: 'kyle', spawn: 'desdeMorag', stones: true, closesAct: 1 }],
   spawns: {

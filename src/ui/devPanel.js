@@ -55,7 +55,7 @@ function draw() {
     section('Música', `<p class="dv-hint">${ctxRef.music ? (ctxRef.music.info.title ? `♪ ${ctxRef.music.info.title} · ${ctxRef.music.info.source === 'mp3' ? 'MP3' : 'boceto en código (falta el MP3)'}` : ctxRef.music.info.status) : ''}</p>
       <div class="dv-row">${btn('music-next', 'Tocar otra pieza ahora')}${btn('music-mute', ctxRef.music && ctxRef.music.isMuted() ? 'Activar sonido' : 'Silenciar sonido')}</div>`) +
     section('Sonido', audioControls()) +
-    section('Ver eventos', `<div class="dv-row">${btn('label', 'Rótulo de llegada')}${btn('act', 'Cierre del Acto I')}${btn('cross', 'Cruzar de mapa (telón)')}${btn('pickup', 'Aviso de objeto')}${btn('modules', 'Estado de módulos (M)')}</div>`) +
+    section('Ver eventos', `<div class="dv-row">${btn('intro', 'Ver cinemática de inicio')}${btn('label', 'Rótulo de llegada')}${btn('act', 'Cierre del Acto I')}${btn('cross', 'Cruzar de mapa (telón)')}${btn('pickup', 'Aviso de objeto')}${btn('modules', 'Estado de módulos (M)')}</div>`) +
     `<p class="dv-state">${positionText()}</p>`;
   $('[data-sample]').value = selectedSound;
 }
@@ -86,6 +86,7 @@ function act(a, d) {
     case 'preview': dev.previewSound(selectedSound); return;
     case 'music-next': emit('music:next'); break;
     case 'music-mute': emit('music:mute'); break;
+    case 'intro': window.open('?intro', '_blank', 'noopener'); break;
     case 'modules': dispatchEvent(new KeyboardEvent('keydown', { key: 'm' })); break;
   }
   if (open) draw();

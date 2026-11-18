@@ -29,6 +29,14 @@ Arquitectura en cinco capas: `data/` (contenido) → `maps/` (forma del mapa, ma
 
 10. **Navegación y HUD** — Los cuatro muelles tienen colisión y amarre lateral. La cámara y el rótulo reaccionan a 20 unidades del amarre y se retiran al superar 24. El gesto de rumbo suena una vez con un intervalo mínimo de 1,5 segundos. La barra de bodega muestra peso, capacidad y humedad. La lluvia usa el mismo vector para orientarse y desplazarse.
 
+11. **Prólogo en Port Dun** — Ewan y Mairead abren el Acto I. El primer encargo usa dos unidades comerciales de arenque y suma 10 de Confianza en Port Dun, 15 en Glenmore y 25 monedas al entregar. La ruta de prueba enlaza la entrega con la carta y el casco.
+12. **Puerto pesquero** — 21 casas, almacén, redes, paseo y seis botes amarrados. Las huellas de los nuevos sólidos en el mapa alimentan tanto el dibujo como la navegación.
+13. **Pruebas de inicio** — `?intro` o el botón del panel D permiten repetir la escena en una partida de prueba. La partida normal se recupera al abrir sin parámetros.
+
+14. **Encargos a la vista** — La lista muestra el objetivo y las unidades necesarias a bordo. En móvil comienza plegada y recuerda la última elección. Para probar la entrega, abrir `?sinIntro&villa=glenmore` y atracar.
+15. **Actividad en Port Dun** — Casas de dos pisos y de ladrillo, empedrado, plaza del ancla y cinco estibadores. El queche de dos mástiles comparte huella con navegación. Comparar `?sinIntro&villa=portDun` con `?sinIntro&villa=portDun&franja=2` para ver ventanas, turnos y gaviotas.
+16. **Dos barcos en el lago** — Velero y pesquero recorren circuitos separados. La simulación guarda su fase, frena al acercarse la jugadora y retrocede sobre el circuito cuando necesita darle espacio. Se ven con D → vista general.
+
 Arreglos de iOS que no hay que deshacer: `#ui` tiene `pointer-events:none`, así que cualquier cosa tocable necesita `pointer-events:auto`; la música usa `decodeAudioData` en lugar de `<audio>`.
 
 ## Decisiones provisionales (revisar)

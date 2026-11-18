@@ -23,8 +23,8 @@ function crossesPier(port, ax, az, bx, bz) {
   let enter = 0, leave = 1;
   const dx = ax - port.shore[0], dz = az - port.shore[1];
   const margin = HULL_RADIUS + PIER.pileRadius;
-  for (const [axis, min, max] of [[port.n, -PIER.seaward - margin, PIER.inland + margin],
-    [port.t, -PIER.halfWidth - margin, PIER.halfWidth + margin]]) {
+  for (const [axis, min, max] of [[port.n, -(port.seaward ?? PIER.seaward) - margin, (port.inland ?? PIER.inland) + margin],
+    [port.t, -(port.halfWidth ?? PIER.halfWidth) - margin, (port.halfWidth ?? PIER.halfWidth) + margin]]) {
     const start = dx * axis[0] + dz * axis[1];
     const delta = (bx - ax) * axis[0] + (bz - az) * axis[1];
     if (Math.abs(delta) < 1e-9) {
@@ -73,7 +73,15 @@ export function defineMap(def) {
     const bw = beachWidth(x, z);
     return beach + (land - beach) * smooth(bw, bw + 2.2, d);
   }
-  const blockingPier = (ax, az, bx, bz) => ports.find(p => crossesPier(p, ax, az, bx, bz));
+  const obstacles = ports.flatMap(port => [port, ...(port.waterfront || []).map(piece => {
+    const shore = port.shore.map((x, i) => x + port.t[i] * piece.u + port.n[i] * piece.v);
+    const halfWidth = piece.width / 2, seaward = piece.depth / 2;
+    const clearance = HULL_RADIUS + PIER.pileRadius + .4;
+    const tipCorners = [-1, 1].map(sign => shore.map((x, i) =>
+      x - port.n[i] * (seaward + clearance) + sign * port.t[i] * (halfWidth + clearance)));
+    return { shore, n: port.n, t: port.t, halfWidth, seaward, inland: seaward, tipCorners };
+  })]);
+  const blockingPier = (ax, az, bx, bz) => obstacles.find(p => crossesPier(p, ax, az, bx, bz));
   const pierClear = (ax, az, bx, bz) => !blockingPier(ax, az, bx, bz);
   const navigable = (x, z) => Math.abs(x) < def.size.w / 2 && Math.abs(z) < def.size.d / 2 && height(x, z) < -.9 && pierClear(x, z, x, z);
   /** Puntos de la orilla cada ~2.5 unidades, con su dirección hacia tierra. Sirven para acantilados y rocas. */

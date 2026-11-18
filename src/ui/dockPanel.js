@@ -20,7 +20,7 @@ function muelle(id, v) {
   const t = trust.tierOf(state, id);
   const qs = quests.optionsAt(state, id).map(q => `<h3>${q.name}</h3><p>${q.text}</p>${q.action ? `<div class="row"><span class="name"></span><button data-act="quest" data-quest="${q.id}" data-do="${q.action}">${q.label}</button></div>` : ''}`).join('');
   return `<h2>${v.npc.name} <span class="badge ${t.id}">${t.name}</span></h2>
-    <p><small>${v.npc.role} · ${v.name} · Confianza ${trust.of(state, id)}/100</small></p><p>«${v.greeting}»</p>
+    <p><small>${v.npc.role} · ${v.name} · Confianza ${trust.of(state, id)}/100</small></p><p>«${quests.greeting(state, id, v.greeting)}»</p>
     ${note ? `<p class="note">${note}</p>` : ''}
     <p><small>Aquí necesitan: ${v.needs.map(g => GOODS[g].name.toLowerCase()).join(' y ')}.</small></p>${qs}
     <div class="row"><span class="name"></span><button data-act="sleep">Pasar la noche</button></div>`;

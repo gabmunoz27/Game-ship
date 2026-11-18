@@ -87,6 +87,7 @@ export function animatePeople(people, P, t, night) {
     if (!p.m.visible) continue;
     if (p.route) {
       let s = ((t + p.phase * 5) * p.speed) % (p.total * 2); const back = s > p.total; if (back) s = p.total * 2 - s;
+      if (p.load) p.load.visible = !back;
       let i = 0; while (i < p.len.length - 1 && s > p.len[i]) { s -= p.len[i]; i++; }
       const a = p.route[i], b = p.route[i + 1], k = Math.min(1, s / p.len[i]), [x, y, z] = P(a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k);
       const [ax, , az] = P(...a), [bx, , bz] = P(...b), dir = back ? -1 : 1;

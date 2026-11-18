@@ -1,6 +1,14 @@
+import questTracker from './ui/questTracker.js';
+import traffic from './world/traffic.js';
+import gulls from './world/gulls.js';
+import { stepTraffic } from './sim/traffic.js';
+import portDun from './world/portDun.js';
 // Punto de entrada. Aquí solo se conectan los módulos: ninguna regla del juego vive en este archivo.
 // Para apagar un módulo mientras se arregla, comenta su línea en la lista.
-import { createState } from './core/state.js';
+import * as intro from './sim/intro.js';
+import introScene from './world/intro.js';
+import introText from './ui/intro.js';
+import { createState, load, save } from './core/state.js';
 import { mapOf, getMap } from './maps/index.js';
 import { on, emit } from './core/events.js';
 import { register, initAll, buildAll, clearWorld, updateAll } from './core/systems.js';
@@ -42,15 +50,23 @@ import moduleStatus from './ui/moduleStatus.js';
 const navigation = { id: 'navigation', label: 'Navegación', update: (ctx, dt) => step(ctx.state, dt) };
 const actsSys = { id: 'acts', label: 'Actos y salida del mapa', update: ctx => acts.update(ctx.state) };
 
-[scene, daylight, weather, navigation, actsSys, terrain, cliffs, rocks, pines, villages, glenmore, achnacarn, strathlinn, landmarks, water, boat, courseMarker, input,
-  uiRoot, cargoBar, coins, weatherChip, music, sfx, soundButton, pickups, villageLabel, notices, dockPanel, exitPrompt, actEnd, mapTransition, devPanel, moduleStatus].forEach(register);
+[{ id: 'intro', label: 'Secuencia inicial', update: (ctx, dt) => intro.tick(ctx.state, dt) }, scene, daylight, weather, navigation, { id: 'lakeTraffic', label: 'Navegación local', update: (ctx, dt) => stepTraffic(ctx.state, dt) }, traffic, gulls, actsSys, terrain, cliffs, rocks, pines, villages, portDun, glenmore, achnacarn, strathlinn, landmarks, water, boat, introScene, courseMarker, input,
+  uiRoot, questTracker, cargoBar, coins, weatherChip, music, sfx, introText, soundButton, pickups, villageLabel, notices, dockPanel, exitPrompt, actEnd, mapTransition, devPanel, moduleStatus].forEach(register);
 
-const state = createState();
+const params = new URLSearchParams(location.search);
+const test = ['intro','dev','villa','mapa','debug','franja','clima'].some(k => params.has(k));
+const saved = !test && load();
+const state = saved || createState();
+if (saved) {
+  state.introSeen ??= true; // Partidas anteriores al prólogo.
+  state.nearPort = state.nearVillage = null;
+}
+
 // ?franja=0|1|2 abre la partida en Mañana, Tarde o Noche: sirve para probar la luz sin esperar.
 const franja = new URLSearchParams(location.search).get('franja');
 if (franja !== null && [0, 1, 2].includes(+franja)) state.slot = +franja;
 // ?mapa=kyle abre la partida en otro mapa (entrando por su primera llegada); ?villa=glenmore, frente a ese muelle.
-const params = new URLSearchParams(location.search), mapa = getMap(params.get('mapa'));
+const mapa = getMap(params.get('mapa'));
 if (mapa) { const sp = Object.values(mapa.spawns)[0]; state.map = mapa.id; Object.assign(state.boat, { x: sp.x, z: sp.z, heading: sp.heading }); }
 // ?clima=lluvia (o niebla, nublado, viento-en-contra) abre con ese clima.
 if (params.get('clima')) state.weather = params.get('clima');
@@ -60,8 +76,19 @@ if (villa) { state.boat.x = villa.dock[0]; state.boat.z = villa.dock[1]; }
 const ctx = { state, canvas: document.getElementById('c'), time: 0 };
 // ?debug deja el juego a mano en la consola del navegador (window.game) para probar cosas.
 if (params.has('debug')) window.game = { ctx, emit };
+if (!saved && (!test || params.has('intro'))) {
+  state.map = 'lochMorag'; state.slot = 0; state.weather = 'despejado';
+  intro.begin(state);
+}
 initAll(ctx);
 buildAll(ctx);
+if ((!state.intro || params.has('sinIntro')) && !state.introSeen) intro.finish(state);
+if (saved && state.docked) emit('dock:entered', { villageId: state.docked, traveled: false, supplied: true });
+if (!test) {
+  const persist = () => { if (state.introSeen) save(state); };
+  addEventListener('pagehide', persist);
+  document.addEventListener('visibilitychange', () => { if (document.hidden) persist(); });
+}
 // Al cruzar a otro mapa se desarma lo que se ve y se arma de nuevo con el mapa nuevo.
 on('map:changed', () => { clearWorld(ctx); buildAll(ctx); ctx.snapCamera = true; if (ctx.renderer) ctx.renderer.compile(ctx.scene, ctx.camera); });
 
