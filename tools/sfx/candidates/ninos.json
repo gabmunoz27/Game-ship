@@ -1,0 +1,425 @@
+[
+ {
+  "sid": "371342",
+  "user": "Iamgiorgio",
+  "title": "D2_kidslaughing.mp3",
+  "dur": 3.15698,
+  "dl": 17300,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/371/371342_5302340-hq.mp3",
+  "query": "children laughing",
+  "description": "two kids laughing inside a play room",
+  "tags": [
+   "children",
+   "kids",
+   "laughing"
+  ],
+  "file": "raw/cand/ninos/371342.mp3",
+  "analysis": {
+   "dur": 3.16,
+   "snr_db": 28.8,
+   "floor_db": -40.9,
+   "peak_db": -12.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.5,
+   "brightness_hz": 2057,
+   "events": [
+    [
+     0.5,
+     0.65,
+     -11.5
+    ],
+    [
+     0.95,
+     1.75,
+     -12.2
+    ],
+    [
+     2.25,
+     2.4,
+     -22.7
+    ],
+    [
+     2.65,
+     2.8,
+     -14.0
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "371562",
+  "user": "Kinoton",
+  "title": "Sitcom Laughter with Applause, Small Audience",
+  "dur": 5.8,
+  "dl": 11614,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/371/371562_2247456-hq.mp3",
+  "query": "children laughing",
+  "description": "laugh machine, canned laughter \n\n ORTF wide stereo field Recorder: Tascam DR-60D MkII Microphone: 2x RØDE M5 \n\n Check out the pack for more laughter and applause recorded in the same theatre.",
+  "tags": [
+   "applauding",
+   "applause",
+   "audience",
+   "children",
+   "clap",
+   "clapping",
+   "crowd",
+   "group",
+   "laugh",
+   "laughter",
+   "theatre"
+  ],
+  "file": "raw/cand/ninos/371562.mp3",
+  "analysis": {
+   "dur": 5.8,
+   "snr_db": 38.6,
+   "floor_db": -56.7,
+   "peak_db": -18.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.7,
+   "brightness_hz": 1644,
+   "events": [
+    [
+     0.3,
+     5.3,
+     -17.2
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "86991",
+  "user": "mrbriandesign",
+  "title": "Giggling.wav",
+  "dur": 8.592,
+  "dl": 8844,
+  "rating": 4.3,
+  "mp3": "https://cdn.freesound.org/previews/86/86991_1326056-hq.mp3",
+  "query": "children laughing",
+  "description": "Two year old girl giggling and laughing.",
+  "tags": [
+   "children",
+   "giggling",
+   "kids",
+   "laughing",
+   "toddler"
+  ],
+  "file": "raw/cand/ninos/86991.mp3",
+  "analysis": {
+   "dur": 8.59,
+   "snr_db": 163.5,
+   "floor_db": -180.0,
+   "peak_db": -16.5,
+   "clip_pct": 0.001,
+   "rumble_pct": 2.4,
+   "brightness_hz": 1553,
+   "events": [
+    [
+     0.0,
+     4.6,
+     -13.0
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "349405",
+  "user": "pechenyshki",
+  "title": "Children playing outdoors",
+  "dur": 16.5347,
+  "dl": 6974,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/349/349405_5878929-hq.mp3",
+  "query": "children playing outdoors",
+  "description": "Children playing outdoors",
+  "tags": [
+   "children",
+   "court",
+   "kids",
+   "kindergarten",
+   "outdoors",
+   "playground",
+   "yard"
+  ],
+  "file": "raw/cand/ninos/349405.mp3",
+  "analysis": {
+   "dur": 16.53,
+   "snr_db": 8.7,
+   "floor_db": -42.5,
+   "peak_db": -33.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 84.9,
+   "brightness_hz": 446,
+   "events": []
+  }
+ },
+ {
+  "sid": "36938",
+  "user": "yacou",
+  "title": "ahaha.wav",
+  "dur": 10.9126,
+  "dl": 6512,
+  "rating": 4.2,
+  "mp3": "https://cdn.freesound.org/previews/36/36938_368875-hq.mp3",
+  "query": "children laughing",
+  "description": "some children laugh in a primary school. Natural echoes !",
+  "tags": [
+   "children",
+   "echo",
+   "laugh",
+   "voices"
+  ],
+  "file": "raw/cand/ninos/36938.mp3",
+  "analysis": {
+   "dur": 10.91,
+   "snr_db": 12.2,
+   "floor_db": -26.9,
+   "peak_db": -14.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 4.6,
+   "brightness_hz": 1027,
+   "events": []
+  }
+ },
+ {
+  "sid": "416703",
+  "user": "FunWithSound",
+  "title": "Laugh Group of Children.wav",
+  "dur": 6.72,
+  "dl": 5930,
+  "rating": 4.2,
+  "mp3": "https://cdn.freesound.org/previews/416/416703_6456158-hq.mp3",
+  "query": "children laughing",
+  "description": "A .WAV audio clip of a small group of children (including a small toddler) laughing and giggling in a small room.  This audio was taken from a family video from long ago.",
+  "tags": [
+   "children",
+   "chuckle",
+   "fun",
+   "funny",
+   "giggle",
+   "giggling",
+   "group",
+   "happy",
+   "human",
+   "laugh",
+   "laughing",
+   "laughter",
+   "mirth",
+   "vocal",
+   "voices"
+  ],
+  "file": "raw/cand/ninos/416703.mp3",
+  "analysis": {
+   "dur": 6.72,
+   "snr_db": 14.1,
+   "floor_db": -28.2,
+   "peak_db": -14.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.9,
+   "brightness_hz": 1243,
+   "events": [
+    [
+     2.9,
+     3.1,
+     -12.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "483159",
+  "user": "f-r-a-g-i-l-e",
+  "title": "Children's Toys Laughing",
+  "dur": 10.449,
+  "dl": 5064,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/483/483159_8466114-hq.mp3",
+  "query": "children laughing",
+  "description": "A collection of children's toys that play audio of laughing edited together. Low quality, because they come from two cent speakers. Five laughs, one is pretty common but the others are specifically from the toys I recorded them from.",
+  "tags": [
+   "children",
+   "cute",
+   "kid",
+   "laugh",
+   "laughing",
+   "low-quality",
+   "song",
+   "toy",
+   "vocal"
+  ],
+  "file": "raw/cand/ninos/483159.mp3",
+  "analysis": {
+   "dur": 10.45,
+   "snr_db": 145.0,
+   "floor_db": -180.0,
+   "peak_db": -35.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.3,
+   "brightness_hz": 1207,
+   "events": [
+    [
+     0.0,
+     9.45,
+     -32.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "536220",
+  "user": "Ambientsoundapp",
+  "title": "Kids Playing.wav",
+  "dur": 30.0,
+  "dl": 4399,
+  "rating": 4.3,
+  "mp3": "https://cdn.freesound.org/previews/536/536220_11926345-hq.mp3",
+  "query": "kids playing park",
+  "description": "kids playing in a nearby park",
+  "tags": [
+   "kids",
+   "people",
+   "playing"
+  ],
+  "file": "raw/cand/ninos/536220.mp3",
+  "analysis": {
+   "dur": 30.0,
+   "snr_db": 8.8,
+   "floor_db": -51.6,
+   "peak_db": -42.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 8.3,
+   "brightness_hz": 1213,
+   "events": []
+  }
+ },
+ {
+  "sid": "84359",
+  "user": "cognito perceptu",
+  "title": "children distant.wav",
+  "dur": 22.0827,
+  "dl": 2918,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/84/84359_57789-hq.mp3",
+  "query": "children playing outdoors",
+  "description": "Distant outdoor recording of children playing. The hum of nearby buildings is in the background.",
+  "tags": [
+   "children",
+   "fun",
+   "outside",
+   "playground",
+   "playing",
+   "screams"
+  ],
+  "file": "raw/cand/ninos/84359.mp3",
+  "analysis": {
+   "dur": 22.08,
+   "snr_db": 4.4,
+   "floor_db": -36.8,
+   "peak_db": -32.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 42.7,
+   "brightness_hz": 1136,
+   "events": []
+  }
+ },
+ {
+  "sid": "442625",
+  "user": "BonnyOrbit",
+  "title": "Swing or seesaw from close.wav",
+  "dur": 22.3473,
+  "dl": 1178,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/442/442625_5902878-hq.mp3",
+  "query": "kids playing park",
+  "description": "Wav-file recorded with the Zoom H1 with internal microphone.  Swing on a small playground in a small town called Contra. In the background you hear a dog barking and a car passing. Recorded in Ticino (Tessin), Switzerland. \n\n BONNY ORBIT Sound Library",
+  "tags": [
+   "children",
+   "field-recording",
+   "fieldrecording",
+   "kid",
+   "kids",
+   "park",
+   "play",
+   "playground",
+   "playing",
+   "seesaw",
+   "swing",
+   "swinging",
+   "town",
+   "village"
+  ],
+  "file": "raw/cand/ninos/442625.mp3",
+  "analysis": {
+   "dur": 22.35,
+   "snr_db": 26.4,
+   "floor_db": -57.7,
+   "peak_db": -31.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 22.6,
+   "brightness_hz": 716,
+   "events": [
+    [
+     0.1,
+     0.35,
+     -30.8
+    ],
+    [
+     1.5,
+     1.9,
+     -27.6
+    ],
+    [
+     2.95,
+     3.2,
+     -34.8
+    ],
+    [
+     4.3,
+     4.75,
+     -31.0
+    ],
+    [
+     5.85,
+     6.05,
+     -31.3
+    ],
+    [
+     7.15,
+     7.55,
+     -30.0
+    ],
+    [
+     8.55,
+     8.8,
+     -31.3
+    ],
+    [
+     9.35,
+     9.5,
+     -40.3
+    ],
+    [
+     9.95,
+     10.35,
+     -29.4
+    ],
+    [
+     11.45,
+     11.6,
+     -34.4
+    ],
+    [
+     12.75,
+     13.15,
+     -28.4
+    ],
+    [
+     14.1,
+     14.35,
+     -36.4
+    ]
+   ]
+  }
+ }
+]

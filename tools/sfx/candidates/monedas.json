@@ -14,7 +14,17 @@
    "coins",
    "pickup"
   ],
-  "file": "raw/cand/monedas/163451.mp3"
+  "file": "raw/cand/monedas/163451.mp3",
+  "analysis": {
+   "dur": 0.22,
+   "snr_db": 19.5,
+   "floor_db": -46.8,
+   "peak_db": -27.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.3,
+   "brightness_hz": 6318,
+   "events": []
+  }
  },
  {
   "sid": "121990",
@@ -35,7 +45,23 @@
    "glass-beads",
    "jingle"
   ],
-  "file": "raw/cand/monedas/121990.mp3"
+  "file": "raw/cand/monedas/121990.mp3",
+  "analysis": {
+   "dur": 0.51,
+   "snr_db": 21.6,
+   "floor_db": -33.9,
+   "peak_db": -12.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 95.7,
+   "brightness_hz": 1167,
+   "events": [
+    [
+     0.15,
+     0.35,
+     -12.3
+    ]
+   ]
+  }
  },
  {
   "sid": "324760",
@@ -57,7 +83,23 @@
    "money",
    "tinkle"
   ],
-  "file": "raw/cand/monedas/324760.mp3"
+  "file": "raw/cand/monedas/324760.mp3",
+  "analysis": {
+   "dur": 1.53,
+   "snr_db": 47.1,
+   "floor_db": -61.0,
+   "peak_db": -14.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.1,
+   "brightness_hz": 8253,
+   "events": [
+    [
+     0.0,
+     1.25,
+     -14.0
+    ]
+   ]
+  }
  },
  {
   "sid": "163452",
@@ -74,7 +116,17 @@
    "money",
    "pickup"
   ],
-  "file": "raw/cand/monedas/163452.mp3"
+  "file": "raw/cand/monedas/163452.mp3",
+  "analysis": {
+   "dur": 0.32,
+   "snr_db": 24.6,
+   "floor_db": -48.3,
+   "peak_db": -23.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.1,
+   "brightness_hz": 6950,
+   "events": []
+  }
  },
  {
   "sid": "350875",
@@ -112,7 +164,17 @@
    "treasure",
    "video-game"
   ],
-  "file": "raw/cand/monedas/350875.mp3"
+  "file": "raw/cand/monedas/350875.mp3",
+  "analysis": {
+   "dur": 0.29,
+   "snr_db": 10.1,
+   "floor_db": -31.3,
+   "peak_db": -21.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 3269,
+   "events": []
+  }
  },
  {
   "sid": "19778",
@@ -131,7 +193,17 @@
    "plunk",
    "rattle"
   ],
-  "file": "raw/cand/monedas/19778.mp3"
+  "file": "raw/cand/monedas/19778.mp3",
+  "analysis": {
+   "dur": 0.8,
+   "snr_db": 14.1,
+   "floor_db": -23.0,
+   "peak_db": -9.0,
+   "clip_pct": 0.215,
+   "rumble_pct": 16.9,
+   "brightness_hz": 1397,
+   "events": []
+  }
  },
  {
   "sid": "360739",
@@ -170,7 +242,23 @@
    "table",
    "top-up"
   ],
-  "file": "raw/cand/monedas/360739.mp3"
+  "file": "raw/cand/monedas/360739.mp3",
+  "analysis": {
+   "dur": 1.25,
+   "snr_db": 75.0,
+   "floor_db": -96.1,
+   "peak_db": -21.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.5,
+   "brightness_hz": 2748,
+   "events": [
+    [
+     0.2,
+     0.95,
+     -21.1
+    ]
+   ]
+  }
  },
  {
   "sid": "346117",
@@ -194,7 +282,23 @@
    "jingling",
    "retro-game"
   ],
-  "file": "raw/cand/monedas/346117.mp3"
+  "file": "raw/cand/monedas/346117.mp3",
+  "analysis": {
+   "dur": 0.34,
+   "snr_db": 28.2,
+   "floor_db": -36.2,
+   "peak_db": -8.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.8,
+   "brightness_hz": 5658,
+   "events": [
+    [
+     0.0,
+     0.25,
+     -8.0
+    ]
+   ]
+  }
  },
  {
   "sid": "19768",
@@ -214,7 +318,17 @@
    "rattle",
    "shake"
   ],
-  "file": "raw/cand/monedas/19768.mp3"
+  "file": "raw/cand/monedas/19768.mp3",
+  "analysis": {
+   "dur": 0.74,
+   "snr_db": 4.4,
+   "floor_db": -22.6,
+   "peak_db": -18.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 72.7,
+   "brightness_hz": 780,
+   "events": []
+  }
  },
  {
   "sid": "565700",
@@ -253,6 +367,22 @@
    "role-play",
    "role-playing"
   ],
-  "file": "raw/cand/monedas/565700.mp3"
+  "file": "raw/cand/monedas/565700.mp3",
+  "analysis": {
+   "dur": 1.4,
+   "snr_db": 39.8,
+   "floor_db": -68.0,
+   "peak_db": -28.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.2,
+   "brightness_hz": 5895,
+   "events": [
+    [
+     0.05,
+     1.15,
+     -28.2
+    ]
+   ]
+  }
  }
 ]

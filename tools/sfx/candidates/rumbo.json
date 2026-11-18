@@ -1,0 +1,385 @@
+[
+ {
+  "sid": "184438",
+  "user": "CapsLok",
+  "title": "Cash Register Fake.wav",
+  "dur": 2.19583,
+  "dl": 22758,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/184/184438_850742-hq.mp3",
+  "query": "small bell",
+  "description": "It's not the sound of an actual cash register but the combination of 5 different single sounds: 2 Sounds of a printer, once being open and once being closed. A box full of rubbish being shaked, a ratchet and a small bell \n\n Equipment used: Akg c214 / Focusrite Saffire Pro24",
+  "tags": [
+   "bell",
+   "cash",
+   "mall",
+   "market",
+   "money",
+   "register",
+   "shop",
+   "shopping",
+   "super"
+  ],
+  "file": "raw/cand/rumbo/184438.mp3",
+  "analysis": {
+   "dur": 2.2,
+   "snr_db": 155.2,
+   "floor_db": -180.0,
+   "peak_db": -24.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 6.7,
+   "brightness_hz": 2977,
+   "events": [
+    [
+     0.05,
+     1.55,
+     -17.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "96132",
+  "user": "BMacZero",
+  "title": "Bing1.wav",
+  "dur": 0.719819,
+  "dl": 8046,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/96/96132_1554918-hq.mp3",
+  "query": "small bell",
+  "description": "A light sound of metal hitting metal, suitable for a metalsmith working or a small bell.",
+  "tags": [
+   "anvil",
+   "bell",
+   "bing",
+   "blacksmith",
+   "hammer",
+   "metal",
+   "smith"
+  ],
+  "file": "raw/cand/rumbo/96132.mp3",
+  "analysis": {
+   "dur": 0.72,
+   "snr_db": 41.2,
+   "floor_db": -44.7,
+   "peak_db": -3.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.6,
+   "brightness_hz": 2132,
+   "events": [
+    [
+     0.0,
+     0.45,
+     -3.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "515643",
+  "user": "MashedTatoes2",
+  "title": "ding2.wav",
+  "dur": 0.354467,
+  "dl": 4428,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/515/515643_10246545-hq.mp3",
+  "query": "small bell",
+  "description": "Ding sound made by hitting a glass candle holder with a wooden spoon",
+  "tags": [
+   "bell",
+   "ding",
+   "ring",
+   "small"
+  ],
+  "file": "raw/cand/rumbo/515643.mp3",
+  "analysis": {
+   "dur": 0.35,
+   "snr_db": 48.2,
+   "floor_db": -63.7,
+   "peak_db": -15.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 1801,
+   "events": [
+    [
+     0.0,
+     0.25,
+     -15.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "452379",
+  "user": "steffcaffrey",
+  "title": "Small Bell #2",
+  "dur": 1.93803,
+  "dl": 2276,
+  "rating": 4.9,
+  "mp3": "https://cdn.freesound.org/previews/452/452379_1844073-hq.mp3",
+  "query": "small bell",
+  "description": "Small metal bell \n\n Audient mic pre, Rode NTK, X Noise, low cut \n\n Ping!",
+  "tags": [
+   "bell",
+   "chime",
+   "chiming",
+   "christmas",
+   "ding",
+   "dingalong",
+   "fairy",
+   "magic",
+   "metal",
+   "ping",
+   "ring",
+   "ringing",
+   "small",
+   "ting",
+   "tiny",
+   "tubular"
+  ],
+  "file": "raw/cand/rumbo/452379.mp3",
+  "analysis": {
+   "dur": 1.94,
+   "snr_db": 84.1,
+   "floor_db": -95.6,
+   "peak_db": -11.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.2,
+   "brightness_hz": 3645,
+   "events": [
+    [
+     0.0,
+     1.3,
+     -10.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "353232",
+  "user": "Sojan",
+  "title": "Ship Bell Two Chimes",
+  "dur": 2.91172,
+  "dl": 2076,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/353/353232_5477651-hq.mp3",
+  "query": "small bell",
+  "description": "Two chimes of a small bell used on ships, (can also be used for old firefighters).",
+  "tags": [
+   "bell",
+   "ding",
+   "dong",
+   "fire-bell",
+   "naval",
+   "ships-bell"
+  ],
+  "file": "raw/cand/rumbo/353232.mp3",
+  "analysis": {
+   "dur": 2.91,
+   "snr_db": 60.2,
+   "floor_db": -81.1,
+   "peak_db": -20.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 1695,
+   "events": [
+    [
+     0.35,
+     2.9,
+     -20.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "434627",
+  "user": "Dr. Macak",
+  "title": "ding.wav",
+  "dur": 1.24773,
+  "dl": 1258,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/434/434627_1848520-hq.mp3",
+  "query": "small bell",
+  "description": "Small bell on the reception.",
+  "tags": [
+   "bar",
+   "bell",
+   "cink",
+   "ding",
+   "dong",
+   "gong",
+   "hotel",
+   "restaurant"
+  ],
+  "file": "raw/cand/rumbo/434627.mp3",
+  "analysis": {
+   "dur": 1.25,
+   "snr_db": 43.8,
+   "floor_db": -57.7,
+   "peak_db": -14.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.1,
+   "brightness_hz": 2452,
+   "events": [
+    [
+     0.0,
+     0.35,
+     -14.0
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "842513",
+  "user": "PiesHelpfulOven",
+  "title": "Triple_Ping_Notification_Sound_Mobile_Optimized",
+  "dur": 0.96875,
+  "dl": 793,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/842/842513_14031674-hq.mp3",
+  "query": "chime small",
+  "description": "A surgically engineered, high-visibility 3-note notification chime (E6 - G6 - C7). Designed specifically for mobile phone speakers and high-noise environments using advanced acoustic principles. \n\n Design Process: \n\n - Timbre: Built using FabFilter Twin 3 (Square/Saw harmonics) layered with a calibrated White Noise burst for an instant \"click\" transient. \n\n - Acoustics: Features a rapid Filter Down-Sweep (5kHz snap down to 2kHz) to trigger the human ear’s most sensitive frequency range (Fletcher-Munson curve optimization). \n\n - Processing: Mastered through FabFilter Pro-C 3 (32x oversampling) ",
+  "tags": [
+   "5kHz",
+   "Chime",
+   "Clean",
+   "Crystal",
+   "Digital-Ping",
+   "FabFilter",
+   "High-Frequency",
+   "Mastered",
+   "Message-Alert",
+   "Minimalist",
+   "Mobile-Optimized",
+   "Notification",
+   "Sharp",
+   "Sinister-Precision",
+   "Success",
+   "Tech",
+   "Transparent",
+   "UI-Sound"
+  ],
+  "file": "raw/cand/rumbo/842513.mp3",
+  "analysis": {
+   "dur": 0.97,
+   "snr_db": 86.6,
+   "floor_db": -95.1,
+   "peak_db": -8.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 6.3,
+   "brightness_hz": 2369,
+   "events": [
+    [
+     0.0,
+     0.75,
+     -8.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "735168",
+  "user": "Irolan",
+  "title": "Item Pickup Chime",
+  "dur": 1.96208,
+  "dl": 662,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/735/735168_737651-hq.mp3",
+  "query": "chime small",
+  "description": "Created by strumming some of the higher pitched strings of a small lyre. I used this as the basis for the item pickup sound in a game.",
+  "tags": [
+   "chime",
+   "collect",
+   "crystal",
+   "get",
+   "item",
+   "lyre",
+   "pickup",
+   "strings"
+  ],
+  "file": "raw/cand/rumbo/735168.mp3",
+  "analysis": {
+   "dur": 1.96,
+   "snr_db": 31.5,
+   "floor_db": -44.2,
+   "peak_db": -12.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.6,
+   "brightness_hz": 772,
+   "events": [
+    [
+     0.0,
+     1.4,
+     -12.2
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "169854",
+  "user": "GnoteSoundz",
+  "title": "Wind Chime Crunch",
+  "dur": 0.558549,
+  "dl": 621,
+  "rating": 2.9,
+  "mp3": "https://cdn.freesound.org/previews/169/169854_3126007-hq.mp3",
+  "query": "chime small",
+  "description": "This is the Sound you get by Snatching All the Chimes At once from A small Wind Chime -  simultaneously.",
+  "tags": [
+   "Chime",
+   "Creative",
+   "Crunch",
+   "Wind"
+  ],
+  "file": "raw/cand/rumbo/169854.mp3",
+  "analysis": {
+   "dur": 0.56,
+   "snr_db": 75.4,
+   "floor_db": -98.0,
+   "peak_db": -22.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.3,
+   "brightness_hz": 2227,
+   "events": [
+    [
+     0.0,
+     0.3,
+     -22.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "723291",
+  "user": "Glitched7777",
+  "title": "dingDing",
+  "dur": 0.471156,
+  "dl": 485,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/723/723291_15691837-hq.mp3",
+  "query": "chime small",
+  "description": "A small dinging sound",
+  "tags": [
+   "bell",
+   "chime",
+   "ring"
+  ],
+  "file": "raw/cand/rumbo/723291.mp3",
+  "analysis": {
+   "dur": 0.47,
+   "snr_db": 166.5,
+   "floor_db": -180.0,
+   "peak_db": -13.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 18.6,
+   "brightness_hz": 486,
+   "events": [
+    [
+     0.05,
+     0.4,
+     -13.5
+    ]
+   ]
+  }
+ }
+]

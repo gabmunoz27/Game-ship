@@ -2,6 +2,8 @@
 
 Las grabaciones que trae el juego están aquí en `.m4a` (fuentes en `CREDITOS.md`). Para cambiar una, reemplaza su archivo o guarda un MP3 u OGG con el mismo identificador, por ejemplo `yunque.mp3`, y borra el `.m4a`: el juego busca primero `.m4a`, luego `.mp3` y luego `.ogg`. Si no encuentra ninguno, usa el sonido sintetizado en código (hoy: `fuelle` y `telar`). Recarga el juego después de cambiar archivos. Prepara los bucles con una unión limpia y los disparos con su cola natural. Usa mono para que la villa se pueda situar en estéreo.
 
+**Variantes.** Los sonidos que tienen `variants: n` en `src/data/sounds.js` usan `<id>-1`, `<id>-2`… hasta `<id>-n` (por ejemplo `oveja-1.m4a` … `oveja-4.m4a`), y cada vez suena una al azar sin repetir la anterior. Para sumar una, agrega el archivo con el número siguiente y sube `variants`. Para buscar, analizar y recortar grabaciones nuevas están los scripts de `tools/sfx/` (gather.py, analyze.py, variants.py, credits.py).
+
 | Identificador | Sonido | Tipo | Duración sugerida |
 |---|---|---|---|
 | `casco` | Agua contra el casco | bucle | 12–30 s |

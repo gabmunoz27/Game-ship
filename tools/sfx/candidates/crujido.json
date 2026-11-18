@@ -24,7 +24,23 @@
    "wood",
    "wooden"
   ],
-  "file": "raw/cand/crujido/377552.mp3"
+  "file": "raw/cand/crujido/377552.mp3",
+  "analysis": {
+   "dur": 0.92,
+   "snr_db": 27.7,
+   "floor_db": -58.0,
+   "peak_db": -30.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.8,
+   "brightness_hz": 1572,
+   "events": [
+    [
+     0.0,
+     0.55,
+     -30.3
+    ]
+   ]
+  }
  },
  {
   "sid": "216878",
@@ -49,7 +65,28 @@
    "wood",
    "wooden"
   ],
-  "file": "raw/cand/crujido/216878.mp3"
+  "file": "raw/cand/crujido/216878.mp3",
+  "analysis": {
+   "dur": 2.71,
+   "snr_db": 29.2,
+   "floor_db": -58.8,
+   "peak_db": -29.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 24.8,
+   "brightness_hz": 2182,
+   "events": [
+    [
+     0.3,
+     0.6,
+     -26.1
+    ],
+    [
+     0.95,
+     2.1,
+     -33.8
+    ]
+   ]
+  }
  },
  {
   "sid": "444389",
@@ -66,7 +103,17 @@
    "creak",
    "wood"
   ],
-  "file": "raw/cand/crujido/444389.mp3"
+  "file": "raw/cand/crujido/444389.mp3",
+  "analysis": {
+   "dur": 1.81,
+   "snr_db": 12.3,
+   "floor_db": -42.5,
+   "peak_db": -30.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 94.0,
+   "brightness_hz": 270,
+   "events": []
+  }
  },
  {
   "sid": "244425",
@@ -89,7 +136,23 @@
    "wood",
    "wooden"
   ],
-  "file": "raw/cand/crujido/244425.mp3"
+  "file": "raw/cand/crujido/244425.mp3",
+  "analysis": {
+   "dur": 1.07,
+   "snr_db": 21.9,
+   "floor_db": -50.8,
+   "peak_db": -28.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 4.6,
+   "brightness_hz": 1791,
+   "events": [
+    [
+     0.75,
+     1.05,
+     -35.2
+    ]
+   ]
+  }
  },
  {
   "sid": "502511",
@@ -127,7 +190,23 @@
    "wav",
    "wood"
   ],
-  "file": "raw/cand/crujido/502511.mp3"
+  "file": "raw/cand/crujido/502511.mp3",
+  "analysis": {
+   "dur": 1.18,
+   "snr_db": 35.5,
+   "floor_db": -68.5,
+   "peak_db": -33.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.5,
+   "brightness_hz": 1748,
+   "events": [
+    [
+     0.0,
+     0.8,
+     -33.1
+    ]
+   ]
+  }
  },
  {
   "sid": "402465",
@@ -160,7 +239,38 @@
    "Wooden",
    "field-recording"
   ],
-  "file": "raw/cand/crujido/402465.mp3"
+  "file": "raw/cand/crujido/402465.mp3",
+  "analysis": {
+   "dur": 3.91,
+   "snr_db": 52.7,
+   "floor_db": -66.7,
+   "peak_db": -14.0,
+   "clip_pct": 0.023,
+   "rumble_pct": 23.3,
+   "brightness_hz": 1183,
+   "events": [
+    [
+     0.0,
+     0.15,
+     -33.2
+    ],
+    [
+     0.45,
+     1.1,
+     -32.8
+    ],
+    [
+     2.1,
+     2.25,
+     -52.7
+    ],
+    [
+     2.5,
+     3.45,
+     -7.6
+    ]
+   ]
+  }
  },
  {
   "sid": "456814",
@@ -189,7 +299,17 @@
    "wood",
    "wooden"
   ],
-  "file": "raw/cand/crujido/456814.mp3"
+  "file": "raw/cand/crujido/456814.mp3",
+  "analysis": {
+   "dur": 2.19,
+   "snr_db": 10.2,
+   "floor_db": -21.5,
+   "peak_db": -11.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 31.4,
+   "brightness_hz": 598,
+   "events": []
+  }
  },
  {
   "sid": "23406",
@@ -207,7 +327,17 @@
    "field-recording",
    "wood"
   ],
-  "file": "raw/cand/crujido/23406.mp3"
+  "file": "raw/cand/crujido/23406.mp3",
+  "analysis": {
+   "dur": 1.16,
+   "snr_db": 15.5,
+   "floor_db": -46.6,
+   "peak_db": -31.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 73.4,
+   "brightness_hz": 801,
+   "events": []
+  }
  },
  {
   "sid": "676987",
@@ -246,7 +376,28 @@
    "tension",
    "wood"
   ],
-  "file": "raw/cand/crujido/676987.mp3"
+  "file": "raw/cand/crujido/676987.mp3",
+  "analysis": {
+   "dur": 2.56,
+   "snr_db": 28.0,
+   "floor_db": -54.5,
+   "peak_db": -26.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 3304,
+   "events": [
+    [
+     0.1,
+     0.75,
+     -29.5
+    ],
+    [
+     1.65,
+     2.3,
+     -26.0
+    ]
+   ]
+  }
  },
  {
   "sid": "113362",
@@ -266,6 +417,22 @@
    "echo",
    "ship"
   ],
-  "file": "raw/cand/crujido/113362.mp3"
+  "file": "raw/cand/crujido/113362.mp3",
+  "analysis": {
+   "dur": 5.0,
+   "snr_db": 94.4,
+   "floor_db": -98.6,
+   "peak_db": -4.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 66.9,
+   "brightness_hz": 913,
+   "events": [
+    [
+     0.0,
+     2.5,
+     -4.0
+    ]
+   ]
+  }
  }
 ]

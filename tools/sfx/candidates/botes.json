@@ -1,0 +1,48 @@
+[
+ {
+  "sid": "249758",
+  "user": "blaukreuz",
+  "title": "140816_Brela_HarborSub5.wav",
+  "dur": 28.822,
+  "dl": 218,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/249/249758_623488-hq.mp3",
+  "query": "moored boat",
+  "description": "Stereo hydrophone recording of a small Croatian harbor basin. Hydrophones submerged by approx. 1m, next to the bounding wall of the basin, facing the open sea. It is very stormy, and a tourist ship is attempting to moor next to the hydrophones position, however unsuccessfully the loud sound you hear at the end is the ship frantically reversing it's diesel so it doesn't smash into the harbor wall... Recorded with a pair of JrF Series D hydrophones, spaced 18 cm apart with 0° dispersion.",
+  "tags": [
+   "boat",
+   "boiling",
+   "bubble",
+   "diesel",
+   "field-recording",
+   "harbor",
+   "hydrophone",
+   "marine",
+   "motor",
+   "plink",
+   "ship",
+   "stormy",
+   "submerged",
+   "transients",
+   "underwater",
+   "water"
+  ],
+  "file": "raw/cand/botes/249758.mp3",
+  "analysis": {
+   "dur": 28.82,
+   "snr_db": 33.1,
+   "floor_db": -47.6,
+   "peak_db": -14.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.9,
+   "brightness_hz": 1536,
+   "events": [
+    [
+     18.3,
+     27.85,
+     -12.8
+    ]
+   ]
+  }
+ }
+]

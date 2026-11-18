@@ -1,0 +1,127 @@
+[
+ {
+  "sid": "429215",
+  "user": "MichaelGillighan",
+  "title": "14 - Polea.wav",
+  "dur": 0.685556,
+  "dl": 722,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/429/429215_8338800-hq.mp3",
+  "query": "rope pulley",
+  "description": "Sound of a pulley or any rope mechanism being pulled.",
+  "tags": [
+   "mechanism",
+   "pull",
+   "pulley",
+   "rope",
+   "string"
+  ],
+  "file": "raw/cand/polea/429215.mp3",
+  "analysis": {
+   "dur": 0.69,
+   "snr_db": 7.9,
+   "floor_db": -47.8,
+   "peak_db": -39.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.6,
+   "brightness_hz": 1305,
+   "events": []
+  }
+ },
+ {
+  "sid": "861827",
+  "user": "qubodup",
+  "title": "Creaking Metal Wire of Wooden Gate",
+  "dur": 2.67194,
+  "dl": 380,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/861/861827_71257-hq.mp3",
+  "query": "pulley creak",
+  "description": "Rock + wooden gate + metal wire + gravity = automatically closing door mechanism. Video:  https://youtube.com/shorts/j98udHXQ1GQ  Summer 2025. Moto G34 video recording. Location: Somewhere in the area of Fichtensee and Fichtenschloss in Fichtenwelt Rosenalm.",
+  "tags": [
+   "close",
+   "creak",
+   "creaking",
+   "door",
+   "gate",
+   "gentle",
+   "gently",
+   "knarzen",
+   "lazy",
+   "metal",
+   "open",
+   "phone-recording",
+   "pulley",
+   "rope",
+   "squeak",
+   "squeaking",
+   "squeaks",
+   "squeaky",
+   "string",
+   "tension",
+   "wire",
+   "wooden"
+  ],
+  "file": "raw/cand/polea/861827.mp3",
+  "analysis": {
+   "dur": 2.67,
+   "snr_db": 31.1,
+   "floor_db": -53.6,
+   "peak_db": -22.6,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.9,
+   "brightness_hz": 1212,
+   "events": [
+    [
+     0.1,
+     1.4,
+     -22.6
+    ],
+    [
+     2.2,
+     2.4,
+     -25.3
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "483196",
+  "user": "craigsmith",
+  "title": "R09-07-Springy Door.wav",
+  "dur": 3.577,
+  "dl": 82,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/483/483196_2524442-hq.mp3",
+  "query": "pulley creak",
+  "description": "Some sort of creaking and a slam. Sounds like a springy door or one that uses a pulley.",
+  "tags": [
+   "Creaks",
+   "Doors",
+   "Optical",
+   "Vintage"
+  ],
+  "file": "raw/cand/polea/483196.mp3",
+  "analysis": {
+   "dur": 3.58,
+   "snr_db": 22.5,
+   "floor_db": -43.6,
+   "peak_db": -21.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 32.9,
+   "brightness_hz": 1141,
+   "events": [
+    [
+     0.85,
+     1.45,
+     -16.7
+    ],
+    [
+     1.9,
+     2.25,
+     -23.5
+    ]
+   ]
+  }
+ }
+]

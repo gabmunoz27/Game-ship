@@ -1,0 +1,378 @@
+[
+ {
+  "sid": "396551",
+  "user": "Techienanna",
+  "title": "Bell ringing & dropping.wav",
+  "dur": 3.38904,
+  "dl": 1377,
+  "rating": 4.5,
+  "mp3": "https://cdn.freesound.org/previews/396/396551_3798635-hq.mp3",
+  "query": "hand bell",
+  "description": "Needed a sound effect for my am dram group, of a bell ringing & being dropped so recorded this on my Zoom H2 recorder.",
+  "tags": [
+   "Hand",
+   "bell",
+   "dropped",
+   "falling",
+   "fashioned",
+   "old",
+   "shop"
+  ],
+  "file": "raw/cand/encargo/396551.mp3",
+  "analysis": {
+   "dur": 3.39,
+   "snr_db": 47.0,
+   "floor_db": -61.4,
+   "peak_db": -14.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.2,
+   "brightness_hz": 4701,
+   "events": [
+    [
+     0.45,
+     3.05,
+     -11.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "482096",
+  "user": "DanielVega",
+  "title": "Elevator_door.wav",
+  "dur": 2.88805,
+  "dl": 1084,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/482/482096_8253036-hq.mp3",
+  "query": "hand bell",
+  "description": "Clean layered \"Elevetor door sound\". Bell from music keyboard and others from a metal file cabinet (bearing wheel passing and hand hit on the same surface) recorded with Zoom H1 portable recorder. Mixed and equalized in audacity. Hope you enjoy this.",
+  "tags": [
+   "bell",
+   "door",
+   "elevator",
+   "open",
+   "outside"
+  ],
+  "file": "raw/cand/encargo/482096.mp3",
+  "analysis": {
+   "dur": 2.89,
+   "snr_db": 31.5,
+   "floor_db": -44.8,
+   "peak_db": -13.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 80.8,
+   "brightness_hz": 511,
+   "events": [
+    [
+     0.05,
+     2.25,
+     -12.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "531031",
+  "user": "creeeeak",
+  "title": "bell8.wav",
+  "dur": 1.24025,
+  "dl": 876,
+  "rating": 4.9,
+  "mp3": "https://cdn.freesound.org/previews/531/531031_3160531-hq.mp3",
+  "query": "brass bell",
+  "description": "small brass bell- single 'da-ding'",
+  "tags": [
+   "bell",
+   "brass",
+   "ding",
+   "jingle",
+   "ring",
+   "ting"
+  ],
+  "file": "raw/cand/encargo/531031.mp3",
+  "analysis": {
+   "dur": 1.24,
+   "snr_db": 39.7,
+   "floor_db": -50.3,
+   "peak_db": -10.6,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 2774,
+   "events": [
+    [
+     0.0,
+     0.8,
+     -10.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "362209",
+  "user": "TaranP",
+  "title": "horn_rip_C4_Eb5.wav",
+  "dur": 1.6521,
+  "dl": 390,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/362/362209_6629901-hq.mp3",
+  "query": "brass bell",
+  "description": "A \"rip\" is a quick glissando with a short, accented top note. Used in loud music or orchestral crescendos as an accented effect. Recorded with a Zoom h4n placed about a metre behind the bell.",
+  "tags": [
+   "brass",
+   "c",
+   "c4",
+   "e-flat",
+   "e-flat5",
+   "eb",
+   "eb5",
+   "french-horn",
+   "glissando",
+   "horn",
+   "rip"
+  ],
+  "file": "raw/cand/encargo/362209.mp3",
+  "analysis": {
+   "dur": 1.65,
+   "snr_db": 74.8,
+   "floor_db": -80.7,
+   "peak_db": -5.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.4,
+   "brightness_hz": 923,
+   "events": [
+    [
+     0.0,
+     1.05,
+     -5.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "462042",
+  "user": "15HVojta_Michael",
+  "title": "small bell_1.wav",
+  "dur": 2.36,
+  "dl": 351,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/462/462042_9683636-hq.mp3",
+  "query": "hand bell",
+  "description": "small bell, wchich is sometimes used like calling to meal",
+  "tags": [
+   "CZ",
+   "Czech",
+   "Panska",
+   "bell",
+   "christmas"
+  ],
+  "file": "raw/cand/encargo/462042.mp3",
+  "analysis": {
+   "dur": 2.36,
+   "snr_db": 43.5,
+   "floor_db": -71.4,
+   "peak_db": -27.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.7,
+   "brightness_hz": 3478,
+   "events": [
+    [
+     0.5,
+     2.0,
+     -27.2
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "332518",
+  "user": "achinverma",
+  "title": "simple ding.mp3",
+  "dur": 2.74286,
+  "dl": 220,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/332/332518_4405301-hq.mp3",
+  "query": "hand bell",
+  "description": "this sound is produced by hiting silver glass with hand.",
+  "tags": [
+   "bell",
+   "ding",
+   "dong",
+   "metal",
+   "ring",
+   "silver",
+   "ting"
+  ],
+  "file": "raw/cand/encargo/332518.mp3",
+  "analysis": {
+   "dur": 2.74,
+   "snr_db": 45.2,
+   "floor_db": -70.4,
+   "peak_db": -25.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 27.9,
+   "brightness_hz": 579,
+   "events": [
+    [
+     0.0,
+     1.4,
+     -14.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "677010",
+  "user": "itiman",
+  "title": "Falcon Leg Bells 6.mp3",
+  "dur": 2.89243,
+  "dl": 115,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/677/677010_19615-hq.mp3",
+  "query": "brass bell",
+  "description": "Recorded by Britt Sandusky, master falconry dude. \n\n Falconry bells, which attach to a hawk’s legs, provide the falconer with information about their bird of prey. They can help locate the bird’s location, let the falconer know if the bird is active or stationary, and signal the falconer if the bird is near a predator. \n\n Falconry bells come in multiple shapes and are made from metal. Nickel, silver, brass, and bronze are all common materials used for falconry bells. Both the shape and the metal type impacts a bell’s sound quality, along with its pitch, tone, volume, and durability. Oftentimes",
+  "tags": [
+   "bells",
+   "falconry",
+   "nature",
+   "sport"
+  ],
+  "file": "raw/cand/encargo/677010.mp3",
+  "analysis": {
+   "dur": 2.89,
+   "snr_db": 31.9,
+   "floor_db": -64.6,
+   "peak_db": -32.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.0,
+   "brightness_hz": 5135,
+   "events": [
+    [
+     0.15,
+     0.3,
+     -42.1
+    ],
+    [
+     1.05,
+     1.2,
+     -38.8
+    ],
+    [
+     1.65,
+     2.25,
+     -31.9
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "547702",
+  "user": "pbimal",
+  "title": "ghantee-08.flac",
+  "dur": 1.11311,
+  "dl": 39,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/547/547702_11830391-hq.mp3",
+  "query": "hand bell",
+  "description": "A ghantee is a devotional instrument. Its chime is produced by shaking the stem attached to the bell.",
+  "tags": [
+   "bell",
+   "ghantee",
+   "hand",
+   "worshiping"
+  ],
+  "file": "raw/cand/encargo/547702.mp3",
+  "analysis": {
+   "dur": 1.11,
+   "snr_db": 55.0,
+   "floor_db": -65.4,
+   "peak_db": -10.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.1,
+   "brightness_hz": 4460,
+   "events": [
+    [
+     0.0,
+     0.75,
+     -10.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "810862",
+  "user": "Logicogonist",
+  "title": "ride bell 2",
+  "dur": 0.672245,
+  "dl": 39,
+  "rating": 1.7,
+  "mp3": "https://cdn.freesound.org/previews/810/810862_3797507-hq.mp3",
+  "query": "brass bell",
+  "description": "centered/centered balanced and with a stronger attack the ridebell file: \n\n  https://freesound.org/people/Logicogonist/sounds/264614/  \n\n other cymbalmakers: Wuhan, Dream \n\n ______________________________________ \n\n abbreviated:  https://freesound.org/people/Logicogonist/sounds/810863/",
+  "tags": [
+   "C-and-C-Cymbals",
+   "Dream",
+   "Istanbul",
+   "Meinl",
+   "Paiste",
+   "Royal-Cymbals",
+   "Sabian",
+   "Wuhan",
+   "Zildjian",
+   "alloy",
+   "attack",
+   "bell",
+   "brass",
+   "bronze",
+   "cymbal",
+   "drum",
+   "drums",
+   "flatride",
+   "hit",
+   "jazz",
+   "metal",
+   "metallic",
+   "metronome",
+   "percussion",
+   "ping"
+  ],
+  "file": "raw/cand/encargo/810862.mp3",
+  "analysis": {
+   "dur": 0.67,
+   "snr_db": 25.3,
+   "floor_db": -44.6,
+   "peak_db": -19.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.6,
+   "brightness_hz": 3446,
+   "events": []
+  }
+ },
+ {
+  "sid": "749832",
+  "user": "sifujordan",
+  "title": "Life-Beat 2024-03-24_111947 - 170 bpm",
+  "dur": 2.82354,
+  "dl": 18,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/749/749832_919846-hq.mp3",
+  "query": "hand bell",
+  "description": "ringadingding in your ear",
+  "tags": [
+   "bell",
+   "bells",
+   "loops",
+   "percussions"
+  ],
+  "file": "raw/cand/encargo/749832.mp3",
+  "analysis": {
+   "dur": 2.82,
+   "snr_db": 12.0,
+   "floor_db": -23.8,
+   "peak_db": -11.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 4.0,
+   "brightness_hz": 2420,
+   "events": []
+  }
+ }
+]

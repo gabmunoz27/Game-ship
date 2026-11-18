@@ -1,0 +1,392 @@
+[
+ {
+  "sid": "447922",
+  "user": "Breviceps",
+  "title": "Thud / Falling on wooden floor / Snapping, breaking neck",
+  "dur": 0.393946,
+  "dl": 11820,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/447/447922_9159316-hq.mp3",
+  "query": "wood thud",
+  "description": "Body drops on wooden floor / breaking neck",
+  "tags": [
+   "body",
+   "break",
+   "breaking",
+   "crash",
+   "drop",
+   "fall",
+   "falling",
+   "floor",
+   "ground",
+   "hit",
+   "impact",
+   "neck",
+   "snap",
+   "snapping",
+   "thud",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/447922.mp3",
+  "analysis": {
+   "dur": 0.39,
+   "snr_db": 22.5,
+   "floor_db": -34.2,
+   "peak_db": -11.7,
+   "clip_pct": 0.058,
+   "rumble_pct": 43.4,
+   "brightness_hz": 1234,
+   "events": [
+    [
+     0.05,
+     0.25,
+     -11.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "629987",
+  "user": "Flem0527",
+  "title": "Knocking on Wood Door (1)",
+  "dur": 0.704422,
+  "dl": 9384,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/629/629987_12715066-hq.mp3",
+  "query": "wooden knock",
+  "description": "knocking on a wooden door (part 2)",
+  "tags": [
+   "door",
+   "doors",
+   "knock",
+   "knocking",
+   "knocks",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/629987.mp3",
+  "analysis": {
+   "dur": 0.7,
+   "snr_db": 43.1,
+   "floor_db": -70.6,
+   "peak_db": -27.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 11.3,
+   "brightness_hz": 642,
+   "events": [
+    [
+     0.1,
+     0.7,
+     -27.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "244325",
+  "user": "Philip_Daniels",
+  "title": "Knock_on_door.wav",
+  "dur": 1.10295,
+  "dl": 9335,
+  "rating": 4.2,
+  "mp3": "https://cdn.freesound.org/previews/244/244325_3151690-hq.mp3",
+  "query": "wooden knock",
+  "description": "Three Knocks on a wooden desk. Recorded With Realtek High Definition Audio Headset. Edited with Audacity.",
+  "tags": [
+   "bang",
+   "desk",
+   "hard",
+   "hit",
+   "knock",
+   "knocking",
+   "table",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/244325.mp3",
+  "analysis": {
+   "dur": 1.1,
+   "snr_db": 29.8,
+   "floor_db": -36.5,
+   "peak_db": -6.7,
+   "clip_pct": 0.099,
+   "rumble_pct": 57.8,
+   "brightness_hz": 204,
+   "events": [
+    [
+     0.4,
+     0.65,
+     -15.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "540770",
+  "user": "SubwaySandwitch420",
+  "title": "door knock",
+  "dur": 1.81658,
+  "dl": 7047,
+  "rating": 4.3,
+  "mp3": "https://cdn.freesound.org/previews/540/540770_10953720-hq.mp3",
+  "query": "wooden knock",
+  "description": "A actually recorded I made.",
+  "tags": [
+   "Door",
+   "audio",
+   "door",
+   "knock",
+   "knocks",
+   "recorded",
+   "wood",
+   "wooden"
+  ],
+  "file": "raw/cand/bloqueo/540770.mp3",
+  "analysis": {
+   "dur": 1.82,
+   "snr_db": 77.9,
+   "floor_db": -92.1,
+   "peak_db": -14.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 6.9,
+   "brightness_hz": 902,
+   "events": [
+    [
+     0.25,
+     1.8,
+     -14.1
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "276600",
+  "user": "insanity54",
+  "title": "body_hit.wav",
+  "dur": 0.841179,
+  "dl": 6118,
+  "rating": 3.8,
+  "mp3": "https://cdn.freesound.org/previews/276/276600_464940-hq.mp3",
+  "query": "wood thud",
+  "description": "As I was running through the woods during an airsoft game, I reached up with a gloved hand to check that my mobius was still velcroed to my helmet, this is the recorded result, which I thought sounded like some sort of body hit, thud, or punch.",
+  "tags": [
+   "body",
+   "hit",
+   "impact",
+   "punch",
+   "smack",
+   "thud"
+  ],
+  "file": "raw/cand/bloqueo/276600.mp3",
+  "analysis": {
+   "dur": 0.84,
+   "snr_db": 93.2,
+   "floor_db": -105.0,
+   "peak_db": -11.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 75.0,
+   "brightness_hz": 598,
+   "events": [
+    [
+     0.2,
+     0.65,
+     -11.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "449955",
+  "user": "Breviceps",
+  "title": "Wooden Thud (Mono)",
+  "dur": 0.5,
+  "dl": 5949,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/449/449955_9159316-hq.mp3",
+  "query": "wood thud",
+  "description": "A wooden thud in mono",
+  "tags": [
+   "drop",
+   "dropping",
+   "fall",
+   "floor",
+   "impact",
+   "thud",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/449955.mp3",
+  "analysis": {
+   "dur": 0.5,
+   "snr_db": 37.4,
+   "floor_db": -42.9,
+   "peak_db": -5.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 76.9,
+   "brightness_hz": 104,
+   "events": [
+    [
+     0.0,
+     0.25,
+     -5.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "621234",
+  "user": "AUDACITIER",
+  "title": "Someone knock on door (4 knocks).mp3",
+  "dur": 1.10295,
+  "dl": 4229,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/621/621234_13682949-hq.mp3",
+  "query": "wooden knock",
+  "description": "Four knocks on door",
+  "tags": [
+   "door",
+   "knock",
+   "knocking",
+   "knocks",
+   "loud",
+   "woo",
+   "wood",
+   "wooden"
+  ],
+  "file": "raw/cand/bloqueo/621234.mp3",
+  "analysis": {
+   "dur": 1.1,
+   "snr_db": 35.4,
+   "floor_db": -56.9,
+   "peak_db": -21.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 20.0,
+   "brightness_hz": 371,
+   "events": [
+    [
+     0.25,
+     0.95,
+     -21.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "457741",
+  "user": "Osiruswaltz",
+  "title": "Wall Bump 1.wav",
+  "dur": 1.25388,
+  "dl": 4118,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/457/457741_4574070-hq.mp3",
+  "query": "wood thud",
+  "description": "A single bump sound from me accidentally hitting the wall while recording videos. I liked the sound of it so I uploaded it here. It was recorded with a Blue Yeti Microphone using Audacity.",
+  "tags": [
+   "bump",
+   "dry",
+   "hit",
+   "hollow",
+   "impact",
+   "knock",
+   "low-pitch",
+   "low-rumble",
+   "surface",
+   "thud",
+   "thump",
+   "wall",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/457741.mp3",
+  "analysis": {
+   "dur": 1.25,
+   "snr_db": 65.0,
+   "floor_db": -69.8,
+   "peak_db": -4.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 82.7,
+   "brightness_hz": 65,
+   "events": [
+    [
+     0.35,
+     1.25,
+     -4.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "330997",
+  "user": "Rudmer_Rotteveel",
+  "title": "Stick Hitting a Dreadlock (Small thud)",
+  "dur": 0.664104,
+  "dl": 3331,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/330/330997_4921277-hq.mp3",
+  "query": "wood thud",
+  "description": "The sound of a stick hitting a dreadlock laying on a table.  \n\n Recorded with a Tascam DR-05 Linear PCM recorder. \n\n CC0, so no hassle with giving credit.",
+  "tags": [
+   "down",
+   "hit",
+   "impact",
+   "putting",
+   "small",
+   "something",
+   "stick",
+   "thud",
+   "thuds",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/330997.mp3",
+  "analysis": {
+   "dur": 0.66,
+   "snr_db": 50.4,
+   "floor_db": -69.4,
+   "peak_db": -19.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 38.3,
+   "brightness_hz": 567,
+   "events": [
+    [
+     0.0,
+     0.35,
+     -19.0
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "434146",
+  "user": "NeoSpica",
+  "title": "Table Smash",
+  "dur": 0.60517,
+  "dl": 3176,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/434/434146_7704891-hq.mp3",
+  "query": "wood thud",
+  "description": "The sound of a table being smashed, made by mixing multiple sounds for a short film:  https://www.youtube.com/watch?v=s-KGWxY95Eg",
+  "tags": [
+   "break",
+   "destroy",
+   "hit",
+   "impact",
+   "smash",
+   "table",
+   "thud",
+   "wood"
+  ],
+  "file": "raw/cand/bloqueo/434146.mp3",
+  "analysis": {
+   "dur": 0.61,
+   "snr_db": 39.0,
+   "floor_db": -51.4,
+   "peak_db": -12.3,
+   "clip_pct": 0.022,
+   "rumble_pct": 10.1,
+   "brightness_hz": 1078,
+   "events": [
+    [
+     0.0,
+     0.35,
+     -12.3
+    ]
+   ]
+  }
+ }
+]

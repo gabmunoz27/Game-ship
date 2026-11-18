@@ -1,0 +1,36 @@
+[
+ {
+  "sid": "865175",
+  "user": "allsowill",
+  "title": "SHIP DOCK IMPACT WOOD",
+  "dur": 2.5,
+  "dl": 78,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/865/865175_18104732-hq.mp3",
+  "query": "boat hits dock",
+  "description": "Sound of a wooden boat hitting against something designed from recordings of me hitting my wardrobe. For a theatre production.",
+  "tags": [
+   "boat",
+   "impact",
+   "ship",
+   "wood"
+  ],
+  "file": "raw/cand/atraque/865175.mp3",
+  "analysis": {
+   "dur": 2.5,
+   "snr_db": 50.0,
+   "floor_db": -63.6,
+   "peak_db": -13.6,
+   "clip_pct": 0.0,
+   "rumble_pct": 77.2,
+   "brightness_hz": 181,
+   "events": [
+    [
+     0.05,
+     0.95,
+     -10.8
+    ]
+   ]
+  }
+ }
+]

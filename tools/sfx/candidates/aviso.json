@@ -1,0 +1,379 @@
+[
+ {
+  "sid": "452379",
+  "user": "steffcaffrey",
+  "title": "Small Bell #2",
+  "dur": 1.93803,
+  "dl": 2276,
+  "rating": 4.9,
+  "mp3": "https://cdn.freesound.org/previews/452/452379_1844073-hq.mp3",
+  "query": "tiny bell",
+  "description": "Small metal bell \n\n Audient mic pre, Rode NTK, X Noise, low cut \n\n Ping!",
+  "tags": [
+   "bell",
+   "chime",
+   "chiming",
+   "christmas",
+   "ding",
+   "dingalong",
+   "fairy",
+   "magic",
+   "metal",
+   "ping",
+   "ring",
+   "ringing",
+   "small",
+   "ting",
+   "tiny",
+   "tubular"
+  ],
+  "file": "raw/cand/aviso/452379.mp3",
+  "analysis": {
+   "dur": 1.94,
+   "snr_db": 84.1,
+   "floor_db": -95.6,
+   "peak_db": -11.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.2,
+   "brightness_hz": 3645,
+   "events": [
+    [
+     0.0,
+     1.3,
+     -10.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "363161",
+  "user": "Sirkoto51",
+  "title": "Toy Piano Key (G#)",
+  "dur": 1.31193,
+  "dl": 1315,
+  "rating": 4.3,
+  "mp3": "https://cdn.freesound.org/previews/363/363161_5225777-hq.mp3",
+  "query": "tiny bell",
+  "description": "~G# played on a tiny dollhouse piano. Recorded with a Samsung GS5 and edited with Audacity.",
+  "tags": [
+   "bell",
+   "box",
+   "chime",
+   "cute",
+   "ding",
+   "doll",
+   "dollhouse",
+   "house",
+   "key",
+   "kid",
+   "music",
+   "music-box",
+   "musicbox",
+   "piano",
+   "sample",
+   "toy",
+   "vst"
+  ],
+  "file": "raw/cand/aviso/363161.mp3",
+  "analysis": {
+   "dur": 1.31,
+   "snr_db": 74.0,
+   "floor_db": -91.8,
+   "peak_db": -17.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.6,
+   "brightness_hz": 2094,
+   "events": [
+    [
+     0.0,
+     1.0,
+     -17.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "571513",
+  "user": "LegitCheese",
+  "title": "Soft-Notifications - Bell - Ding-Dong.mp3",
+  "dur": 0.800958,
+  "dl": 1306,
+  "rating": 4.9,
+  "mp3": "https://cdn.freesound.org/previews/571/571513_2226836-hq.mp3",
+  "query": "soft bell",
+  "description": "Soft notification sound of a bell being hit twice in quick succession.",
+  "tags": [
+   "Bell",
+   "Notification",
+   "SFX",
+   "Soft",
+   "UI",
+   "ding"
+  ],
+  "file": "raw/cand/aviso/571513.mp3",
+  "analysis": {
+   "dur": 0.8,
+   "snr_db": 36.4,
+   "floor_db": -72.1,
+   "peak_db": -35.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.4,
+   "brightness_hz": 2752,
+   "events": [
+    [
+     0.0,
+     0.6,
+     -35.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "266947",
+  "user": "UlfHubert",
+  "title": "tiny ping.wav",
+  "dur": 1.1295,
+  "dl": 1014,
+  "rating": 4.5,
+  "mp3": "https://cdn.freesound.org/previews/266/266947_5012562-hq.mp3",
+  "query": "tiny bell",
+  "description": "very small zinggg going on for a while after sharp start \n\n recorded at home 26th of june 2014 with SHARP MD-SR50H(S)+ it's normal microphones, imported via analog (unfortunately*)into PC and saved with free software audacity \n\n *please use some filter if you use this sound...",
+  "tags": [
+   "bell",
+   "ding",
+   "metal",
+   "ping",
+   "ring",
+   "small",
+   "ting"
+  ],
+  "file": "raw/cand/aviso/266947.mp3",
+  "analysis": {
+   "dur": 1.13,
+   "snr_db": 16.1,
+   "floor_db": -31.0,
+   "peak_db": -14.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 33.4,
+   "brightness_hz": 1065,
+   "events": []
+  }
+ },
+ {
+  "sid": "56580",
+  "user": "pera",
+  "title": "sogne.wav",
+  "dur": 2.10333,
+  "dl": 688,
+  "rating": 3.6,
+  "mp3": "https://cdn.freesound.org/previews/56/56580_110001-hq.mp3",
+  "query": "tiny bell",
+  "description": "Bright bell tiny sequence, maybe for a minimal techno song",
+  "tags": [
+   "chimes",
+   "minimal"
+  ],
+  "file": "raw/cand/aviso/56580.mp3",
+  "analysis": {
+   "dur": 2.1,
+   "snr_db": 58.1,
+   "floor_db": -80.7,
+   "peak_db": -22.6,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.6,
+   "brightness_hz": 810,
+   "events": [
+    [
+     0.0,
+     1.7,
+     -19.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "10461",
+  "user": "batchku",
+  "title": "gbell_1-2_pp.aif",
+  "dur": 2.16138,
+  "dl": 507,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/10/10461_186-hq.mp3",
+  "query": "soft bell",
+  "description": "recordings of 9 ghanaian double bells.  Bells are arranged in rising pitch of the bottom bell (from _1 to _9); bottom bell is mared -1 and upper bell marked -2.  Dynamic are indicated as pp (very soft, with soft marimba mallet) to ff (loud, with wooden stick)",
+  "tags": [
+   "bell",
+   "double-bell",
+   "ghana",
+   "gogo",
+   "metalic",
+   "percussion"
+  ],
+  "file": "raw/cand/aviso/10461.mp3",
+  "analysis": {
+   "dur": 2.16,
+   "snr_db": 53.1,
+   "floor_db": -92.4,
+   "peak_db": -39.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 4.0,
+   "brightness_hz": 706,
+   "events": [
+    [
+     0.0,
+     0.75,
+     -35.3
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "187337",
+  "user": "baidonovan",
+  "title": "Electronic Bing Soft.wav",
+  "dur": 0.643333,
+  "dl": 487,
+  "rating": 2.7,
+  "mp3": "https://cdn.freesound.org/previews/187/187337_3297044-hq.mp3",
+  "query": "soft bell",
+  "description": "Soft electronic beep",
+  "tags": [
+   "beep",
+   "bell",
+   "bing",
+   "ding",
+   "electronic",
+   "mode",
+   "select",
+   "tone"
+  ],
+  "file": "raw/cand/aviso/187337.mp3",
+  "analysis": {
+   "dur": 0.64,
+   "snr_db": 11.0,
+   "floor_db": -70.5,
+   "peak_db": -59.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 56.0,
+   "brightness_hz": 1444,
+   "events": []
+  }
+ },
+ {
+  "sid": "11038",
+  "user": "batchku",
+  "title": "v3_ting_5.L.aif",
+  "dur": 0.332154,
+  "dl": 192,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/11/11038_186-hq.mp3",
+  "query": "soft bell",
+  "description": "recordings of variouts trumpet extended techniques, performed by David Bithell, recorded by Ali Momeni with a Neumann mics (marked .L) and an earthwords (marked .R).  Dynamics are indicated with from pp (very soft) to ff (very loud).  V indecas valve, s and l indicate short and long, pitches in names indicate fingered pitches,",
+  "tags": [
+   "bell",
+   "davood",
+   "extended",
+   "metalic",
+   "technique",
+   "trumpet",
+   "valve"
+  ],
+  "file": "raw/cand/aviso/11038.mp3",
+  "analysis": {
+   "dur": 0.33,
+   "snr_db": 36.7,
+   "floor_db": -68.8,
+   "peak_db": -32.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.2,
+   "brightness_hz": 2568,
+   "events": []
+  }
+ },
+ {
+  "sid": "384582",
+  "user": "TheBuilder15",
+  "title": "Tiny Bell Ringing",
+  "dur": 1.78553,
+  "dl": 178,
+  "rating": 4.0,
+  "mp3": "https://cdn.freesound.org/previews/384/384582_6090639-hq.mp3",
+  "query": "tiny bell",
+  "description": "Tiny bell ringing. small shake of a bell making a lot of noise",
+  "tags": [
+   "bell",
+   "high",
+   "pitch",
+   "rattle",
+   "ringing"
+  ],
+  "file": "raw/cand/aviso/384582.mp3",
+  "analysis": {
+   "dur": 1.79,
+   "snr_db": 44.9,
+   "floor_db": -63.4,
+   "peak_db": -18.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.1,
+   "brightness_hz": 4386,
+   "events": [
+    [
+     0.0,
+     1.5,
+     -18.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "482618",
+  "user": "Joao_Janz",
+  "title": "Sleigh Bells 2_6",
+  "dur": 0.75,
+  "dl": 85,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/482/482618_9961300-hq.mp3",
+  "query": "soft bell",
+  "description": "Recorded and processed at 24bit 48kHz using a Rode NT1-A Condenser Microphone. \n\n Processing: Gain-staging and soft high and low frequency filtering. No EQ boost or cuts anywhere else. Also De-noised.",
+  "tags": [
+   "Beat",
+   "Bells",
+   "Bongo",
+   "Cabasa",
+   "Clap",
+   "Design",
+   "Drums",
+   "Ethnic",
+   "Foley",
+   "Gong",
+   "Hit",
+   "Maraca",
+   "Metal",
+   "One-Shot",
+   "Percussion",
+   "Rainstick",
+   "Recording",
+   "Short",
+   "Sound",
+   "Triangle",
+   "Wood"
+  ],
+  "file": "raw/cand/aviso/482618.mp3",
+  "analysis": {
+   "dur": 0.75,
+   "snr_db": 40.0,
+   "floor_db": -68.0,
+   "peak_db": -28.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.3,
+   "brightness_hz": 5794,
+   "events": [
+    [
+     0.0,
+     0.5,
+     -28.1
+    ]
+   ]
+  }
+ }
+]

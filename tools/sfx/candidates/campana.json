@@ -1,0 +1,383 @@
+[
+ {
+  "sid": "148873",
+  "user": "vataaa",
+  "title": "Voice elephant.mp3",
+  "dur": 7.3676,
+  "dl": 31549,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/148/148873_2378499-hq.mp3",
+  "query": "bell ring brass",
+  "description": "voice elephant",
+  "tags": [
+   "bell",
+   "brass",
+   "chime",
+   "clang",
+   "ding",
+   "dong",
+   "elephant",
+   "ethnic",
+   "ring",
+   "slon",
+   "voice"
+  ],
+  "file": "raw/cand/campana/148873.mp3",
+  "analysis": {
+   "dur": 7.37,
+   "snr_db": 63.0,
+   "floor_db": -78.4,
+   "peak_db": -15.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.8,
+   "brightness_hz": 1439,
+   "events": [
+    [
+     0.45,
+     6.9,
+     -14.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "353232",
+  "user": "Sojan",
+  "title": "Ship Bell Two Chimes",
+  "dur": 2.91172,
+  "dl": 2076,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/353/353232_5477651-hq.mp3",
+  "query": "ship bell",
+  "description": "Two chimes of a small bell used on ships, (can also be used for old firefighters).",
+  "tags": [
+   "bell",
+   "ding",
+   "dong",
+   "fire-bell",
+   "naval",
+   "ships-bell"
+  ],
+  "file": "raw/cand/campana/353232.mp3",
+  "analysis": {
+   "dur": 2.91,
+   "snr_db": 60.2,
+   "floor_db": -81.1,
+   "peak_db": -20.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 1695,
+   "events": [
+    [
+     0.35,
+     2.9,
+     -20.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "353233",
+  "user": "Sojan",
+  "title": "Ship Bell Single Ring",
+  "dur": 4.34458,
+  "dl": 1410,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/353/353233_5477651-hq.mp3",
+  "query": "ship bell",
+  "description": "One chime of a small bell used on ships, (can also be used for old firefighters).",
+  "tags": [
+   "bell",
+   "ding",
+   "dong",
+   "nautical",
+   "naval",
+   "ships-bell"
+  ],
+  "file": "raw/cand/campana/353233.mp3",
+  "analysis": {
+   "dur": 4.34,
+   "snr_db": 51.1,
+   "floor_db": -73.1,
+   "peak_db": -22.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.5,
+   "brightness_hz": 1517,
+   "events": [
+    [
+     0.1,
+     2.95,
+     -19.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "531031",
+  "user": "creeeeak",
+  "title": "bell8.wav",
+  "dur": 1.24025,
+  "dl": 876,
+  "rating": 4.9,
+  "mp3": "https://cdn.freesound.org/previews/531/531031_3160531-hq.mp3",
+  "query": "bell ring brass",
+  "description": "small brass bell- single 'da-ding'",
+  "tags": [
+   "bell",
+   "brass",
+   "ding",
+   "jingle",
+   "ring",
+   "ting"
+  ],
+  "file": "raw/cand/campana/531031.mp3",
+  "analysis": {
+   "dur": 1.24,
+   "snr_db": 39.7,
+   "floor_db": -50.3,
+   "peak_db": -10.6,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 2774,
+   "events": [
+    [
+     0.0,
+     0.8,
+     -10.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "418705",
+  "user": "Mrtenant",
+  "title": "alarm bell.mp3",
+  "dur": 4.66392,
+  "dl": 607,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/418/418705_6684056-hq.mp3",
+  "query": "ship bell",
+  "description": "Tall ship alarm bell",
+  "tags": [
+   "Alarm",
+   "Alert",
+   "Emergency"
+  ],
+  "file": "raw/cand/campana/418705.mp3",
+  "analysis": {
+   "dur": 4.66,
+   "snr_db": 69.9,
+   "floor_db": -80.9,
+   "peak_db": -11.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.6,
+   "brightness_hz": 2156,
+   "events": [
+    [
+     1.0,
+     4.65,
+     -10.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "665100",
+  "user": "chenzo55",
+  "title": "SHIPBELL.wav",
+  "dur": 2.15011,
+  "dl": 403,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/665/665100_13586972-hq.mp3",
+  "query": "ship bell",
+  "description": "This was a two-piece bell at one time with a plunger rod to make the sound.",
+  "tags": [
+   "bell",
+   "doorbell",
+   "ship"
+  ],
+  "file": "raw/cand/campana/665100.mp3",
+  "analysis": {
+   "dur": 2.15,
+   "snr_db": 48.1,
+   "floor_db": -68.5,
+   "peak_db": -20.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 2044,
+   "events": [
+    [
+     0.0,
+     1.55,
+     -19.1
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "468847",
+  "user": "ChristianAnd",
+  "title": "43_campanas_de_barco.wav",
+  "dur": 4.63961,
+  "dl": 385,
+  "rating": 4.2,
+  "mp3": "https://cdn.freesound.org/previews/468/468847_9934055-hq.mp3",
+  "query": "ship bell",
+  "description": "Bell Ship",
+  "tags": [
+   "Bell",
+   "Ship",
+   "Sound"
+  ],
+  "file": "raw/cand/campana/468847.mp3",
+  "analysis": {
+   "dur": 4.64,
+   "snr_db": 40.6,
+   "floor_db": -63.0,
+   "peak_db": -22.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.4,
+   "brightness_hz": 1545,
+   "events": [
+    [
+     0.55,
+     0.95,
+     -22.4
+    ],
+    [
+     2.1,
+     2.5,
+     -21.3
+    ],
+    [
+     3.6,
+     4.0,
+     -17.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "498676",
+  "user": "16HPanskaKelbichova_Adela",
+  "title": "16_bell ringing.wav",
+  "dur": 5.0,
+  "dl": 197,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/498/498676_10818595-hq.mp3",
+  "query": "ship bell",
+  "description": "ship bell ringing",
+  "tags": [
+   "CZ",
+   "Czech",
+   "Panska"
+  ],
+  "file": "raw/cand/campana/498676.mp3",
+  "analysis": {
+   "dur": 5.0,
+   "snr_db": 31.7,
+   "floor_db": -43.3,
+   "peak_db": -11.6,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.5,
+   "brightness_hz": 2202,
+   "events": [
+    [
+     0.2,
+     3.15,
+     -11.2
+    ],
+    [
+     3.6,
+     4.35,
+     -14.1
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "764907",
+  "user": "Joshua_van_Zyl",
+  "title": "BELLHand-Int_Brass Bell Store2_JvZ_OwSFX",
+  "dur": 6.5,
+  "dl": 45,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/764/764907_16528747-hq.mp3",
+  "query": "bell ring brass",
+  "description": "A recording of me ringing a brass handbell as if entering a coffee store or store with a bell-door rig \n\n Recorded using a zoom h6 and shotgun mic.",
+  "tags": [
+   "Bell",
+   "Brass",
+   "Brass-bell",
+   "Brass-handbell",
+   "Hand-Bell",
+   "OWI",
+   "Ringing",
+   "Ringing-Bell",
+   "Store-Entrance"
+  ],
+  "file": "raw/cand/campana/764907.mp3",
+  "analysis": {
+   "dur": 6.5,
+   "snr_db": 123.5,
+   "floor_db": -180.0,
+   "peak_db": -56.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 0.2,
+   "brightness_hz": 1081,
+   "events": [
+    [
+     2.0,
+     4.5,
+     -51.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "807688",
+  "user": "Sam-Mortley",
+  "title": "Berlin church bells",
+  "dur": 6.93333,
+  "dl": 12,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/807/807688_16596600-hq.mp3",
+  "query": "bell ring brass",
+  "description": "Church/ cathedral bells ringing in the city centre of Berlin, Germany",
+  "tags": [
+   "bells",
+   "berlin",
+   "brass",
+   "church",
+   "germany",
+   "morning"
+  ],
+  "file": "raw/cand/campana/807688.mp3",
+  "analysis": {
+   "dur": 6.93,
+   "snr_db": 31.2,
+   "floor_db": -52.2,
+   "peak_db": -21.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 19.3,
+   "brightness_hz": 681,
+   "events": [
+    [
+     0.0,
+     1.65,
+     -16.9
+    ],
+    [
+     3.05,
+     4.25,
+     -19.8
+    ],
+    [
+     5.7,
+     5.95,
+     -36.4
+    ]
+   ]
+  }
+ }
+]
