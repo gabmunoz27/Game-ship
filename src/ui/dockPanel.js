@@ -64,7 +64,7 @@ export default {
     panel = document.createElement('section'); panel.className = 'panel scroll'; panel.hidden = true;
     ctx.ui.bottom.append(btn, panel);
     btn.addEventListener('click', () => { if (state.nearPort) voyage.dock(state, state.nearPort); });
-    on('port:near', ({ villageId }) => { btn.hidden = !villageId || !!state.docked; if (villageId) btn.textContent = `Atracar en ${VILLAGES[villageId].name}`; });
+    on('dock:near', ({ villageId }) => { btn.hidden = !villageId || !!state.docked; if (villageId) btn.textContent = `Atracar en ${VILLAGES[villageId].name}`; });
     on('dock:entered', ({ traveled, supplied }) => { btn.hidden = true; tab = 'muelle';
       note = !traveled ? '' : supplied ? 'La travesía consumió suministros y una franja del día.' : 'Llegaste sin suministros: el viaje tomó el doble y en el muelle lo notaron (−5 de Confianza).';
       render(); });

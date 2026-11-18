@@ -9,7 +9,7 @@ const TARGET = {
   niebla:             { cloud: .5,  rain: 0, fog: 1,   wind: 0 },
   'viento-en-contra': { cloud: .3,  rain: 0, fog: 0,   wind: 1 }
 };
-const DROPS = 900, GUSTS = 70, M = new THREE.Matrix4(), Q = new THREE.Quaternion(), V = new THREE.Vector3(), S = new THREE.Vector3(1, 1, 1), E = new THREE.Euler();
+const DROPS = 900, GUSTS = 70, M = new THREE.Matrix4(), Q = new THREE.Quaternion(), V = new THREE.Vector3(), S = new THREE.Vector3(1, 1, 1), up = new THREE.Vector3(0, 1, 0), velocity = new THREE.Vector3();
 const now = { cloud: 0, rain: 0, fog: 0, wind: 0 }, FOG_DAY = new THREE.Color('#b9c3c2'), FOG_NIGHT = new THREE.Color('#1c2630'), grey = new THREE.Color('#5b6670');
 let rain, gusts, drops = [], streaks = [], first = true;
 
@@ -19,7 +19,7 @@ export default {
     rain = new THREE.InstancedMesh(new THREE.BoxGeometry(.05, 1.6, .05), new THREE.MeshBasicMaterial({ color: '#cfe4f2', transparent: true, opacity: .55, depthWrite: false }), DROPS);
     gusts = new THREE.InstancedMesh(new THREE.BoxGeometry(3.2, .05, .05), new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: .45, depthWrite: false }), GUSTS);
     rain.frustumCulled = gusts.frustumCulled = false;
-    drops = Array.from({ length: DROPS }, () => ({ x: (Math.random() - .5) * 150, z: (Math.random() - .5) * 110, y: Math.random() * 45 }));
+    drops = Array.from({ length: DROPS }, () => ({ x: ctx.state.boat.x + (Math.random() - .5) * 150, z: ctx.state.boat.z + (Math.random() - .5) * 110, y: Math.random() * 45 }));
     streaks = Array.from({ length: GUSTS }, () => ({ x: (Math.random() - .5) * 150, z: (Math.random() - .5) * 100, y: 1 + Math.random() * 5, life: Math.random() }));
     ctx.scene.fog = new THREE.Fog('#b9c3c2', 2000, 2001);   // siempre puesta (sin saltos de recompilar); lejos = invisible
     ctx.scene.add(rain, gusts);
@@ -36,9 +36,13 @@ export default {
     fog.near = now.fog > .01 ? 200 - now.fog * 45 : 2000; fog.far = now.fog > .01 ? 200 + (1 - now.fog) * 260 + 40 : 2001;
     // lluvia alrededor del barco, inclinada por el viento
     rain.count = Math.round(DROPS * now.rain); rain.visible = rain.count > 0;
-    const slant = -.25 - now.wind * .3; E.set(0, 0, slant); Q.setFromEuler(E);
-    for (let i = 0; i < rain.count; i++) { const d = drops[i]; d.y -= dt * 38; d.x += dt * 38 * -slant; if (d.y < 0) { d.y += 45; d.x = (Math.random() - .5) * 150; }
-      M.compose(V.set(b.x + d.x, d.y, b.z + d.z), Q, S); rain.setMatrixAt(i, M); }
+    velocity.set(38 * (.25 + now.wind * .3), -38, 0);
+    Q.setFromUnitVectors(up, V.copy(velocity).normalize());
+    for (let i = 0; i < rain.count; i++) { const d = drops[i]; d.y += dt * velocity.y; d.x += dt * velocity.x; d.z += dt * velocity.z; if (d.y < 0 || Math.abs(d.x - b.x) > 90 || Math.abs(d.z - b.z) > 65) {
+        d.y = d.y < 0 ? d.y + 45 : Math.random() * 45;
+        d.x = b.x + (Math.random() - .5) * 150; d.z = b.z + (Math.random() - .5) * 110;
+      }
+      M.compose(V.set(d.x, d.y, d.z), Q, S); rain.setMatrixAt(i, M); }
     rain.instanceMatrix.needsUpdate = true;
     // ráfagas: rayas blancas que cruzan el agua
     gusts.count = Math.round(GUSTS * Math.max(0, now.wind - .15) / .85); gusts.visible = gusts.count > 0;

@@ -1,0 +1,238 @@
+[
+ {
+  "sid": "73497",
+  "user": "nigelcoop",
+  "title": "Gull.wav",
+  "dur": 3.67925,
+  "dl": 4840,
+  "rating": 4.3,
+  "mp3": "https://cdn.freesound.org/previews/73/73497_1088850-hq.mp3",
+  "query": "herring gull",
+  "description": "Single (raucous) herring gull call - no other background noise and suitable for insertion into any appropriate sound mix",
+  "tags": [
+   "gull",
+   "gull-call",
+   "single-gull"
+  ],
+  "file": "raw/cand/gaviota/73497.mp3",
+  "analysis": {
+   "dur": 3.68,
+   "snr_db": 15.0,
+   "floor_db": -41.0,
+   "peak_db": -26.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.3,
+   "brightness_hz": 1565,
+   "events": []
+  }
+ },
+ {
+  "sid": "75195",
+  "user": "nigelcoop",
+  "title": "Seagull trill and whine.wav",
+  "dur": 1.92531,
+  "dl": 2423,
+  "rating": 4.1,
+  "mp3": "https://cdn.freesound.org/previews/75/75195_1088850-hq.mp3",
+  "query": "herring gull",
+  "description": "A couple of the quieter noises made by seagulls. Background noise stripped out for easier mixing",
+  "tags": [
+   "gull",
+   "herring",
+   "seagull",
+   "trill",
+   "whine"
+  ],
+  "file": "raw/cand/gaviota/75195.mp3",
+  "analysis": {
+   "dur": 1.93,
+   "snr_db": 68.1,
+   "floor_db": -97.2,
+   "peak_db": -29.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 39.1,
+   "brightness_hz": 1831,
+   "events": [
+    [
+     0.1,
+     0.9,
+     -32.8
+    ],
+    [
+     1.2,
+     1.9,
+     -27.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "179908",
+  "user": "timsc",
+  "title": "Seagulls and Rigging Sounds",
+  "dur": 4.96263,
+  "dl": 266,
+  "rating": 3.7,
+  "mp3": "https://cdn.freesound.org/previews/179/179908_266678-hq.mp3",
+  "query": "seagull call",
+  "description": "Sea gulls crying calls. Wind slapping rigging against ship masts, tools running in the distance. \n\n Recorded at Fambridge Yacht Haven, Essex using a Canon D550 camera.",
+  "tags": [
+   "bird",
+   "boat",
+   "field-recording",
+   "marine",
+   "mast",
+   "power-tools",
+   "repeat",
+   "rhythm",
+   "rigging",
+   "sea",
+   "ship",
+   "slap",
+   "song",
+   "wind",
+   "yaght",
+   "yard"
+  ],
+  "file": "raw/cand/gaviota/179908.mp3",
+  "analysis": {
+   "dur": 4.96,
+   "snr_db": 11.8,
+   "floor_db": -29.8,
+   "peak_db": -18.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 33.6,
+   "brightness_hz": 1583,
+   "events": []
+  }
+ },
+ {
+  "sid": "479595",
+  "user": "craigsmith",
+  "title": "R01-71-Close up Seagull.wav",
+  "dur": 5.72013,
+  "dl": 85,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/479/479595_2524442-hq.mp3",
+  "query": "seagull call",
+  "description": "Seagull up close. Medium-length calls. Some distortion.",
+  "tags": [
+   "Animals",
+   "Birds",
+   "Optical",
+   "Vintage"
+  ],
+  "file": "raw/cand/gaviota/479595.mp3",
+  "analysis": {
+   "dur": 5.72,
+   "snr_db": 25.6,
+   "floor_db": -47.7,
+   "peak_db": -22.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.2,
+   "brightness_hz": 1426,
+   "events": [
+    [
+     0.6,
+     1.5,
+     -23.1
+    ],
+    [
+     1.9,
+     2.8,
+     -20.3
+    ],
+    [
+     3.6,
+     4.65,
+     -22.1
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "748894",
+  "user": "gingernuts73",
+  "title": "Whitby Harbour",
+  "dur": 24.4647,
+  "dl": 70,
+  "rating": null,
+  "mp3": "https://cdn.freesound.org/previews/748/748894_12852457-hq.mp3",
+  "query": "gulls harbour",
+  "description": "Whitby harbour in July 2024. Gulls calling over the water - if you listen closely you can hear a beer delivery in the background.",
+  "tags": [
+   "birdcalls",
+   "harbour",
+   "whitby"
+  ],
+  "file": "raw/cand/gaviota/748894.mp3",
+  "analysis": {
+   "dur": 24.46,
+   "snr_db": 16.4,
+   "floor_db": -44.8,
+   "peak_db": -28.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 65.1,
+   "brightness_hz": 891,
+   "events": [
+    [
+     17.75,
+     18.0,
+     -25.8
+    ],
+    [
+     18.5,
+     18.65,
+     -28.3
+    ],
+    [
+     19.2,
+     19.65,
+     -22.4
+    ],
+    [
+     20.1,
+     20.35,
+     -27.3
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "861350",
+  "user": "TheKingOfGeeks360",
+  "title": "Seabirds - Ring-billed Gull; Single Call, Take 2",
+  "dur": 0.726083,
+  "dl": 57,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/861/861350_15895934-hq.mp3",
+  "query": "seagull call",
+  "description": "This was part of a gull recording done in December of 2025 at a strip mall in Pooler, GA, which used an LG Stylus 2022 as its recording tool.",
+  "tags": [
+   "beach",
+   "bird",
+   "coast",
+   "gull",
+   "ocean",
+   "seabird",
+   "seagull"
+  ],
+  "file": "raw/cand/gaviota/861350.mp3",
+  "analysis": {
+   "dur": 0.73,
+   "snr_db": 22.4,
+   "floor_db": -40.4,
+   "peak_db": -18.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.2,
+   "brightness_hz": 2834,
+   "events": [
+    [
+     0.05,
+     0.2,
+     -18.1
+    ]
+   ]
+  }
+ }
+]

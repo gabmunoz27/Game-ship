@@ -1,0 +1,449 @@
+[
+ {
+  "sid": "465697",
+  "user": "Breviceps",
+  "title": "Owl Hoot",
+  "dur": 4.39345,
+  "dl": 15515,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/465/465697_9159316-hq.mp3",
+  "query": "tawny owl",
+  "description": "A hooting owl. Recorded with mobile phone.",
+  "tags": [
+   "animal",
+   "creepy",
+   "cry",
+   "forest",
+   "hoot",
+   "hooting",
+   "kauz",
+   "night",
+   "owl",
+   "owls",
+   "screech",
+   "tawny"
+  ],
+  "file": "raw/cand/buho/465697.mp3",
+  "analysis": {
+   "dur": 4.39,
+   "snr_db": 31.2,
+   "floor_db": -66.0,
+   "peak_db": -34.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.4,
+   "brightness_hz": 782,
+   "events": [
+    [
+     0.2,
+     1.2,
+     -34.6
+    ],
+    [
+     2.1,
+     2.25,
+     -43.3
+    ],
+    [
+     2.75,
+     4.15,
+     -34.2
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "398734",
+  "user": "Anthousai",
+  "title": "owl.wav",
+  "dur": 3.99731,
+  "dl": 10267,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/398/398734_5923045-hq.mp3",
+  "query": "owl hoot",
+  "description": "An owl hooting. \n\n Recorded with a Tascam DR-40.",
+  "tags": [
+   "ambiance",
+   "ambience",
+   "ambient",
+   "atmosphere",
+   "bird",
+   "field-recording",
+   "hoo",
+   "hooing",
+   "hoot",
+   "hooting",
+   "nature",
+   "night",
+   "outdoors",
+   "owl",
+   "who",
+   "whoing"
+  ],
+  "file": "raw/cand/buho/398734.mp3",
+  "analysis": {
+   "dur": 4.0,
+   "snr_db": 24.8,
+   "floor_db": -46.6,
+   "peak_db": -21.8,
+   "clip_pct": 0.0,
+   "rumble_pct": 21.5,
+   "brightness_hz": 294,
+   "events": [
+    [
+     1.4,
+     1.85,
+     -19.7
+    ],
+    [
+     2.4,
+     2.65,
+     -21.8
+    ],
+    [
+     3.05,
+     3.35,
+     -23.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "558396",
+  "user": "Gerent",
+  "title": "owl_hooting_000102_0145S3 002-070 000-002 068-074.wav",
+  "dur": 3.53129,
+  "dl": 2035,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/558/558396_556505-hq.mp3",
+  "query": "owl hoot",
+  "description": "Owl hooting at night. Normalization 'Maximum peak value' applied.",
+  "tags": [
+   "hoot",
+   "hooting",
+   "owl"
+  ],
+  "file": "raw/cand/buho/558396.mp3",
+  "analysis": {
+   "dur": 3.53,
+   "snr_db": 37.7,
+   "floor_db": -42.9,
+   "peak_db": -5.2,
+   "clip_pct": 0.0,
+   "rumble_pct": 13.0,
+   "brightness_hz": 749,
+   "events": [
+    [
+     0.7,
+     1.5,
+     -4.7
+    ],
+    [
+     1.8,
+     2.8,
+     -5.0
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "558397",
+  "user": "Gerent",
+  "title": "owl_hooting_000102_0145S3 002-070 000-002 037-044.wav",
+  "dur": 4.37504,
+  "dl": 1532,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/558/558397_556505-hq.mp3",
+  "query": "owl hoot",
+  "description": "Owl hooting at night. Normalization 'Maximum peak value' applied.",
+  "tags": [
+   "hoot",
+   "hooting",
+   "owl"
+  ],
+  "file": "raw/cand/buho/558397.mp3",
+  "analysis": {
+   "dur": 4.38,
+   "snr_db": 38.1,
+   "floor_db": -43.6,
+   "peak_db": -5.5,
+   "clip_pct": 0.0,
+   "rumble_pct": 13.2,
+   "brightness_hz": 739,
+   "events": [
+    [
+     1.0,
+     3.05,
+     -4.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "558398",
+  "user": "Gerent",
+  "title": "owl_hooting_000102_0145S3 002-070 000-002 007-015.wav",
+  "dur": 4.78129,
+  "dl": 1384,
+  "rating": 4.4,
+  "mp3": "https://cdn.freesound.org/previews/558/558398_556505-hq.mp3",
+  "query": "owl hoot",
+  "description": "Owl hooting at night. Normalization 'Maximum peak value' applied.",
+  "tags": [
+   "hoot",
+   "hooting",
+   "owl"
+  ],
+  "file": "raw/cand/buho/558398.mp3",
+  "analysis": {
+   "dur": 4.78,
+   "snr_db": 38.7,
+   "floor_db": -45.7,
+   "peak_db": -7.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 14.0,
+   "brightness_hz": 802,
+   "events": [
+    [
+     1.5,
+     2.0,
+     -10.2
+    ],
+    [
+     2.3,
+     3.3,
+     -4.7
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "415153",
+  "user": "howebzar",
+  "title": "Owl Hooting.mp3",
+  "dur": 5.86454,
+  "dl": 1148,
+  "rating": 4.7,
+  "mp3": "https://cdn.freesound.org/previews/415/415153_1712536-hq.mp3",
+  "query": "tawny owl",
+  "description": "I don't know the details (like male / female, barn, tawny, big, little etc) but this fella started hooting the tother day so loud we could hear him/her indoors. \n\n The recording was done straight from my Samsung Galaxy phone. Slight amplification applied but otherwise raw.",
+  "tags": [
+   "Owl-hooting",
+   "Tawny",
+   "bird",
+   "birds",
+   "birdsong",
+   "field-recording",
+   "nature",
+   "wildlife"
+  ],
+  "file": "raw/cand/buho/415153.mp3",
+  "analysis": {
+   "dur": 5.86,
+   "snr_db": 42.1,
+   "floor_db": -69.6,
+   "peak_db": -27.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.1,
+   "brightness_hz": 911,
+   "events": [
+    [
+     0.45,
+     1.5,
+     -26.6
+    ],
+    [
+     3.1,
+     3.35,
+     -42.1
+    ],
+    [
+     3.8,
+     5.2,
+     -26.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "450214",
+  "user": "Marcuspepsi",
+  "title": "Tawny Owl in Molkom, Sweden.",
+  "dur": 8.80036,
+  "dl": 853,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/450/450214_9336600-hq.mp3",
+  "query": "tawny owl",
+  "description": "A tawny owl I recorded while being outside in the middle of the night in Molkom, Sweden. Recorded with my iPhone 5s.",
+  "tags": [
+   "Night",
+   "Owl",
+   "Sweden",
+   "Tawny",
+   "Tawny-Owl"
+  ],
+  "file": "raw/cand/buho/450214.mp3",
+  "analysis": {
+   "dur": 8.8,
+   "snr_db": 25.9,
+   "floor_db": -62.0,
+   "peak_db": -36.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.9,
+   "brightness_hz": 964,
+   "events": [
+    [
+     2.05,
+     2.75,
+     -35.6
+    ],
+    [
+     7.4,
+     8.35,
+     -35.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "655380",
+  "user": "faxfaxfax",
+  "title": "Tawny Owl",
+  "dur": 7.18367,
+  "dl": 762,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/655/655380_12156778-hq.mp3",
+  "query": "tawny owl",
+  "description": "Tawny owl, recorded outside my window. Required heavy noise reduction. Clips slightly at first hoot, sorry.",
+  "tags": [
+   "bird",
+   "birds",
+   "field-recording",
+   "nature",
+   "owl",
+   "tawny"
+  ],
+  "file": "raw/cand/buho/655380.mp3",
+  "analysis": {
+   "dur": 7.18,
+   "snr_db": 82.5,
+   "floor_db": -92.5,
+   "peak_db": -10.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 3.1,
+   "brightness_hz": 937,
+   "events": [
+    [
+     0.2,
+     1.6,
+     -7.3
+    ],
+    [
+     4.6,
+     6.75,
+     -8.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "558214",
+  "user": "Cinetony",
+  "title": "Tawny owl call",
+  "dur": 5.0,
+  "dl": 566,
+  "rating": 4.5,
+  "mp3": "https://cdn.freesound.org/previews/558/558214_5985747-hq.mp3",
+  "query": "tawny owl",
+  "description": "This sound recording was made late in the evening. You can hear a tawny owl calling. Maybe it's the same one heard in the recordings of the footsteps and the crows? We will never find out...",
+  "tags": [
+   "bird",
+   "call",
+   "eerie",
+   "field-recording",
+   "forest",
+   "gloomy",
+   "mysterious",
+   "nature",
+   "night",
+   "owl",
+   "tawny"
+  ],
+  "file": "raw/cand/buho/558214.mp3",
+  "analysis": {
+   "dur": 5.0,
+   "snr_db": 30.8,
+   "floor_db": -47.8,
+   "peak_db": -17.0,
+   "clip_pct": 0.0,
+   "rumble_pct": 99.6,
+   "brightness_hz": 48,
+   "events": [
+    [
+     0.7,
+     0.9,
+     -18.1
+    ],
+    [
+     2.55,
+     2.8,
+     -16.9
+    ],
+    [
+     4.45,
+     4.7,
+     -15.9
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "864872",
+  "user": "sound368",
+  "title": "Tawny Owl in Molkom, Sweden - Cleaned",
+  "dur": 9.8,
+  "dl": 120,
+  "rating": 4.9,
+  "mp3": "https://cdn.freesound.org/previews/864/864872_4846901-hq.mp3",
+  "query": "tawny owl",
+  "description": "This audio was originally uploaded by Marcuspepsi. The original audio cut too short after the second hoot so I fixed it and also removed the noise.",
+  "tags": [
+   "Molkom",
+   "Owl",
+   "Sweden",
+   "Tawny",
+   "night"
+  ],
+  "file": "raw/cand/buho/864872.mp3",
+  "analysis": {
+   "dur": 9.8,
+   "snr_db": 149.7,
+   "floor_db": -180.0,
+   "peak_db": -30.3,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.9,
+   "brightness_hz": 393,
+   "events": [
+    [
+     1.55,
+     3.2,
+     -29.6
+    ],
+    [
+     3.75,
+     3.9,
+     -93.4
+    ],
+    [
+     6.15,
+     8.75,
+     -29.7
+    ],
+    [
+     9.35,
+     9.55,
+     -93.3
+    ]
+   ]
+  }
+ }
+]

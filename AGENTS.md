@@ -39,8 +39,15 @@ Si una regla de juego aparece en `world/` o `ui/`, está en el lugar equivocado:
 | Niveles de Confianza | `src/sim/trust.js` |
 | Clima: probabilidades por mapa | el campo `weather` de cada mapa en `src/maps/` |
 | Clima: qué hace (gasto doble, carga mojada) | `src/sim/weather.js` |
+| Sonidos, paisajes de villas y mapas, grabaciones | `src/data/sounds.js`, `public/sfx/LEEME.md` |
+| Mezcla por distancia, clima y movimiento | `src/sim/sound.js` |
+| Reproducción, síntesis y volumen | `src/audio/sfx.js`, `synth.js`, `levels.js` |
 | Música: títulos y archivos | `src/data/music.js`; los MP3 van en `public/music/` |
 | Forma de un mapa, sus muelles y salidas | `src/maps/lochMorag.js`, `src/maps/kyle.js` |
+| Huella de la cubierta y pilotes, colisión del casco y rutas | `src/maps/shared.js`, `src/sim/navigation.js`, `src/sim/pathfind.js`, dibujo en `src/world/villages.js` |
+| Radio de llegada, rótulo y acercamiento | `src/data/villages.js` (arrivalRadius), `src/sim/navigation.js`, `src/ui/villageLabel.js`, `src/world/scene.js` |
+| Bodega siempre visible | `src/ui/cargoBar.js`, `src/ui/icons.js`, `src/ui/ui.css` |
+| Sonido de inicio de rumbo y arrastre | `src/world/input.js`, `src/sim/navigation.js`, `src/audio/sfx.js` |
 | Un mapa nuevo | archivo nuevo en `src/maps/` + sumarlo en `src/maps/index.js` (ver `PLAN.md`) |
 | Cómo se ve una villa | `src/world/glenmore.js`, `achnacarn.js`, `strathlinn.js`; Port Dun usa `world/villages.js` |
 | Casas, faroles, vecinos (piezas comunes) | `src/world/townKit.js` |
@@ -76,7 +83,9 @@ Si un módulo falla, se apaga solo y el resto del juego sigue. La tecla M muestr
 
 Los módulos no se llaman entre sí. `sim/` cambia la partida y avisa con `emit('evento', datos)`; quien quiera, escucha con `on('evento', fn)` (en `src/core/events.js`).
 
-Eventos que existen: `cargo:added` `cargo:changed` `cargo:soaked` `coins:changed` `trade:done` `trust:changed` `dock:entered` `dock:left` `port:near` `exit:near` `exit:blocked` `course:set` `course:cleared` `time:changed` `weather:changed` `map:changed` `travel:request` `upgrade:materials` `upgrade:installed` `item:gained` `quest:accepted` `quest:completed` `act:completed` `notice` `music:started` `music:next` `music:mute` `music:muted` `dev:moved` `system:failed`.
+Eventos que existen: `cargo:added` `cargo:changed` `cargo:soaked` `coins:changed` `trade:done` `trust:changed` `dock:entered` `dock:left` `dock:near` `port:near` `exit:near` `exit:blocked` `course:set` `course:updated` `course:cleared` `time:changed` `weather:changed` `map:changed` `travel:request` `upgrade:materials` `upgrade:installed` `item:gained` `quest:accepted` `quest:completed` `act:completed` `notice` `audio:ready` `audio:volume` `audio:preview` `audio:duck` `music:started` `music:next` `music:mute` `music:muted` `dev:moved` `system:failed`.
+
+`port:near` anuncia entrar o salir del radio de la villa. `dock:near` controla el botón de atraque. `course:set` inicia el rumbo del gesto y `course:updated` actualiza su destino durante el arrastre.
 
 ## La partida
 

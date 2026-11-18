@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { mapOf } from '../maps/index.js';
-import { hash } from '../maps/shared.js';
+import { hash, PIER } from '../maps/shared.js';
 import { flat } from './helpers.js';
 // Casas y muelle de cada villa del mapa. Provisionales: se reemplazan por modelos de Blender.
 // Las ventanas se encienden con la noche (ctx.night).
@@ -27,13 +27,13 @@ export default {
         [[-.9, 1.27], [.9, 1.27], [-.9, -1.27], [.9, -1.27]].forEach(([wx, wz]) => { const win = new THREE.Mesh(winGeo, glass); win.position.set(wx, 1.25, wz); h.add(win); }); h.position.set(x, height(x, z) - .1, z); h.rotation.y = (hash(i, 3 + pi) - .5) * 1.2;
         g.add(h);
       });
-      const [ax, az] = [port.shore[0] + port.n[0] * 2, port.shore[1] + port.n[1] * 2], [bx, bz] = [port.shore[0] - port.n[0] * 11, port.shore[1] - port.n[1] * 11];
+      const [ax, az] = [port.shore[0] + port.n[0] * PIER.inland, port.shore[1] + port.n[1] * PIER.inland], [bx, bz] = [port.shore[0] - port.n[0] * PIER.seaward, port.shore[1] - port.n[1] * PIER.seaward];
       const len = Math.hypot(bx - ax, bz - az), ang = -Math.atan2(bz - az, bx - ax);
-      const deck = new THREE.Mesh(new THREE.BoxGeometry(len, .25, 1.8), wood);
+      const deck = new THREE.Mesh(new THREE.BoxGeometry(len, .25, PIER.halfWidth * 2), wood);
       deck.position.set((ax + bx) / 2, .6, (az + bz) / 2); deck.rotation.y = ang; g.add(deck);
       for (let t = .15; t <= 1; t += .28) [-1, 1].forEach(s => {
-        const p = new THREE.Mesh(new THREE.CylinderGeometry(.16, .16, 3, 6), dark);
-        p.position.set(ax + (bx - ax) * t - Math.sin(-ang) * s * .9, -.4, az + (bz - az) * t + Math.cos(-ang) * s * .9); g.add(p);
+        const p = new THREE.Mesh(new THREE.CylinderGeometry(PIER.pileRadius, PIER.pileRadius, 3, 6), dark);
+        p.position.set(ax + (bx - ax) * t - Math.sin(-ang) * s * PIER.halfWidth, -.4, az + (bz - az) * t + Math.cos(-ang) * s * PIER.halfWidth); g.add(p);
       });
     });
     g.traverse(o => { if (o.isMesh && o.material !== glass) o.castShadow = o.receiveShadow = true; });

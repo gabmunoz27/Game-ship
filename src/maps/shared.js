@@ -15,10 +15,34 @@ export function inland(shoreDist, x, z) {
   return [gx / g, gz / g];
 }
 
+export const PIER = { inland: 2, seaward: 11, halfWidth: .9, pileRadius: .16 };
+const HULL_RADIUS = 4;
+
+// Intersección continua del recorrido del centro del casco con el muelle en sus ejes locales.
+function crossesPier(port, ax, az, bx, bz) {
+  let enter = 0, leave = 1;
+  const dx = ax - port.shore[0], dz = az - port.shore[1];
+  const margin = HULL_RADIUS + PIER.pileRadius;
+  for (const [axis, min, max] of [[port.n, -PIER.seaward - margin, PIER.inland + margin],
+    [port.t, -PIER.halfWidth - margin, PIER.halfWidth + margin]]) {
+    const start = dx * axis[0] + dz * axis[1];
+    const delta = (bx - ax) * axis[0] + (bz - az) * axis[1];
+    if (Math.abs(delta) < 1e-9) {
+      if (start < min || start > max) return false;
+    } else {
+      const t1 = (min - start) / delta, t2 = (max - start) / delta;
+      enter = Math.max(enter, Math.min(t1, t2));
+      leave = Math.min(leave, Math.max(t1, t2));
+      if (enter > leave) return false;
+    }
+  }
+  return true;
+}
+
 /**
  * Arma un mapa completo a partir de su forma. Cada mapa solo describe:
  *   id, name, size {w,d}, shoreDist(x,z) (negativa en el agua, positiva en tierra),
- *   ports  [{ village, shore:[x,z], custom? }]        → se calcula land (centro del pueblo) y dock (punta del muelle)
+ *   ports  [{ village, shore:[x,z], custom? }]        → se calcula land (centro del pueblo) y dock (amarre lateral)
  *   exits  [{ id, name, shore:[x,z], normal?, radius, requires?, to, spawn, stones? }] → se calcula x,z (punto de salida)
  *   spawns { nombre: { x, z, heading } }               → dónde aparece el barco según por dónde entra
  * y todo lo demás (altura, agua navegable, playas, puertos llanos) sale de aquí, igual para todos.
@@ -28,7 +52,10 @@ export function defineMap(def) {
   const frame = (shore, normal) => { const n = normal || inland(shoreDist, shore[0], shore[1]); return { shore, n, t: [-n[1], n[0]] }; };
   const ports = (def.ports || []).map(p => { const f = frame(p.shore, p.normal);
     const c = p.depth || 6;   // depth: qué tan tierra adentro queda el corazón del pueblo (para la cámara y el rótulo)
-    return { ...p, ...f, center: [p.shore[0] + f.n[0] * c, p.shore[1] + f.n[1] * c], land: [p.shore[0] + f.n[0] * 6, p.shore[1] + f.n[1] * 6], dock: [p.shore[0] - f.n[0] * 13, p.shore[1] - f.n[1] * 13] }; });
+    const tipDepth = PIER.seaward + PIER.pileRadius + HULL_RADIUS + .4;
+    const tipWidth = PIER.halfWidth + PIER.pileRadius + HULL_RADIUS + .4;
+    const tipCorners = [-1, 1].map(side => p.shore.map((v, i) => v - f.n[i] * tipDepth + side * f.t[i] * tipWidth));
+    return { ...p, ...f, tipCorners, center: [p.shore[0] + f.n[0] * c, p.shore[1] + f.n[1] * c], land: [p.shore[0] + f.n[0] * 6, p.shore[1] + f.n[1] * 6], dock: [p.shore[0] - f.n[0] * 9 + f.t[0] * 7, p.shore[1] - f.n[1] * 9 + f.t[1] * 7] }; });
   const exits = (def.exits || []).map(e => { const f = frame(e.shore, e.normal);
     return { radius: 8, ...e, ...f, x: e.shore[0] - f.n[0] * 8, z: e.shore[1] - f.n[1] * 8 }; });
   const portFactor = (x, z) => ports.length ? Math.min(...ports.map(p => smooth(16, 34, Math.hypot(x - p.land[0], z - p.land[1])))) : 1;
@@ -46,7 +73,9 @@ export function defineMap(def) {
     const bw = beachWidth(x, z);
     return beach + (land - beach) * smooth(bw, bw + 2.2, d);
   }
-  const navigable = (x, z) => Math.abs(x) < def.size.w / 2 && Math.abs(z) < def.size.d / 2 && height(x, z) < -.9;
+  const blockingPier = (ax, az, bx, bz) => ports.find(p => crossesPier(p, ax, az, bx, bz));
+  const pierClear = (ax, az, bx, bz) => !blockingPier(ax, az, bx, bz);
+  const navigable = (x, z) => Math.abs(x) < def.size.w / 2 && Math.abs(z) < def.size.d / 2 && height(x, z) < -.9 && pierClear(x, z, x, z);
   /** Puntos de la orilla cada ~2.5 unidades, con su dirección hacia tierra. Sirven para acantilados y rocas. */
   let shoreCache = null;
   function shoreSamples() {
@@ -60,7 +89,7 @@ export function defineMap(def) {
     return (shoreCache = out);
   }
   return {
-    ...def, ports, exits, height, navigable, portFactor, beachWidth, shoreSamples,
+    ...def, ports, exits, height, blockingPier, pierClear, navigable, portFactor, beachWidth, shoreSamples,
     portOf: id => ports.find(p => p.village === id),
     exitOf: id => exits.find(e => e.id === id),
     SIZE: def.size, NAME: def.name

@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
 import { on, emit, clear } from '../src/core/events.js';
 import { createState } from '../src/core/state.js';
 import { GOODS } from '../src/data/goods.js';
@@ -22,6 +23,9 @@ import * as upgrades from '../src/sim/upgrades.js';
 import * as acts from '../src/sim/acts.js';
 import * as weather from '../src/sim/weather.js';
 import * as dev from '../src/sim/dev.js';
+import { soundscape } from '../src/sim/sound.js';
+import { SOUNDS, VILLAGE_SOUNDS } from '../src/data/sounds.js';
+import { synthesize } from '../src/audio/synth.js';
 import * as music from '../src/sim/music.js';
 import { TRACKS } from '../src/data/music.js';
 
@@ -30,6 +34,49 @@ const at = (s, id) => { s.docked = s.lastPort = id; return s; };
 const moveTo = (s, x, z) => { s.boat.x = x; s.boat.z = z; };
 
 export const suites = {
+  'sonido': [
+    ['la escucha de prueba acepta sonidos y villas y acota los volúmenes', () => {
+      fresh();
+      const heard = [], levels = [];
+      on('audio:preview', ({ id }) => heard.push(id));
+      on('audio:volume', p => levels.push(p));
+      for (const id of ['fuelle', 'achnacarn', 'desconocido']) dev.previewSound(id);
+      dev.setAudioVolume('efectos', 2);
+      dev.setAudioVolume('ambiente', 0);
+      dev.setAudioVolume('musica', NaN);
+      assert.deepEqual(heard, ['fuelle', 'achnacarn']);
+      assert.deepEqual(levels, [{ bus: 'efectos', value: 1 }, { bus: 'ambiente', value: 0 }]);
+    }],
+    ['cada receta produce muestras finitas y audibles', () => {
+      const context = { createBuffer(_, length) { const data = new Float32Array(length); return { getChannelData: () => data }; } };
+      for (const [id, s] of Object.entries(SOUNDS)) {
+        const samples = synthesize(context, id, s.type === 'bucle').getChannelData(0);
+        assert.ok(samples.every(Number.isFinite) && samples.some(n => n > .025), id);
+      }
+      for (const p of Object.values(VILLAGE_SOUNDS)) for (const id of [...p.calls, p.bed].filter(Boolean)) assert.ok(SOUNDS[id], id);
+    }],
+    ['cada variante declarada tiene su grabación en public/sfx/', () => {
+      for (const [id, s] of Object.entries(SOUNDS)) for (let n = 1; n <= (s.variants || 0); n++) {
+        const base = new URL(`../public/${s.file.replace(/\.\w+$/, '')}-${n}`, import.meta.url).pathname;
+        assert.ok(['.m4a', '.mp3', '.ogg'].some(ext => existsSync(decodeURIComponent(base) + ext)), `${id}-${n}`);
+      }
+    }],
+    ['el muelle se acerca en estéreo y desaparece a distancia', () => {
+      const s = fresh(), [x,z] = lake.ports[0].dock;
+      moveTo(s,x-10,z); const left = soundscape(s).villages[0];
+      moveTo(s,x+10,z); assert.equal(soundscape(s).villages[0].pan, -left.pan);
+      moveTo(s,x,z); assert.equal(soundscape(s).villages[0].level,1);
+      moveTo(s,x+60,z); assert.equal(soundscape(s).villages[0].level,0);
+    }],
+    ['el barco, la noche, el canal y el clima cambian la mezcla', () => {
+      const s = fresh(), calm = soundscape(s);
+      s.map = 'kyle'; s.weather = 'lluvia'; s.boat.speed = 9;
+      const storm = soundscape(s,1,2);
+      for (const id of ['lona','casco','lluvia','cubierta','grillos','viento']) assert.ok(storm.beds[id] > calm.beds[id],id);
+      assert.ok(storm.echo > calm.echo);
+      s.weather = 'niebla'; assert.ok(soundscape(s).cutoff < calm.cutoff);
+    }]
+  ],
   'core/events': [
     ['entrega el evento', () => { clear(); let got; on('x', p => { got = p; }); emit('x', 7); assert.equal(got, 7); }],
     ['un oyente roto no frena a los demás', () => { clear(); let ok = false; const err = console.error; console.error = () => {};
@@ -103,6 +150,49 @@ export const suites = {
     ['se queda entre 0 y 100', () => { const s = fresh(); trust.add(s, 'glenmore', -5); assert.equal(s.villages.glenmore.trust, 0); trust.add(s, 'glenmore', 500); assert.equal(s.villages.glenmore.trust, 100); }]
   ],
   'sim/navigation': [
+    ['los cuatro muelles obligan a rodear la punta y permiten atracar por el costado', () => {
+      for (const m of Object.values(MAPS)) for (const p of m.ports) {
+        const s = fresh(); s.map = m.id;
+        const side = t => p.shore.map((v, i) => v - 10 * p.n[i] + t * p.t[i]);
+        const from = side(-8), to = side(8);
+        assert.ok(!m.navigable(...side(.9)), p.village);
+        assert.ok(!pathfind.clearLine(m, ...from, ...to), p.village);
+        moveTo(s, ...from); s.boat.heading = Math.atan2(p.t[1], p.t[0]);
+        const route = nav.plotCourse(s, ...to);
+        assert.ok(route.ok && route.path.length > 1, p.village);
+        let previous = from;
+        for (const point of route.path) {
+          assert.ok(pathfind.clearLine(m, ...previous, ...point), p.village);
+          previous = point;
+        }
+        for (let i = 0; i < 1200; i++) {
+          const { x, z } = s.boat; nav.step(s, 1 / 60);
+          assert.ok(m.pierClear(x, z, s.boat.x, s.boat.z), p.village);
+        }
+        assert.equal(s.boat.course, null);
+        assert.ok(Math.hypot(s.boat.x - to[0], s.boat.z - to[1]) < 4);
+        assert.equal(s.nearPort, p.village);
+        // Incluso sin ruta, la inercia no puede saltar de un lado al otro en un paso.
+        moveTo(s, ...from); s.boat.heading = Math.atan2(p.t[1], p.t[0]); s.boat.speed = 90;
+        nav.step(s, .4);
+        assert.ok(m.pierClear(...from, s.boat.x, s.boat.z));
+      }
+    }],
+    ['la llegada tiene histéresis y el atraque conserva su alcance', () => {
+      const s = fresh(), p = lake.ports[0], radius = VILLAGES[p.village].arrivalRadius;
+      const events = []; on('port:near', ({ villageId }) => events.push(villageId));
+      for (const distance of [radius + 1, radius - 1, radius + 1, radius - 1, radius + 5]) {
+        moveTo(s, ...p.dock.map((x, i) => x - distance * p.n[i])); nav.step(s, 0);
+        assert.equal(s.nearPort, null);
+      }
+      assert.deepEqual(events, [p.village, null]);
+    }],
+    ['actualizar el rumbo del gesto mantiene un solo inicio', () => {
+      const s = fresh(), events = [];
+      for (const name of ['course:set', 'course:updated']) on(name, () => events.push(name));
+      for (const updating of [false, true, true, false]) assert.ok(nav.plotCourse(s, ...lake.ports[0].dock, updating).ok);
+      assert.deepEqual(events, ['course:set', 'course:updated', 'course:updated', 'course:set']);
+    }],
     ['rechaza un rumbo a tierra', () => { const s = fresh(); assert.equal(nav.plotCourse(s, 170, 0).reason, 'sin-agua'); }],
     ['el barco llega a su destino', () => { const s = fresh(); moveTo(s, 0, 0); assert.ok(nav.plotCourse(s, 20, 0).ok);
       for (let i = 0; i < 2000 && s.boat.course; i++) nav.step(s, 1 / 60); assert.equal(s.boat.course, null); assert.ok(Math.hypot(s.boat.x - 20, s.boat.z) < 2); }],

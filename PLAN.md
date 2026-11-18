@@ -53,11 +53,12 @@ Estado: ✓ hecho y comprobado · ◐ provisional · ○ pendiente.
 | Villa Strathlinn | `world/strathlinn.js` | — | ✓ campos de cebada que se mecen con el viento, ovejas, telar, cordelero |
 | Clima | `sim/weather.js`, `world/weather.js`, `ui/weatherChip.js` | GDD 2.D | ✓ cambia cada franja según el mapa; lluvia, niebla, viento; la cebada se moja y vale la mitad |
 | Tiempo | `sim/time.js` | GDD 2.D | ✓ incluye la fase continua que usa la luz |
+| Barra de bodega | `ui/cargoBar.js` | Parche 2.B | ✓ espacios por peso, suministros y carga mojada |
 | Bodega con peso por bien | `sim/cargo.js` | Parche 2.B | ✓ |
 | Comercio | `sim/trade.js` | Parche 2.B | ✓ |
 | Confianza y niveles | `sim/trust.js` | Parche 2.D | ✓ |
 | Navegación | `sim/navigation.js` | GDD 2.A | ✓ sigue puntos de paso con giro suave |
-| Rutas | `sim/pathfind.js` | — | ✓ A* en grilla + suavizado: rodea islas y cabos |
+| Rutas | `sim/pathfind.js` | — | ✓ A* en grilla + suavizado: rodea islas, cabos y muelles con margen para el casco |
 | Travesías | `sim/voyage.js` | Parche 2.C | ✓ el consumo doble por mal tiempo espera al módulo de clima |
 | Encargos | `sim/quests.js` | Parche 3 | ✓ |
 | Mejoras y astillero | `sim/upgrades.js` | Parche 1.A | ✓ entrega de materiales por partes |
@@ -80,17 +81,17 @@ Estado: ✓ hecho y comprobado · ◐ provisional · ○ pendiente.
 | Contador de monedas | `ui/coins.js` | — | ✓ arriba a la derecha, con el icono de la moneda |
 | Iconos | `ui/icons.js`, `assets/coin.png` | — | ✓ mercancías y objetos de historia en el estilo de la moneda |
 | Avisos de objetos obtenidos | `ui/pickups.js` | — | ✓ nombre, cantidad e icono al comprar, recibir o vender |
-| Rótulo de llegada | `ui/villageLabel.js` | — | ✓ línea que se dibuja y nombre que aparece al acercarse a un muelle |
+| Rótulo de llegada | `ui/villageLabel.js` | — | ✓ línea que se dibuja y nombre y zoom suave dentro del radio de cada villa, con histéresis |
 | Panel del muelle | `ui/dockPanel.js` | GDD 6 | ✓ tres pestañas |
 | Cierre de acto | `ui/actEnd.js` | Parche 3 | ✓ |
-| Sonido | `audio/` | — | ○ |
+| Sonido | `audio/sfx.js`, `audio/synth.js`, `sim/sound.js`, `data/sounds.js` | — | ✓ barco, clima, villas en estéreo y eventos. Mezcla y escucha de prueba en el panel D |
 
 ## Orden de construcción
 
 Primero un tramo corto del juego completo de principio a fin; después se ensancha.
 
 1. ~~**Acto I jugable en Loch Morag.**~~ Hecho: los tres criterios de terminado del parche se cumplen y `npm run verify` lo juega entero en cada corrida.
-2. **Guardar partida** y pulir el Acto I: más diálogo, el Mapa del Atajo con algún uso, sonido.
+2. **Guardar partida** y pulir el Acto I: más diálogo, el Mapa del Atajo con algún uso.
 3. **El viaje pesa.** Clima (viento, niebla, lluvia) con su parte visual, desgaste y reparación del casco.
 4. **Arte propio.** Barco, casas y personajes desde Blender (.glb) en lugar de los provisionales.
 5. **Mapa 2.** Ya están las villas y el clima. Faltan encargos propios del Estrecho, el efecto de la Vela mayor y el límite de navegar de noche sin Linterna.
@@ -120,7 +121,7 @@ El parche v1.1 resolvió precios, herramientas, hierro, consumo y Confianza. Que
 - **Sobra dinero.** En la ruta de prueba el acto se cierra en 12 travesías con unas 400 monedas de sobra. Lo que frena es la Confianza de Port Dun, no las monedas.
 - **Precios que el parche no fija.** Vender donde nadie lo necesita (80 % del base) y revender en el puerto productor (50 %).
 - **Qué cuesta pasar la noche.** Hoy es gratis y solo avanza el día; su sentido real depende de clima, estados de villa y estaciones. Opción preferida: que el mundo avance mientras duermes.
-- **Día, franja, bodega y casco ya no se ven mientras navegas.** Se quitó la tarjeta del marcador; la bodega y el casco siguen en el panel del muelle, pero el día y la franja no aparecen en ningún lado.
+- **Día, franja y casco mientras navegas.** La bodega tiene barra propia. El casco se consulta en el panel del muelle.
 - **Port Dun sigue con casas de cajas.** Glenmore ya tiene pueblo propio; falta decidir el carácter de Port Dun.
 - **Estados de villa.** Abastecida, Escasez y Crisis siguen en el GDD pero sin números.
 
@@ -162,5 +163,5 @@ Todo pasa por `sim/dev.js` (con sus pruebas); el cajón es `ui/devPanel.js`. Par
 - **Orden:** `sim/music.js` elige la siguiente sin repetir la última y prefiere las que llevan más tiempo sin sonar. Entre pieza y pieza hay entre 40 y 90 segundos de silencio.
 - **Reproductor:** `audio/music.js` arranca con el primer toque o tecla (los navegadores no dejan antes), funde la música al cruzar de mapa y se pausa si la pestaña queda oculta. Los MP3 se decodifican con Web Audio para que suenen en iPhone.
 - **Mientras falte un MP3,** `audio/sketch.js` toca un boceto de esa pieza hecho en código, con la escala, el tempo y la voz anotados en los datos.
-- **Botón de música:** junto al clima, activa o silencia y recuerda la elección. La vista de desarrollador muestra qué suena y permite saltar a otra pieza.
+- **Botón de sonido:** junto al clima, silencia música y efectos y recuerda la elección. La vista de desarrollador muestra qué suena y permite saltar a otra pieza.
 - **Más adelante:** a cada pieza se le puede poner `weather: ['lluvia']` o `slots: [2]` (noche) para que solo suene con ese clima o a esa hora. Ya está probado.

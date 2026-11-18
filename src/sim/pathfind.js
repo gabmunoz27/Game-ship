@@ -19,16 +19,18 @@ function gridOf(map) {
 
 /** ¿Se puede ir en línea recta sin tocar tierra? (la misma prueba que usaba el rumbo recto) */
 export function clearLine(map, ax, az, bx, bz) {
+  if (!map.pierClear(ax, az, bx, bz)) return false;
   const n = Math.max(2, Math.ceil(Math.hypot(bx - ax, bz - az) / .8));
   for (let k = 0; k <= n; k++) { const t = k / n; if (!map.navigable(ax + (bx - ax) * t, az + (bz - az) * t)) return false; }
   return true;
 }
 
 /** Celda de agua más cercana a un punto (por si el punto queda en el margen de la orilla). */
-function nearestOpen(g, i, j) {
+function nearestOpen(map, g, point) {
+  const [i, j] = g.cell(...point);
   for (let r = 0; r < 6; r++) for (let dj = -r; dj <= r; dj++) for (let di = -r; di <= r; di++) {
     if (Math.max(Math.abs(di), Math.abs(dj)) !== r) continue;
-    const a = i + di, b = j + dj; if (a >= 0 && b >= 0 && a < g.nx && b < g.nz && g.ok[b * g.nx + a]) return [a, b];
+    const a = i + di, b = j + dj; if (a >= 0 && b >= 0 && a < g.nx && b < g.nz && g.ok[b * g.nx + a] && clearLine(map, ...point, g.cx(a), g.cz(b))) return [a, b];
   }
   return null;
 }
@@ -36,7 +38,16 @@ function nearestOpen(g, i, j) {
 /** Devuelve [[x,z], ...] terminando en el destino, o null. Si la línea recta sirve, es un solo punto. */
 export function findPath(map, from, to) {
   if (clearLine(map, from[0], from[1], to[0], to[1])) return [[to[0], to[1]]];
-  const g = gridOf(map), s = nearestOpen(g, ...g.cell(...from)), e = nearestOpen(g, ...g.cell(...to));
+  // En ensenadas estrechas (Glenmore) el canal alrededor de la punta puede ser menor que una celda.
+  const pier = map.blockingPier(...from, ...to);
+  if (pier) {
+    const [a, b] = pier.tipCorners;
+    for (const corners of [[a], [b], [a, b], [b, a]]) {
+      const route = [...corners, to];
+      if (route.every((p, i) => clearLine(map, ...(i ? route[i - 1] : from), ...p))) return route;
+    }
+  }
+  const g = gridOf(map), s = nearestOpen(map, g, from), e = nearestOpen(map, g, to);
   if (!s || !e) return null;
   const N = g.nx * g.nz, si = s[1] * g.nx + s[0], ei = e[1] * g.nx + e[0];
   const cost = new Float32Array(N).fill(Infinity), prev = new Int32Array(N).fill(-1), closed = new Uint8Array(N);
@@ -54,6 +65,7 @@ export function findPath(map, from, to) {
       const a = i + di, b = j + dj; if (a < 0 || b < 0 || a >= g.nx || b >= g.nz) continue;
       const n = b * g.nx + a; if (!g.ok[n] || closed[n]) continue;
       if (di && dj && (!g.ok[j * g.nx + a] || !g.ok[b * g.nx + i])) continue;   // no cortar esquinas de tierra
+      if (!map.pierClear(g.cx(i), g.cz(j), g.cx(a), g.cz(b))) continue;
       const c = cost[k] + (di && dj ? 1.414 : 1);
       if (c < cost[n]) { cost[n] = c; prev[n] = k; f[n] = c + h(n); push(n); }
     }
@@ -61,8 +73,7 @@ export function findPath(map, from, to) {
   if (!closed[ei]) return null;
   const cells = []; for (let k = ei; k !== -1; k = prev[k]) cells.push([g.cx(k % g.nx), g.cz(Math.floor(k / g.nx))]);
   cells.reverse();
-  const pts = [from, ...cells.slice(1, -1), [to[0], to[1]]];
-  if (!clearLine(map, ...cells[cells.length - 1], to[0], to[1])) pts[pts.length - 1] = cells[cells.length - 1];
+  const pts = [from, ...cells, to];
   // Suavizado: desde cada punto, salta al más lejano que se vea en línea recta.
   const out = []; let a = 0;
   while (a < pts.length - 1) { let b = pts.length - 1; while (b > a + 1 && !clearLine(map, ...pts[a], ...pts[b])) b--; out.push(pts[b]); a = b; }

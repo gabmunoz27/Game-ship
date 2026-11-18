@@ -40,12 +40,18 @@ export default {
   },
   update(ctx, dt) {
     // Cerca de un muelle la cámara se corre hacia el pueblo para que se vea entero.
-    const s = ctx.state, port = s.nearPort && mapOf(s).portOf(s.nearPort);
+    const s = ctx.state, port = s.nearVillage && mapOf(s).portOf(s.nearVillage);
     if (ctx.snapCamera) { focus.set(s.boat.x, 0, s.boat.z); ctx.snapCamera = false; }
     goal.set(s.boat.x, 0, s.boat.z);
     if (port && !cam.free) { const c = port.center || port.land, k = port.camShift || .5; goal.x += (c[0] - goal.x) * k; goal.z += (c[1] - goal.z) * k; }
     if (cam.free) { goal.copy(cam.target); focus.copy(goal); }   // cámara libre: sin retraso, así arrastrar se siente pegado al dedo
     else focus.lerp(goal, Math.min(1, dt * (port ? 1.2 : 2.5)));
+    const targetZoom = port && !cam.free ? 1.13 : 1;
+    if (camera.zoom !== targetZoom) {
+      camera.zoom = cam.free || Math.abs(camera.zoom - targetZoom) < .0001 ? targetZoom
+        : THREE.MathUtils.damp(camera.zoom, targetZoom, 2, dt);
+      camera.updateProjectionMatrix();
+    }
     camera.position.copy(focus).add(CAM_OFF); camera.lookAt(focus);
     sun.target.position.copy(focus); sun.position.copy(focus).addScaledVector(ctx.sunDir, 180);
   },

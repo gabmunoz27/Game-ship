@@ -5,3 +5,5 @@ dist-pub
 *.log
 .worker-state/
 loch-morag.zip
+tools/sfx/raw/
+__pycache__/

@@ -21,7 +21,9 @@ export function cross(state, exitId) {
   time.advance(state, supplied ? 1 : 2);
   state.map = to.id;
   Object.assign(state.boat, { x: spawn.x, z: spawn.z, heading: spawn.heading, speed: 0, turn: 0, course: null });
-  state.nearPort = null; state.nearExit = null;
+  state.nearExit = null;
+  if (state.nearPort) { state.nearPort = null; emit('dock:near', { villageId: null }); }
+  if (state.nearVillage) { state.nearVillage = null; emit('port:near', { villageId: null }); }
   emit('map:changed', { from: from.id, to: to.id, supplied });
   return { ok: true, to: to.id, supplied };
 }

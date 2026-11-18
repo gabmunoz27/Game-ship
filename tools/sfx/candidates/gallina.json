@@ -1,0 +1,414 @@
+[
+ {
+  "sid": "316920",
+  "user": "Rudmer_Rotteveel",
+  "title": "Chicken Single Alarm Call",
+  "dur": 1.15707,
+  "dl": 25073,
+  "rating": 4.6,
+  "mp3": "https://cdn.freesound.org/previews/316/316920_4921277-hq.mp3",
+  "query": "hen clucking",
+  "description": "The alarm call of one of our chickens after she spotted a cat in our garden. This sound is taken from my other recording of the same event. The original (longer) version is also available. \n\n Recorded with a Samson Q7 microphone through a Phonic AM85 analogue mixer. \n\n CC0, so no hassle with giving credit.",
+  "tags": [
+   "Chicken",
+   "animal",
+   "bird",
+   "cackle",
+   "call",
+   "chick",
+   "chicken",
+   "chickens",
+   "cluck",
+   "clucking",
+   "farm",
+   "hen",
+   "hens",
+   "predator-alert",
+   "warning"
+  ],
+  "file": "raw/cand/gallina/316920.mp3",
+  "analysis": {
+   "dur": 1.16,
+   "snr_db": 33.9,
+   "floor_db": -44.8,
+   "peak_db": -10.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.3,
+   "brightness_hz": 1442,
+   "events": [
+    [
+     0.2,
+     0.65,
+     -10.9
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "170808",
+  "user": "esperar",
+  "title": "Chicken imitation",
+  "dur": 2.4381,
+  "dl": 4271,
+  "rating": 4.0,
+  "mp3": "https://cdn.freesound.org/previews/170/170808_377731-hq.mp3",
+  "query": "chicken cluck",
+  "description": "A man clucking like a chicken.",
+  "tags": [
+   "chicken",
+   "cluck",
+   "clucking",
+   "imitate",
+   "imitation",
+   "male",
+   "man",
+   "vocal"
+  ],
+  "file": "raw/cand/gallina/170808.mp3",
+  "analysis": {
+   "dur": 2.44,
+   "snr_db": 36.9,
+   "floor_db": -55.3,
+   "peak_db": -18.4,
+   "clip_pct": 0.0,
+   "rumble_pct": 6.5,
+   "brightness_hz": 809,
+   "events": [
+    [
+     0.15,
+     0.6,
+     -17.6
+    ],
+    [
+     1.95,
+     2.1,
+     -19.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "118960",
+  "user": "esperri",
+  "title": "Chickens.wav",
+  "dur": 4.02631,
+  "dl": 1945,
+  "rating": 3.1,
+  "mp3": "https://cdn.freesound.org/previews/118/118960_1990695-hq.mp3",
+  "query": "chicken cluck",
+  "description": "Chickens clucking",
+  "tags": [
+   "animal",
+   "chicken",
+   "chickens",
+   "clucking"
+  ],
+  "file": "raw/cand/gallina/118960.mp3",
+  "analysis": {
+   "dur": 4.03,
+   "snr_db": 16.7,
+   "floor_db": -27.4,
+   "peak_db": -10.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 11.2,
+   "brightness_hz": 791,
+   "events": [
+    [
+     0.45,
+     1.65,
+     -6.8
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "170807",
+  "user": "esperar",
+  "title": "Angry chicken imitation",
+  "dur": 2.87927,
+  "dl": 1340,
+  "rating": 3.5,
+  "mp3": "https://cdn.freesound.org/previews/170/170807_377731-hq.mp3",
+  "query": "chicken cluck",
+  "description": "A man doing a vocal imitation of a chicken. Clucking followed by a loud, angry \"ba-gok!\" sound.",
+  "tags": [
+   "ba-gok",
+   "chicken",
+   "cluck",
+   "imitation",
+   "male",
+   "man",
+   "vocal"
+  ],
+  "file": "raw/cand/gallina/170807.mp3",
+  "analysis": {
+   "dur": 2.88,
+   "snr_db": 53.8,
+   "floor_db": -55.8,
+   "peak_db": -2.0,
+   "clip_pct": 1.161,
+   "rumble_pct": 2.0,
+   "brightness_hz": 922,
+   "events": [
+    [
+     0.25,
+     0.7,
+     -17.3
+    ],
+    [
+     2.05,
+     2.6,
+     -2.0
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "607245",
+  "user": "D4XX",
+  "title": "Chicken",
+  "dur": 1.92,
+  "dl": 1300,
+  "rating": 5.0,
+  "mp3": "https://cdn.freesound.org/previews/607/607245_887696-hq.mp3",
+  "query": "hen clucking",
+  "description": "Recording of a hen",
+  "tags": [
+   "chicken",
+   "cluck",
+   "clucking",
+   "hens"
+  ],
+  "file": "raw/cand/gallina/607245.mp3",
+  "analysis": {
+   "dur": 1.92,
+   "snr_db": 56.0,
+   "floor_db": -66.7,
+   "peak_db": -10.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 1.6,
+   "brightness_hz": 1671,
+   "events": [
+    [
+     0.0,
+     1.6,
+     -10.6
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "673255",
+  "user": "Preacher13",
+  "title": "Bwack.mp3",
+  "dur": 3.6598,
+  "dl": 940,
+  "rating": 3.7,
+  "mp3": "https://cdn.freesound.org/previews/673/673255_14693005-hq.mp3",
+  "query": "chicken cluck",
+  "description": "Imitation of chicken squawk, cluck, scream sound made by my face.",
+  "tags": [
+   "Chicken",
+   "bird",
+   "bwack",
+   "chicken",
+   "cluck",
+   "loud",
+   "scream",
+   "squawk"
+  ],
+  "file": "raw/cand/gallina/673255.mp3",
+  "analysis": {
+   "dur": 3.66,
+   "snr_db": 47.7,
+   "floor_db": -52.1,
+   "peak_db": -4.4,
+   "clip_pct": 0.336,
+   "rumble_pct": 2.5,
+   "brightness_hz": 692,
+   "events": [
+    [
+     1.1,
+     1.8,
+     -2.4
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "424076",
+  "user": "chanyatenn",
+  "title": "chicken sound - clucking.wav",
+  "dur": 4.09878,
+  "dl": 822,
+  "rating": 2.2,
+  "mp3": "https://cdn.freesound.org/previews/424/424076_7388661-hq.mp3",
+  "query": "hen clucking",
+  "description": "imitation of chicken clucking",
+  "tags": [
+   "animal",
+   "birds",
+   "chicken",
+   "chickens",
+   "cluck",
+   "clucking",
+   "cock",
+   "countryside",
+   "farm",
+   "field-recording",
+   "get",
+   "hen",
+   "hens",
+   "morning",
+   "rooster",
+   "rural",
+   "village",
+   "wake",
+   "wake-up"
+  ],
+  "file": "raw/cand/gallina/424076.mp3",
+  "analysis": {
+   "dur": 4.1,
+   "snr_db": 84.7,
+   "floor_db": -98.5,
+   "peak_db": -13.9,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.5,
+   "brightness_hz": 968,
+   "events": [
+    [
+     0.05,
+     2.75,
+     -14.1
+    ],
+    [
+     3.15,
+     4.0,
+     -13.5
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "455905",
+  "user": "JhennaSide",
+  "title": "chicken.wav",
+  "dur": 4.67302,
+  "dl": 693,
+  "rating": 3.7,
+  "mp3": "https://cdn.freesound.org/previews/455/455905_2468652-hq.mp3",
+  "query": "hen clucking",
+  "description": "short chicken cluck",
+  "tags": [
+   "chicken",
+   "clucking",
+   "hen"
+  ],
+  "file": "raw/cand/gallina/455905.mp3",
+  "analysis": {
+   "dur": 4.67,
+   "snr_db": 40.6,
+   "floor_db": -60.6,
+   "peak_db": -20.1,
+   "clip_pct": 0.0,
+   "rumble_pct": 2.3,
+   "brightness_hz": 1392,
+   "events": [
+    [
+     0.15,
+     1.5,
+     -22.7
+    ],
+    [
+     2.75,
+     4.4,
+     -18.3
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "810242",
+  "user": "SethAuldsAudio",
+  "title": "Chickens_Roosters_Farm_Clucking_Crowing_Bugs_Ambiance_2",
+  "dur": 24.7467,
+  "dl": 600,
+  "rating": 4.8,
+  "mp3": "https://cdn.freesound.org/previews/810/810242_14968661-hq.mp3",
+  "query": "chickens field recording",
+  "description": "DESCRIPTION: In this SFX pack, you'll find ambient recordings of a chicken farm. \n\n Before you download, check this showcase:  https://youtube.com/shorts/KrtVezJprBs  \n\n Make sure to leave a review, and let me know what you think!",
+  "tags": [
+   "Ambiance",
+   "Bugs",
+   "Chickens",
+   "Clucking",
+   "Crowing",
+   "Farm",
+   "Roosters"
+  ],
+  "file": "raw/cand/gallina/810242.mp3",
+  "analysis": {
+   "dur": 24.75,
+   "snr_db": 14.3,
+   "floor_db": -47.1,
+   "peak_db": -32.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 16.6,
+   "brightness_hz": 1135,
+   "events": [
+    [
+     5.75,
+     5.9,
+     -30.9
+    ]
+   ]
+  }
+ },
+ {
+  "sid": "536501",
+  "user": "RG2Cents",
+  "title": "chicken clucking.mp3",
+  "dur": 5.14054,
+  "dl": 412,
+  "rating": 3.3,
+  "mp3": "https://cdn.freesound.org/previews/536/536501_8503235-hq.mp3",
+  "query": "hen clucking",
+  "description": "Cartoonish chicken sounds.",
+  "tags": [
+   "chicken",
+   "cluck",
+   "clucking",
+   "farm",
+   "hen",
+   "poultry",
+   "rooster"
+  ],
+  "file": "raw/cand/gallina/536501.mp3",
+  "analysis": {
+   "dur": 5.14,
+   "snr_db": 51.5,
+   "floor_db": -64.2,
+   "peak_db": -12.7,
+   "clip_pct": 0.0,
+   "rumble_pct": 5.4,
+   "brightness_hz": 1072,
+   "events": [
+    [
+     0.0,
+     3.4,
+     -11.9
+    ],
+    [
+     3.65,
+     4.3,
+     -12.8
+    ],
+    [
+     4.55,
+     5.05,
+     -13.0
+    ]
+   ]
+  }
+ }
+]

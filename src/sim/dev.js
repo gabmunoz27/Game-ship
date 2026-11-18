@@ -1,3 +1,4 @@
+import { SOUNDS, VILLAGE_SOUNDS } from '../data/sounds.js';
 // Atajos de desarrollador: llevan la partida a cualquier situación sin jugar hasta ahí.
 // Puras como el resto de sim/: cambian el estado y avisan con eventos, y la pantalla reacciona sola.
 import { MAPS, getMap } from '../maps/index.js';
@@ -23,7 +24,9 @@ export function goTo(state, mapId, spotId) {
   const from = state.map, wasDocked = state.docked;
   // en una salida se queda un poco antes, para no dispararla sin querer
   const n = spot.exit && map.exitOf(spot.exit).n, [x, z] = n ? [spot.x - n[0] * 12, spot.z - n[1] * 12] : [spot.x, spot.z];
-  state.map = mapId; state.docked = null; state.nearPort = null; state.nearExit = null;
+  state.map = mapId; state.docked = null; state.nearExit = null;
+  if (state.nearPort) { state.nearPort = null; emit('dock:near', { villageId: null }); }
+  if (state.nearVillage) { state.nearVillage = null; emit('port:near', { villageId: null }); }
   Object.assign(state.boat, { x, z, speed: 0, turn: 0, course: null, heading: spot.heading ?? state.boat.heading });
   if (wasDocked) emit('dock:left', { villageId: wasDocked });
   if (from !== mapId) emit('map:changed', { from, to: mapId, dev: true });
@@ -42,7 +45,17 @@ export function toggleUpgrade(state, id) {
   const list = state.boat.upgrades, i = list.indexOf(id), u = UPGRADES[id];
   if (i >= 0) { list.splice(i, 1); if (u.capacity) state.hold.capacity = 10; }
   else { list.push(id); if (u.capacity) state.hold.capacity = Math.max(state.hold.capacity, u.capacity); if (u.act > state.act) state.act = u.act; }
+  if (u.capacity) emit('cargo:changed');
   if (list.includes(id)) emit('upgrade:installed', { id, dev: true });
   return list.includes(id);
 }
 export function setTrust(state, village, value) { trust.add(state, village, value - trust.of(state, village)); }
+
+export function setAudioVolume(bus, value) {
+  if (['musica', 'efectos', 'ambiente'].includes(bus) && Number.isFinite(value)) {
+    emit('audio:volume', { bus, value: Math.min(1, Math.max(0, value)) });
+  }
+}
+export function previewSound(id) {
+  if (Object.hasOwn(SOUNDS, id) || Object.hasOwn(VILLAGE_SOUNDS, id)) emit('audio:preview', { id });
+}

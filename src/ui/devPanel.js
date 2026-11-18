@@ -1,4 +1,5 @@
 import { on, emit } from '../core/events.js';
+import { SOUNDS, VILLAGE_SOUNDS } from '../data/sounds.js';
 import * as dev from '../sim/dev.js';
 import { MAPS, mapOf } from '../maps/index.js';
 import { VILLAGES } from '../data/villages.js';
@@ -17,6 +18,19 @@ const $ = s => el.querySelector(s);
 function section(title, body) { return `<section><h3>${title}</h3>${body}</section>`; }
 const btn = (act, label, extra = '', on = false) => `<button data-act="${act}" ${extra} class="${on ? 'on' : ''}">${label}</button>`;
 
+let selectedSound = 'casco';
+function audioControls() {
+  const sliders = Object.entries({ musica: 'Música', efectos: 'Efectos', ambiente: 'Ambiente' }).map(([bus, label]) =>
+    `<label class="dv-row">${label} <input type="range" min="0" max="100" data-volume="${bus}" value="${Math.round(ctxRef.audioLevels[bus]*100)}"></label>`).join('');
+  const options = Object.entries(SOUNDS).map(([id,s]) => `<option value="${id}">${s.label}</option>`);
+  for (const id of Object.keys(VILLAGE_SOUNDS)) options.push(`<option value="${id}">Paisaje de ${VILLAGES[id].name}</option>`);
+  return sliders + `<label>Prueba de sonido <select data-sample>${options.join('')}</select></label> ` + btn('preview','Escuchar') +
+    `<p class="dv-hint">La prueba suena aunque los volúmenes estén en cero o el sonido silenciado, y mientras dura se calla todo lo demás.</p>`;
+}
+function positionText() {
+  const s = ctxRef.state;
+  return `${mapOf(s).name} · Día ${s.day} · ${SLOTS[s.slot]} · ${WEATHER[s.weather].name} · barco en (${s.boat.x.toFixed(0)}, ${s.boat.z.toFixed(0)}) · ${s.coins} monedas`;
+}
 function draw() {
   const s = ctxRef.state, map = mapOf(s), cam = ctxRef.cam;
   const go = dev.places().map(m => `<div class="dv-map${m.map === s.map ? ' here' : ''}"><b>${m.name}</b><div class="dv-row">${m.spots.map(p =>
@@ -39,9 +53,11 @@ function draw() {
       <div class="dv-row">${ups}</div>`) +
     section(`Confianza en ${map.name}`, trust || '<p class="dv-hint">Este mapa no tiene villas.</p>') +
     section('Música', `<p class="dv-hint">${ctxRef.music ? (ctxRef.music.info.title ? `♪ ${ctxRef.music.info.title} · ${ctxRef.music.info.source === 'mp3' ? 'MP3' : 'boceto en código (falta el MP3)'}` : ctxRef.music.info.status) : ''}</p>
-      <div class="dv-row">${btn('music-next', 'Tocar otra pieza ahora')}${btn('music-mute', ctxRef.music && ctxRef.music.isMuted() ? 'Activar música' : 'Silenciar música')}</div>`) +
+      <div class="dv-row">${btn('music-next', 'Tocar otra pieza ahora')}${btn('music-mute', ctxRef.music && ctxRef.music.isMuted() ? 'Activar sonido' : 'Silenciar sonido')}</div>`) +
+    section('Sonido', audioControls()) +
     section('Ver eventos', `<div class="dv-row">${btn('label', 'Rótulo de llegada')}${btn('act', 'Cierre del Acto I')}${btn('cross', 'Cruzar de mapa (telón)')}${btn('pickup', 'Aviso de objeto')}${btn('modules', 'Estado de módulos (M)')}</div>`) +
-    `<p class="dv-state">${map.name} · Día ${s.day} · ${SLOTS[s.slot]} · ${WEATHER[s.weather].name} · barco en (${s.boat.x.toFixed(0)}, ${s.boat.z.toFixed(0)}) · ${s.coins} monedas</p>`;
+    `<p class="dv-state">${positionText()}</p>`;
+  $('[data-sample]').value = selectedSound;
 }
 
 function act(a, d) {
@@ -67,6 +83,7 @@ function act(a, d) {
     case 'cross': { const e = map.exits[0]; if (e.requires && !s.boat.upgrades.includes(e.requires)) dev.toggleUpgrade(s, e.requires);
       s.docked = null; emit('travel:request', { exit: e.id }); toggle(false); break; }
     case 'pickup': emit('item:gained', { item: 'shortcut_map' }); break;
+    case 'preview': dev.previewSound(selectedSound); return;
     case 'music-next': emit('music:next'); break;
     case 'music-mute': emit('music:mute'); break;
     case 'modules': dispatchEvent(new KeyboardEvent('keydown', { key: 'm' })); break;
@@ -107,9 +124,13 @@ export default {
     el.innerHTML = `<header><b>Vista de desarrollador</b><button data-close aria-label="Cerrar">×</button></header>
       <p class="dv-hint">D (o º) abre y cierra · en el celular, toca las monedas</p><div class="dv-body"></div>`;
     document.getElementById('app').append(el);
+    el.addEventListener('input', e => {
+      if (e.target.dataset.volume) dev.setAudioVolume(e.target.dataset.volume, Number(e.target.value)/100);
+    });
+    el.addEventListener('change', e => { if (e.target.matches('[data-sample]')) selectedSound = e.target.value; });
     el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return;
       if (b.hasAttribute('data-close')) return toggle(false); if (b.dataset.act) act(b.dataset.act, b.dataset); });
-    addEventListener('keydown', e => { if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea/i.test(e.target.tagName)) return;
+    addEventListener('keydown', e => { if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
       if (['d', 'º', '`'].includes(e.key.toLowerCase())) toggle(); if (e.key === 'Escape' && open) toggle(false); });
     // Tocar (o hacer clic en) el contador de monedas abre y cierra el panel. Mantener apretado no sirve en iOS: sale la lupa.
     const coins = ctx.ui.top.querySelector('.coins');
@@ -118,5 +139,5 @@ export default {
     ['map:changed', 'time:changed', 'weather:changed', 'trust:changed', 'cargo:changed', 'upgrade:installed', 'music:started', 'music:muted'].forEach(ev => on(ev, () => { if (open) draw(); }));
     if (new URLSearchParams(location.search).has('dev')) toggle(true);
   },
-  update(ctx) { if (open && ctx.time % 1 < .02) { const p = $('.dv-state'); if (p) draw(); } }
+  update(ctx) { if (open && ctx.time % 1 < .02) { const p = $('.dv-state'); if (p) p.textContent = positionText(); } }
 };

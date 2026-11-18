@@ -113,3 +113,12 @@ body.dv-nohud #ui{display:none}
 .sound-btn svg{width:22px;height:22px}
 .sound-btn.off{color:#9a8f78!important}
 .sound-btn + .weather-chip{margin-left:0}
+
+.cargo-bar{order:10;position:relative;max-width:100%;box-sizing:border-box;padding:4px 8px 6px;border:1px solid var(--parchment-edge);border-radius:6px;background:var(--night);color:var(--parchment)}
+.cargo-bar strong{display:block;font:700 11px var(--display);margin-bottom:3px}
+.cargo-slots{display:flex;flex-wrap:wrap;gap:2px;max-height:64px;overflow-y:auto;pointer-events:auto}
+.cargo-slots>*{box-sizing:border-box;flex:0 0 28px;height:28px;background:#38433a;border:1px solid #777660;border-radius:4px}
+.cargo-slots button{padding:1px;background:var(--parchment-dark)}
+.cargo-slots .icon{width:100%;height:100%;display:block}
+.cargo-slots .wet{background:#93cee2;border:2px solid #3781a1}
+.cargo-bar output{position:absolute;bottom:100%;left:0;padding:5px 8px;background:var(--parchment);color:var(--ink);border-radius:4px;white-space:nowrap}

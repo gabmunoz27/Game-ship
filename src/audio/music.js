@@ -5,7 +5,8 @@ import { playSketch } from './sketch.js';
 // Al cambiar de mapa funde la pieza que suena y, tras una pausa corta, entra la del mapa nuevo.
 // El navegador no deja sonar nada hasta el primer toque o tecla: ahí arranca.
 // Si falta el MP3 de una pieza, toca su boceto hecho en código (audio/sketch.js).
-const VOLUME = .55, FADE = 3;
+import { levels, saveLevel } from './levels.js';
+const FADE = 3;
 let ac, master, current = null, history = [], timer = 0, started = false, muted = false;
 const info = { title: null, status: 'esperando el primer toque', source: null };
 const missing = new Set();
@@ -51,7 +52,8 @@ function fadeOutAndWait(state, wait) {
   info.title = null; info.status = 'cambiando de mapa';
   timer = setTimeout(() => playNext(state), (FADE + wait) * 1000);
 }
-const applyVolume = () => { if (master) master.gain.setTargetAtTime(muted ? 0 : VOLUME, ac.currentTime, .3); };
+let ducked = false;   // la prueba de sonido de la vista de desarrollador baja la música mientras suena
+const applyVolume = () => { if (master) master.gain.setTargetAtTime(muted || ducked ? 0 : levels.musica, ac.currentTime, ducked ? .08 : .3); };
 
 export default {
   id: 'music', label: 'Música',
@@ -61,7 +63,7 @@ export default {
       if (started) return; started = true;
       const AC = window.AudioContext || window.webkitAudioContext; if (!AC) { info.status = 'este navegador no tiene audio'; return; }
       ac = new AC(); master = ac.createGain(); master.gain.value = 0; master.connect(ac.destination); applyVolume();
-      ac.resume(); info.status = 'empieza en un momento';
+      ac.resume(); emit('audio:ready', { ac }); info.status = 'empieza en un momento';
       timer = setTimeout(() => playNext(ctx.state), 2500);
     };
     addEventListener('pointerdown', start, { capture: true }); addEventListener('keydown', start, { capture: true });
@@ -69,6 +71,9 @@ export default {
     on('map:changed', () => { if (started && ac) fadeOutAndWait(ctx.state, 2); });
     on('music:next', () => { if (!started) return; if (current) { current.handle.stop(1.5); current = null; } clearTimeout(timer); timer = setTimeout(() => playNext(ctx.state), 1700); });
     on('music:mute', ({ value } = {}) => { muted = value ?? !muted; store.set('lm-music-muted', muted ? '1' : '0'); applyVolume(); emit('music:muted', { muted }); });
+    on('audio:volume', ({ bus, value }) => { saveLevel(bus, value); applyVolume(); });
+    on('audio:duck', ({ on: value }) => { ducked = value; applyVolume(); });
+    ctx.audioLevels = levels;
     ctx.music = { info, isMuted: () => muted };
   }
 };

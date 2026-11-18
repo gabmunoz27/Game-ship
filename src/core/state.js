@@ -18,7 +18,7 @@ export function createState() {
     shipyard: {}, // materiales ya entregados para cada mejora: { reinforced_hull: { oak_wood: 4 } }
     quests: {},
     villages,
-    lastPort: 'portDun', nearPort: null, nearExit: null, docked: null,
+    lastPort: 'portDun', nearVillage: null, nearPort: null, nearExit: null, docked: null,
     rng: 20260317,   // semilla del clima
     flags: {}
   };

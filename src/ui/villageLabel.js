@@ -13,8 +13,9 @@ export default {
     el.innerHTML = '<div class="vl-text"><span class="vl-kind">Villa</span><span class="vl-name"></span></div><div class="vl-line"></div><div class="vl-dot"></div>';
     ctx.ui.root.append(el);
     on('port:near', ({ villageId }) => {
-      if (!villageId) return el.classList.remove('on');
-      const map = mapOf(ctx.state), p = map.portOf(villageId), [x, z] = p.center || p.land;
+      const map = mapOf(ctx.state), p = map.portOf(villageId);
+      if (!p) return el.classList.remove('on');
+      const [x, z] = p.center || p.land;
       anchor = new Vector3(x, map.height(x, z) + 1.5, z);
       el.querySelector('.vl-name').textContent = VILLAGES[villageId].name;
       el.classList.remove('on'); void el.offsetWidth; el.classList.add('on'); // reinicia la animación

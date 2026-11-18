@@ -60,6 +60,10 @@ const ART = {
     `<ellipse cx="24" cy="30" rx="17" ry="10" fill="none" stroke="${RIM}" stroke-width="9"/><ellipse cx="24" cy="30" rx="17" ry="10" fill="none" stroke="url(#a)" stroke-width="5.5"/>
      <ellipse cx="24" cy="22" rx="13" ry="7.5" fill="none" stroke="${RIM}" stroke-width="9"/><ellipse cx="24" cy="22" rx="13" ry="7.5" fill="none" stroke="url(#a)" stroke-width="5.5"/>
      <path d="M37 24 Q44 14 40 8" fill="none" stroke="${RIM}" stroke-width="7" stroke-linecap="round"/><path d="M37 24 Q44 14 40 8" fill="none" stroke="url(#a)" stroke-width="3.6" stroke-linecap="round"/>`],
+  herring_oil: [[['a', '#fff5a0', '#d6942e']],
+    `<path d="M18 6 H30 V15 Q38 21 37 29 V39 Q24 44 11 39 V29 Q10 21 18 15 Z" fill="url(#a)" ${S}/><rect x="17" y="5" width="14" height="6" rx="2" fill="#a77940" ${S}/>${shine('M16 25 V34')}`],
+  whisky: [[['a', '#f3bd75', '#a5582c']],
+    `<path d="M12 9 Q24 5 36 9 Q44 24 36 39 Q24 44 12 39 Q4 24 12 9 Z" fill="url(#a)" ${S}/><path d="M10 16 Q24 20 38 16 M10 32 Q24 36 38 32" fill="none" ${S}/>${shine('M15 21 V27')}`],
   // Clima
   despejado: [[['a', '#fff3a0', '#f0a52a']],
     `${[0, 45, 90, 135, 180, 225, 270, 315].map(a => `<path d="M24 4 V10" transform="rotate(${a} 24 24)" stroke="${RIM}" stroke-width="4" stroke-linecap="round"/>`).join('')}<circle cx="24" cy="24" r="10.5" fill="url(#a)" ${S}/>${shine('M18 20 Q20 16.5 24 16')}`],

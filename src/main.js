@@ -23,8 +23,10 @@ import boat from './world/boat.js';
 import courseMarker from './world/courseMarker.js';
 import input from './world/input.js';
 import uiRoot from './ui/root.js';
+import cargoBar from './ui/cargoBar.js';
 import coins from './ui/coins.js';
 import weatherChip from './ui/weatherChip.js';
+import sfx from './audio/sfx.js';
 import music from './audio/music.js';
 import soundButton from './ui/soundButton.js';
 import pickups from './ui/pickups.js';
@@ -41,7 +43,7 @@ const navigation = { id: 'navigation', label: 'Navegación', update: (ctx, dt) =
 const actsSys = { id: 'acts', label: 'Actos y salida del mapa', update: ctx => acts.update(ctx.state) };
 
 [scene, daylight, weather, navigation, actsSys, terrain, cliffs, rocks, pines, villages, glenmore, achnacarn, strathlinn, landmarks, water, boat, courseMarker, input,
-  uiRoot, coins, weatherChip, music, soundButton, pickups, villageLabel, notices, dockPanel, exitPrompt, actEnd, mapTransition, devPanel, moduleStatus].forEach(register);
+  uiRoot, cargoBar, coins, weatherChip, music, sfx, soundButton, pickups, villageLabel, notices, dockPanel, exitPrompt, actEnd, mapTransition, devPanel, moduleStatus].forEach(register);
 
 const state = createState();
 // ?franja=0|1|2 abre la partida en Mañana, Tarde o Noche: sirve para probar la luz sin esperar.
@@ -52,7 +54,7 @@ const params = new URLSearchParams(location.search), mapa = getMap(params.get('m
 if (mapa) { const sp = Object.values(mapa.spawns)[0]; state.map = mapa.id; Object.assign(state.boat, { x: sp.x, z: sp.z, heading: sp.heading }); }
 // ?clima=lluvia (o niebla, nublado, viento-en-contra) abre con ese clima.
 if (params.get('clima')) state.weather = params.get('clima');
-const villa = mapOf(state).portOf(params.get('villa'));
+const villa = mapOf(state).ports.find(p => p.village.toLowerCase() === params.get('villa')?.toLowerCase());
 if (villa) { state.boat.x = villa.dock[0]; state.boat.z = villa.dock[1]; }
 
 const ctx = { state, canvas: document.getElementById('c'), time: 0 };
